@@ -83,10 +83,15 @@ export default function ProjectPage({ params }: ProjectPageProps) {
         </div>
 
         <div className={styles.projectDetailContent}>
-          <p className={styles.projectDetailDescription}>{project.longDescription}</p>
+          {/* Project Description Section */}
+          <div className={styles.projectSection}>
+            <h2 className={styles.sectionTitle}>About This Project</h2>
+            <p className={styles.projectDetailDescription}>{project.longDescription}</p>
+          </div>
 
-          <div className={styles.projectDetailTech}>
-            <h3 className={styles.projectDetailTechTitle}>Technologies & Tools</h3>
+          {/* Technologies & Tools Section */}
+          <div className={styles.projectSection}>
+            <h2 className={styles.sectionTitle}>Tech Stack</h2>
             <div className={styles.projectDetailTechList}>
               {project.technologies.map((tech) => (
                 <span key={tech} className={styles.techTag}>
@@ -95,6 +100,27 @@ export default function ProjectPage({ params }: ProjectPageProps) {
               ))}
             </div>
           </div>
+
+          {/* Screenshots Section */}
+          {project.screenshots && project.screenshots.length > 0 && (
+            <div className={styles.projectSection}>
+              <h2 className={styles.sectionTitle}>Screenshots</h2>
+              <div className={styles.screenshotsGrid}>
+                {project.screenshots.map((screenshot, index) => (
+                  <div key={index} className={styles.screenshotItem}>
+                    <Image
+                      src={screenshot}
+                      alt={`${project.title} - Screenshot ${index + 1}`}
+                      width={1200}
+                      height={800}
+                      style={{ objectFit: 'cover' }}
+                      className={styles.screenshotImage}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           <div className={styles.projectDetailLinks}>
             {project.link && (

@@ -8,6 +8,7 @@ export interface Project {
   technologies: string[];
   thumbnail: string;
   images: string[];
+  screenshots?: string[]; // Project screenshots
   link?: string;
   github?: string;
 }

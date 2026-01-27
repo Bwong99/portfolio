@@ -12,7 +12,7 @@
   background-image: url('https://images.unsplash.com/photo-1517976487492-5750f3195933?w=1920&q=80');
   background-size: cover;
   background-position: center;
-  opacity: 0.08;
+  opacity: 0.15;
   filter: blur(2px);
   pointer-events: none;
   z-index: 0;

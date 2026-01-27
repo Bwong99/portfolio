@@ -48,6 +48,11 @@ export const projects: Project[] = [
       'https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&q=80',
       'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80',
     ],
+    screenshots: [
+      'https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&q=80',
+      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80',
+      'https://images.unsplash.com/photo-1537498425277-c283d32ef9db?w=1200&q=80',
+    ],
   },
   {
     id: 'robotics-dashboard',
@@ -61,6 +66,11 @@ export const projects: Project[] = [
       'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1200&q=80',
       'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80',
     ],
+    screenshots: [
+      'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1200&q=80',
+      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80',
+      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80',
+    ],
   },
   {
     id: 'esp32-telemetry',
@@ -71,6 +81,10 @@ export const projects: Project[] = [
     technologies: ['ESP32', 'Embedded C', 'Node.js', 'Linux', 'Sensor Integration'],
     thumbnail: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80',
     images: [
+      'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1200&q=80',
+      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80',
+    ],
+    screenshots: [
       'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1200&q=80',
       'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80',
     ],
