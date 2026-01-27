@@ -170,25 +170,6 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               </a>
             )}
           </div>
-
-          {project.images.length > 1 && (
-            <div className={styles.projectGallery}>
-              <h3 className={styles.projectGalleryTitle}>Gallery</h3>
-              <div className={styles.projectGalleryGrid}>
-                {project.images.slice(1).map((image, index) => (
-                  <div key={index} className={styles.galleryImage}>
-                    <Image
-                      src={image}
-                      alt={`${project.title} - Image ${index + 2}`}
-                      width={1200}
-                      height={750}
-                      style={{ objectFit: 'cover', width: '100%', height: '100%' }}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
         </div>
       </div>
     </div>

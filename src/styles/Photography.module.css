@@ -2,7 +2,7 @@
   width: 100%;
   min-height: 100vh;
   padding: var(--spacing-3xl) 0;
-  background: linear-gradient(to bottom, var(--bg-primary), var(--color-off-white));
+  background: url('/photos/backgrounds/japan4.JPG') center/cover no-repeat, linear-gradient(to bottom, var(--bg-primary), var(--color-off-white));
   position: relative;
 }
 

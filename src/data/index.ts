@@ -43,16 +43,11 @@ export const projects: Project[] = [
     description: 'Synthesizable RV32I single-cycle CPU implemented in SystemVerilog.',
     longDescription: 'Implemented a fully synthesizable RV32I single-cycle CPU in SystemVerilog. Designed comprehensive datapath, control logic, ALU, register file, and memory interface. Built ISA-compliant control and datapath logic for R/I/S/B/U/J instructions, including branch/jump handling and PC control. Verified correctness using self-checking SystemVerilog testbenches and waveform-based debugging in ModelSim.',
     technologies: ['SystemVerilog', 'ModelSim', 'RISC-V', 'RTL Design', 'FPGA'],
-    thumbnail: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80',
+    thumbnail: '/photos/projects/riscvcpu/risc-V%20cpu1.jpg',
     images: [
-      'https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&q=80',
-      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80',
+      '/photos/projects/riscvcpu/risc-V%20cpu1.jpg',
     ],
-    screenshots: [
-      'https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&q=80',
-      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80',
-      'https://images.unsplash.com/photo-1537498425277-c283d32ef9db?w=1200&q=80',
-    ],
+    screenshots: [],
   },
   {
     id: 'robotics-dashboard',
@@ -61,15 +56,14 @@ export const projects: Project[] = [
     description: 'C++/wxWidgets dashboard with live sensor telemetry streamed over TCP.',
     longDescription: 'Designed and built a real-time C++/wxWidgets dashboard for UBC Open Robotics with live sensor telemetry streamed over TCP sockets. Features an interactive UI with dynamic sensor control panel, responsive splitter layout, and real-time graphing. Implemented multi-threaded TCP client with JSON parsing and an observer pattern for thread-safe data-to-UI pipeline. Developed a dual-mode system (ESP32 hardware + Python mock server) enabling production testing and development iteration without hardware dependencies.',
     technologies: ['C++', 'wxWidgets', 'TCP/IP', 'JSON', 'Multi-threading', 'Figma'],
-    thumbnail: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&q=80',
+    thumbnail: '/photos/projects/panorama/panorama3.png',
     images: [
-      'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1200&q=80',
-      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80',
+      '/photos/projects/panorama/panorama3.png',
     ],
     screenshots: [
-      'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1200&q=80',
-      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80',
-      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80',
+      '/photos/projects/panorama/panorama1.png',
+      '/photos/projects/panorama/panorama2.png',
+      '/photos/projects/panorama/panorama3.png',
     ],
   },
   {
@@ -79,15 +73,11 @@ export const projects: Project[] = [
     description: 'ESP32 firmware in embedded C for sensor interfacing to local web dashboard.',
     longDescription: 'Implemented ESP32 firmware in embedded C for sensor interfacing to a local web dashboard. Built a Node.js backend to support a lightweight telemetry data pipeline. Deployed using Linux CLI and designed for real-time monitoring of sensor data with minimal latency.',
     technologies: ['ESP32', 'Embedded C', 'Node.js', 'Linux', 'Sensor Integration'],
-    thumbnail: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80',
+    thumbnail: '/photos/projects/esp32/esp32.jpg',
     images: [
-      'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1200&q=80',
-      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80',
+      '/photos/projects/esp32/esp32.jpg',
     ],
-    screenshots: [
-      'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1200&q=80',
-      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80',
-    ],
+    screenshots: [],
   },
 ];
 

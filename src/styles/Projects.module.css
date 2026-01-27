@@ -6,16 +6,7 @@
 }
 
 .projects::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: url('https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1920&q=80');
-  background-size: cover;
-  background-position: center;
-  opacity: 0.15;
-  filter: blur(2px);
-  pointer-events: none;
-  z-index: 0;
+  /* background removed for featured projects */
 }
 
 .projectsContainer {

@@ -9,7 +9,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url('https://images.unsplash.com/photo-1517976487492-5750f3195933?w=1920&q=80');
+  background-image: url('/photos/backgrounds/japan1.jpg');
   background-size: cover;
   background-position: center;
   opacity: 0.15;

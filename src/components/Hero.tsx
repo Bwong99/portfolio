@@ -37,8 +37,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.5 }}
           >
-            {aboutMe.title} based in {aboutMe.location}. Building efficient embedded systems
-            and capturing moments through photography.
+            Computer Engineering Student & Embedded Systems Developer based in Vancouver, BC. Building embedded systems and capturing moments through photography.
           </motion.p>
           <motion.div
             className={styles.heroButtons}

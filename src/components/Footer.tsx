@@ -15,9 +15,7 @@ const Footer = () => {
           <div className={styles.footerBrand}>
             <h3>Bradley Wong</h3>
             <p>
-              Full-stack developer and photographer passionate about creating
-              beautiful digital experiences and capturing life's moments through
-              the lens.
+              Computer Engineering Student & Embedded Systems Developer based in Vancouver, BC. Building embedded systems and capturing moments through photography.
             </p>
           </div>
 
