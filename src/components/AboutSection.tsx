@@ -44,10 +44,6 @@ const AboutSection = () => {
             variants={containerVariants}
           >
             <motion.div className={styles.aboutContent} variants={itemVariants}>
-              <h2>
-                About <span>Me</span>
-              </h2>
-              <p className={styles.aboutTitle}>{aboutMe.title}</p>
               <div className={styles.aboutBio}>
                 {aboutMe.bio.split('\n\n').map((paragraph, index) => (
                   <p key={index}>{paragraph}</p>

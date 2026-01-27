@@ -5,3 +5,5 @@ export { default as AboutSection } from './AboutSection';
 export { default as ProjectsGrid } from './ProjectsGrid';
 export { default as ContactForm } from './ContactForm';
 export { default as PageTransition } from './PageTransition';
+export { default as PhotographyGallery } from './PhotographyGallery';
+export { default as PageHeader } from './PageHeader';

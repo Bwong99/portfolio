@@ -15,7 +15,7 @@ interface ProjectsGridProps {
 
 const ProjectsGrid = ({ showFilter = true, limit }: ProjectsGridProps) => {
   const [filter, setFilter] = useState<string>('all');
-  const categories = ['all', 'photography', 'software', 'coding', 'hardware'];
+  const categories = ['all', 'photography', 'software', 'hardware'];
 
   const filteredProjects = filter === 'all'
     ? projects
@@ -50,19 +50,6 @@ const ProjectsGrid = ({ showFilter = true, limit }: ProjectsGridProps) => {
   return (
     <section className={styles.projects}>
       <div className={styles.projectsContainer}>
-        <motion.div
-          className={styles.projectsHeader}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <h2 className={styles.projectsTitle}>My Projects</h2>
-          <p className={styles.projectsSubtitle}>
-            A collection of my work spanning photography, software development, and hardware projects
-          </p>
-        </motion.div>
-
         {showFilter && (
           <motion.div
             className={styles.projectsFilter}

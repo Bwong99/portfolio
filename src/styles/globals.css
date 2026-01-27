@@ -159,6 +159,16 @@ h4 { font-size: 1.25rem; }
   font-size: 1rem;
   transition: all var(--transition-normal);
   gap: var(--spacing-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn svg {
+  transition: transform var(--transition-normal);
+}
+
+.btn:hover svg {
+  transform: translateX(4px);
 }
 
 .btn-primary {
@@ -166,10 +176,24 @@ h4 { font-size: 1.25rem; }
   color: var(--text-light);
 }
 
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
 .btn-primary:hover {
   background-color: var(--color-primary-dark);
   transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 4px 12px rgba(74, 144, 164, 0.25);
+}
+
+.btn-primary:hover::before {
+  opacity: 1;
 }
 
 .btn-secondary {
@@ -178,10 +202,25 @@ h4 { font-size: 1.25rem; }
   border: 2px solid var(--color-primary);
 }
 
+.btn-secondary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(74, 144, 164, 0.05);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
 .btn-secondary:hover {
   background-color: var(--color-primary);
   color: var(--text-light);
   transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(74, 144, 164, 0.2);
+}
+
+.btn-secondary:hover::before {
+  opacity: 1;
 }
 
 /* Card */
