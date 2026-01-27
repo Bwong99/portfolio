@@ -17,7 +17,7 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Bradley Wong | Computer Engineering Student & Photographer',
+    default: 'Bradley Wong | Computer Engineering Student',
     template: '%s | Bradley Wong',
   },
   description:
