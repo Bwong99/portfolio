@@ -1,0 +1,119 @@
+.footer {
+  background-color: var(--color-charcoal);
+  color: var(--text-light);
+  padding: var(--spacing-3xl) 0 var(--spacing-xl);
+}
+
+.footerContainer {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+}
+
+.footerContent {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: var(--spacing-3xl);
+  margin-bottom: var(--spacing-2xl);
+  padding-bottom: var(--spacing-2xl);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footerBrand h3 {
+  font-size: 1.5rem;
+  color: var(--color-primary-light);
+  margin-bottom: var(--spacing-md);
+}
+
+.footerBrand p {
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.7;
+  max-width: 350px;
+}
+
+.footerSection h4 {
+  font-size: 1rem;
+  margin-bottom: var(--spacing-lg);
+  color: var(--text-light);
+}
+
+.footerLinks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.footerLink {
+  color: rgba(255, 255, 255, 0.7);
+  transition: color var(--transition-fast);
+}
+
+.footerLink:hover {
+  color: var(--color-primary-light);
+}
+
+.footerSocial {
+  display: flex;
+  gap: var(--spacing-md);
+}
+
+.footerSocialLink {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  color: var(--text-light);
+  transition: all var(--transition-fast);
+}
+
+.footerSocialLink:hover {
+  background-color: var(--color-primary);
+  transform: translateY(-3px);
+}
+
+.footerSocialLink svg {
+  width: 18px;
+  height: 18px;
+}
+
+.footerBottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.875rem;
+}
+
+.footerBottom a {
+  color: var(--color-primary-light);
+  transition: color var(--transition-fast);
+}
+
+.footerBottom a:hover {
+  color: var(--text-light);
+}
+
+@media (max-width: 768px) {
+  .footerContent {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+    text-align: center;
+  }
+
+  .footerBrand p {
+    max-width: 100%;
+  }
+
+  .footerSocial {
+    justify-content: center;
+  }
+
+  .footerBottom {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    text-align: center;
+  }
+}
