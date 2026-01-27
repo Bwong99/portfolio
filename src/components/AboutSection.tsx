@@ -74,7 +74,7 @@ const AboutSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            Skills & Expertise
+            Skills
           </motion.h2>
 
           <motion.div

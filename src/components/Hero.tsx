@@ -37,7 +37,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.5 }}
           >
-            Computer Engineering Student & Embedded Systems Developer based in Vancouver, BC. Building embedded systems and capturing moments through photography.
+            Computer Engineering Student at the University of British Columbia & Embedded Systems Developer based in Vancouver, BC. Building embedded systems and capturing moments through photography.
           </motion.p>
           <motion.div
             className={styles.heroButtons}

@@ -6,7 +6,16 @@
 }
 
 .projects::before {
-  /* background removed for featured projects */
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/photos/backgrounds/japan2.JPG');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.15;
+  filter: blur(2px);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .projectsContainer {
@@ -210,11 +219,13 @@
 
 .projectDetailImage {
   width: 100%;
-  aspect-ratio: 16/9;
+  max-width: 600px;
+  height: auto;
+  margin: 0 auto var(--spacing-2xl);
   border-radius: var(--radius-lg);
   overflow: hidden;
-  margin-bottom: var(--spacing-2xl);
   box-shadow: var(--shadow-lg);
+  position: relative;
 }
 
 .projectDetailContent {
