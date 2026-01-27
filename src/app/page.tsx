@@ -11,9 +11,6 @@ export default function Home() {
         <div className={styles.projectsContainer}>
           <div className={styles.projectsHeader}>
             <h2 className={styles.projectsTitle}>Featured Projects</h2>
-            <p className={styles.projectsSubtitle}>
-              A curated selection of my recent work
-            </p>
           </div>
         </div>
       </section>

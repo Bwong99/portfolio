@@ -89,23 +89,13 @@ const AboutSection = () => {
                 <h3 className={styles.skillCategoryTitle}>
                   {category.charAt(0).toUpperCase() + category.slice(1)}
                 </h3>
-                {categorySkills.map((skill) => (
-                  <div key={skill.name} className={styles.skillItem}>
-                    <div className={styles.skillInfo}>
-                      <span className={styles.skillName}>{skill.name}</span>
-                      <span className={styles.skillLevel}>{skill.level}%</span>
-                    </div>
-                    <div className={styles.skillBar}>
-                      <motion.div
-                        className={styles.skillProgress}
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${skill.level}%` }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1, delay: 0.2 }}
-                      />
-                    </div>
-                  </div>
-                ))}
+                <ul className={styles.skillList}>
+                  {categorySkills.map((skill) => (
+                    <li key={skill.name} className={styles.skillItem}>
+                      {skill.name}
+                    </li>
+                  ))}
+                </ul>
               </motion.div>
             ))}
           </motion.div>
