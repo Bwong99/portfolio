@@ -102,7 +102,7 @@ const ContactForm = () => {
               </div>
               <div>
                 <strong>Location</strong>
-                <p>San Francisco, CA</p>
+                <p>Vancouver, BC</p>
               </div>
             </div>
 
@@ -162,7 +162,7 @@ const ContactForm = () => {
                     type="text"
                     id="name"
                     className={styles.inputField}
-                    placeholder="John Doe"
+                    placeholder="Name"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     required
@@ -176,7 +176,7 @@ const ContactForm = () => {
                     type="email"
                     id="email"
                     className={styles.inputField}
-                    placeholder="john@example.com"
+                    placeholder="Email"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     required

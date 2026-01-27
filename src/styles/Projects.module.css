@@ -1,12 +1,29 @@
 .projects {
   padding: var(--spacing-3xl) 0;
   background-color: var(--bg-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.projects::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.08;
+  filter: blur(2px);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .projectsContainer {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 0 var(--spacing-lg);
+  position: relative;
+  z-index: 1;
 }
 
 .projectsHeader {

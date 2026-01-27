@@ -29,7 +29,7 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            {aboutMe.name.split(' ')[0]} <span>{aboutMe.name.split(' ')[1]}</span>
+            Bradley
           </motion.h1>
           <motion.p
             className={styles.heroSubtitle}
@@ -52,9 +52,6 @@ const Hero = () => {
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>
               </svg>
-            </Link>
-            <Link href="/contact" className="btn btn-secondary">
-              Get In Touch
             </Link>
           </motion.div>
         </motion.div>

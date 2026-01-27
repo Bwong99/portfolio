@@ -15,7 +15,7 @@ interface ProjectsGridProps {
 
 const ProjectsGrid = ({ showFilter = true, limit }: ProjectsGridProps) => {
   const [filter, setFilter] = useState<string>('all');
-  const categories = ['all', 'photography', 'software', 'hardware'];
+  const categories = ['all', 'software', 'hardware'];
 
   const filteredProjects = filter === 'all'
     ? projects

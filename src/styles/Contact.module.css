@@ -2,12 +2,29 @@
   padding: var(--spacing-3xl) 0;
   background-color: var(--bg-primary);
   min-height: calc(100vh - var(--nav-height));
+  position: relative;
+  overflow: hidden;
+}
+
+.contact::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.08;
+  filter: blur(2px);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .contactContainer {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 0 var(--spacing-lg);
+  position: relative;
+  z-index: 1;
 }
 
 .contactHeader {

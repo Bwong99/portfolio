@@ -75,39 +75,12 @@ export const projects: Project[] = [
       'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80',
     ],
   },
-  {
-    id: 'urban-landscapes',
-    title: 'Urban Landscapes',
-    category: 'photography',
-    description: 'A collection of urban photography capturing city life and architecture.',
-    longDescription: 'This photography series explores the beauty of urban environments, from towering skyscrapers to intimate street scenes. Shot over two years in various cities, these images capture the interplay of light, shadow, and human presence in metropolitan spaces.',
-    technologies: ['Sony A7III', 'Lightroom', 'Photoshop'],
-    thumbnail: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&q=80',
-    images: [
-      'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1200&q=80',
-      'https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=1200&q=80',
-      'https://images.unsplash.com/photo-1514565131-fce0801e5785?w=1200&q=80',
-    ],
-  },
-  {
-    id: 'nature-photography',
-    title: 'Nature & Wildlife',
-    category: 'photography',
-    description: 'Wildlife and nature photography from various national parks.',
-    longDescription: 'A curated collection of nature and wildlife photography captured in national parks across the country. From majestic landscapes to intimate wildlife portraits, these images celebrate the beauty of the natural world.',
-    technologies: ['Canon EOS R5', 'Lightroom', 'Capture One'],
-    thumbnail: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80',
-    images: [
-      'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1200&q=80',
-      'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1200&q=80',
-    ],
-  },
 ];
 
 export const socialLinks = {
   github: 'https://github.com/bradleywong',
-  linkedin: 'https://linkedin.com/in/bradleywong',
-  email: 'bradley.wong@example.com',
+  linkedin: 'https://linkedin.com/in/bradleywong99/',
+  email: 'bradleywong99@gmail.com',
 };
 
 export const aboutMe = {
