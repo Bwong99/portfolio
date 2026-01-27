@@ -143,6 +143,7 @@ const PhotographyGallery = ({ photos }: PhotographyGalleryProps) => {
                     width={600}
                     height={400}
                     className={styles.gridImage}
+                    style={{ filter: 'none' }}
                   />
                   <motion.div
                     className={styles.gridOverlay}
