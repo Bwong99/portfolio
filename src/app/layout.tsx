@@ -17,7 +17,7 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Bradley Wong | Full-Stack Developer & Photographer',
+    default: 'Bradley Wong | Computer Engineering Student & Photographer',
     template: '%s | Bradley Wong',
   },
   description:
@@ -39,9 +39,9 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://bradleywong.dev',
     siteName: 'Bradley Wong Portfolio',
-    title: 'Bradley Wong | Full-Stack Developer & Photographer',
+    title: 'Bradley Wong | Computer Engineering Student & Photographer',
     description:
-      'Personal portfolio of Bradley Wong - a full-stack developer and photographer based in San Francisco.',
+      'Personal portfolio of Bradley Wong - Computer Engineering Student & Photographer based in San Francisco.',
     images: [
       {
         url: '/og-image.jpg',
@@ -53,9 +53,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Bradley Wong | Full-Stack Developer & Photographer',
+    title: 'Bradley Wong | Computer Engineering Student & Photographer',
     description:
-      'Personal portfolio of Bradley Wong - a full-stack developer and photographer.',
+      'Personal portfolio of Bradley Wong - Computer Engineering Student & Photographer.',
     images: ['/og-image.jpg'],
   },
   robots: {
