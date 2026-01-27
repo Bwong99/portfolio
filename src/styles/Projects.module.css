@@ -319,6 +319,7 @@
 }
 
 .galleryImage {
+  position: relative;
   border-radius: var(--radius-md);
   overflow: hidden;
   aspect-ratio: 16/10;

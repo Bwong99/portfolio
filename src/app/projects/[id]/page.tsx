@@ -20,7 +20,8 @@ export async function generateStaticParams() {
 
 // Generate metadata for each project page
 export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
-  const project = projects.find((p) => p.id === params.id);
+  const { id } = await params;
+  const project = projects.find((p) => p.id === id);
 
   if (!project) {
     return {
@@ -39,8 +40,9 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
   };
 }
 
-export default function ProjectPage({ params }: ProjectPageProps) {
-  const project = projects.find((p) => p.id === params.id);
+export default async function ProjectPage({ params }: ProjectPageProps) {
+  const { id } = await params;
+  const project = projects.find((p) => p.id === id);
 
   if (!project) {
     notFound();
@@ -178,8 +180,9 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                     <Image
                       src={image}
                       alt={`${project.title} - Image ${index + 2}`}
-                      fill
-                      style={{ objectFit: 'cover' }}
+                      width={1200}
+                      height={750}
+                      style={{ objectFit: 'cover', width: '100%', height: '100%' }}
                     />
                   </div>
                 ))}
