@@ -82,7 +82,7 @@ export const projects: Project[] = [
 ];
 
 export const socialLinks = {
-  github: 'https://github.com/bradleywong',
+  github: 'https://github.com/Bwong99',
   linkedin: 'https://linkedin.com/in/bradleywong99/',
   email: 'bradleywong99@gmail.com',
 };
