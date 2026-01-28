@@ -136,7 +136,11 @@ const PhotographyGallery = ({ photos }: PhotographyGalleryProps) => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3 }}
               >
-                <div className={styles.gridImageWrapper}>
+                <div 
+                  className={styles.gridImageWrapper}
+                  onClick={() => setSelectedImage(photo)}
+                  style={{ cursor: 'pointer' }}
+                >
                   <Image
                     src={photo.src}
                     alt={photo.title}
@@ -145,14 +149,6 @@ const PhotographyGallery = ({ photos }: PhotographyGalleryProps) => {
                     className={styles.gridImage}
                     style={{ filter: 'none' }}
                   />
-                  <motion.div
-                    className={styles.gridOverlay}
-                    initial={{ opacity: 0 }}
-                    whileHover={{ opacity: 1 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <h3 className={styles.gridPhotoTitle}>{photo.title}</h3>
-                  </motion.div>
                 </div>
               </motion.div>
             ))}
