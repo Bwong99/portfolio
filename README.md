@@ -74,7 +74,7 @@ public/          # Static assets (images, backgrounds, diagrams)
 
 ## ☁️ Deployment
 
-Optimized for [Vercel](https://vercel.com) — just import your repo and deploy. Supports other Node.js hosts as well.
+Optimized for [Vercel](https://bradleywong.vercel.app/) — just import your repo and deploy. Supports other Node.js hosts as well.
 
 **Contact Form:**
 To enable email, set these environment variables:
@@ -91,8 +91,8 @@ MIT — see [LICENSE](LICENSE)
 ## 👋 Contact & Links
 
 **Bradley Wong**  
-[bradley.wong@example.com](mailto:bradley.wong@example.com)  
-[GitHub](https://github.com/bradleywong) • [LinkedIn](https://linkedin.com/in/bradleywong)
+[bradleywong99@gmail.com](mailto:bradleywong99@gmail.com)  
+[LinkedIn](https://www.linkedin.com/in/bradleywong99/)
 
 ---
 
