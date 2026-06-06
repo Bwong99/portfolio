@@ -8,7 +8,7 @@ Welcome! This is the source code for my personal portfolio, designed to showcase
 
 ## 🚀 Highlights
 
-- **Versatile Project Showcase**: Software, hardware, robotics, firmware, and ML projects
+- **Project Showcase**: Software, hardware, robotics, firmware, and ML projects
 - **Modern Web Stack**: Next.js, React, TypeScript, Framer Motion
 - **Responsive & Accessible**: Mobile-first, accessible, and visually appealing
 - **Performance & SEO**: Fast load times, server-side rendering, and image optimization
