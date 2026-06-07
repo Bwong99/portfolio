@@ -19,6 +19,6 @@
    Text there is short and carries its own shadow, so it stays legible. */
 .overlayHome {
   background:
-    linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.12) 35%, rgba(0, 0, 0, 0.32) 100%),
-    radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.22) 100%);
+    linear-gradient(180deg, rgba(0, 0, 0, 0.42) 0%, rgba(0, 0, 0, 0.26) 35%, rgba(0, 0, 0, 0.46) 100%),
+    radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
 }
