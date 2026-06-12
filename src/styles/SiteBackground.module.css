@@ -1,0 +1,24 @@
+/*
+ * The site-wide photographic surface. Fixed to the viewport and rendered
+ * behind everything — navbar, page content and footer alike — so no section
+ * falls back to a flat background band.
+ */
+.bg,
+.overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.overlay {
+  background: var(--overlay-dark);
+}
+
+/* Home leans on the photo more than the inner pages, so it gets a lighter wash.
+   Text there is short and carries its own shadow, so it stays legible. */
+.overlayHome {
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.12) 35%, rgba(0, 0, 0, 0.32) 100%),
+    radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.22) 100%);
+}

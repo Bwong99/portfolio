@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter, Poppins } from 'next/font/google';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import SiteBackground from '@/components/SiteBackground';
 import '@/styles/globals.css';
 
 const inter = Inter({
@@ -79,9 +80,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
       <body>
+        <SiteBackground />
         <Navbar />
-        <main>{children}</main>
-        <Footer />
+        <div className="site-content">
+          <main>{children}</main>
+          <Footer />
+        </div>
       </body>
     </html>
   );
