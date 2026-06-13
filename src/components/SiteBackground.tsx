@@ -9,8 +9,8 @@ const DEFAULT_IMAGE = '/photos/backgrounds/bradleywong.jpg';
 // Each route keeps its own photo; longest matching prefix wins so that
 // /projects/<id> inherits the projects photo.
 const routeImages: [string, string][] = [
-  ['/projects', '/photos/backgrounds/japan2.JPG'],
-  ['/about', '/photos/backgrounds/japan1.jpg'],
+  ['/projects', '/photos/backgrounds/japan1.jpg'],
+  ['/about', '/photos/backgrounds/nyc1.jpg'],
   ['/contact', '/photos/backgrounds/japan3.JPG'],
   ['/photography', '/photos/backgrounds/japan4.JPG'],
 ];
