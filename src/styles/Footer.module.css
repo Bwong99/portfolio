@@ -1,6 +1,9 @@
+/* Sits on the shared photo surface — tinted glass rather than a solid band */
 .footer {
-  background-color: var(--color-charcoal);
-  color: var(--text-light);
+  background-color: rgba(0, 0, 0, 0.35);
+  backdrop-filter: var(--glass-blur);
+  border-top: 1px solid var(--glass-border);
+  color: var(--on-dark);
   padding: var(--spacing-3xl) 0 var(--spacing-xl);
 }
 
@@ -21,7 +24,7 @@
 
 .footerBrand h3 {
   font-size: 1.5rem;
-  color: var(--color-primary-light);
+  color: var(--color-white);
   margin-bottom: var(--spacing-md);
 }
 
@@ -49,7 +52,7 @@
 }
 
 .footerLink:hover {
-  color: var(--color-primary-light);
+  color: var(--on-dark);
 }
 
 .footerSocial {
@@ -70,7 +73,7 @@
 }
 
 .footerSocialLink:hover {
-  background-color: var(--color-primary);
+  background-color: rgba(255, 255, 255, 0.25);
   transform: translateY(-3px);
 }
 
@@ -88,7 +91,7 @@
 }
 
 .footerBottom a {
-  color: var(--color-primary-light);
+  color: var(--on-dark);
   transition: color var(--transition-fast);
 }
 
