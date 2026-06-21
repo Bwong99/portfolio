@@ -1,4 +1,4 @@
-import { Project, Skill, Education, NavItem } from '@/types';
+import { Project, Skill, TimelineEntry, NavItem } from '@/types';
 
 export const navItems: NavItem[] = [
   { label: 'Home', href: '/' },
@@ -26,10 +26,16 @@ export const skills: Skill[] = [
   { name: 'FPGA Development', level: 75, category: 'other' },
 ];
 
-export const education: Education[] = [
+// Newest first.
+export const timeline: TimelineEntry[] = [
   {
-    degree: 'Bachelor of Applied Science, Computer Engineering',
-    school: 'University of British Columbia',
+    title: 'Software Developer',
+    org: 'Micro Engineering Tech Inc · Internship',
+    year: 'Jun 2026 - Present',
+  },
+  {
+    title: 'Bachelor of Applied Science, Computer Engineering',
+    org: 'University of British Columbia',
     year: '2024 - 2028 (Expected)',
     description: 'Focused on digital design, embedded systems, and computer architecture. Active member of UBC Open Robotics.',
   },

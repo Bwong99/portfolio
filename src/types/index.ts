@@ -33,10 +33,10 @@ export interface Skill {
   category: 'frontend' | 'backend' | 'tools' | 'other';
 }
 
-// Education types
-export interface Education {
-  degree: string;
-  school: string;
+// Timeline types — schooling and work history share one track
+export interface TimelineEntry {
+  title: string;
+  org: string;
   year: string;
-  description: string;
+  description?: string;
 }

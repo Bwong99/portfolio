@@ -145,14 +145,14 @@
   transition: width 1s ease-out;
 }
 
-/* Education Section */
-.education {
+/* Timeline Section */
+.timeline {
   padding: var(--spacing-3xl) 0;
   color: var(--on-dark);
   position: relative;
 }
 
-.educationContainer {
+.timelineContainer {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 0 var(--spacing-lg);
@@ -160,13 +160,13 @@
   z-index: 1;
 }
 
-.educationTimeline {
+.timelineTrack {
   position: relative;
   max-width: 800px;
   margin: 0 auto;
 }
 
-.educationTimeline::before {
+.timelineTrack::before {
   content: '';
   position: absolute;
   left: 50%;
@@ -176,7 +176,7 @@
   background-color: var(--glass-border);
 }
 
-.educationItem {
+.timelineItem {
   position: relative;
   padding: var(--spacing-lg);
   background-color: var(--glass-bg);
@@ -187,11 +187,11 @@
   width: calc(50% - 30px);
 }
 
-.educationItem:nth-child(odd) {
+.timelineItem:nth-child(odd) {
   margin-left: auto;
 }
 
-.educationItem::before {
+.timelineItem::before {
   content: '';
   position: absolute;
   width: 16px;
@@ -201,33 +201,33 @@
   top: var(--spacing-xl);
 }
 
-.educationItem:nth-child(odd)::before {
+.timelineItem:nth-child(odd)::before {
   left: -38px;
 }
 
-.educationItem:nth-child(even)::before {
+.timelineItem:nth-child(even)::before {
   right: -38px;
 }
 
-.educationYear {
+.timelineYear {
   font-size: 0.875rem;
   color: var(--on-dark-subtle);
   font-weight: 600;
   margin-bottom: var(--spacing-sm);
 }
 
-.educationDegree {
+.timelineTitle {
   font-size: 1.25rem;
   color: var(--on-dark);
   margin-bottom: var(--spacing-xs);
 }
 
-.educationSchool {
+.timelineOrg {
   color: var(--on-dark-subtle);
   margin-bottom: var(--spacing-sm);
 }
 
-.educationDescription {
+.timelineDescription {
   color: var(--on-dark-muted);
   font-size: 0.9375rem;
   line-height: 1.6;
@@ -238,16 +238,16 @@
     grid-template-columns: 1fr;
   }
 
-  .educationTimeline::before {
+  .timelineTrack::before {
     left: 8px;
   }
 
-  .educationItem {
+  .timelineItem {
     width: calc(100% - 40px);
     margin-left: 40px !important;
   }
 
-  .educationItem::before {
+  .timelineItem::before {
     left: -32px !important;
     right: auto !important;
   }

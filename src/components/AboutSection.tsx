@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { aboutMe, skills, education } from '@/data';
+import { aboutMe, skills, timeline } from '@/data';
 import styles from '@/styles/About.module.css';
 
 const AboutSection = () => {
@@ -102,9 +102,9 @@ const AboutSection = () => {
         </div>
       </section>
 
-      {/* Education Section */}
-      <section className={styles.education}>
-        <div className={styles.educationContainer}>
+      {/* Timeline Section */}
+      <section className={styles.timeline}>
+        <div className={styles.timelineContainer}>
           <motion.h2
             className="section-title"
             initial={{ opacity: 0, y: 20 }}
@@ -112,22 +112,24 @@ const AboutSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            Education
+            Timeline
           </motion.h2>
 
           <motion.div
-            className={styles.educationTimeline}
+            className={styles.timelineTrack}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
             variants={containerVariants}
           >
-            {education.map((edu, index) => (
-              <motion.div key={index} className={styles.educationItem} variants={itemVariants}>
-                <span className={styles.educationYear}>{edu.year}</span>
-                <h3 className={styles.educationDegree}>{edu.degree}</h3>
-                <p className={styles.educationSchool}>{edu.school}</p>
-                <p className={styles.educationDescription}>{edu.description}</p>
+            {timeline.map((entry, index) => (
+              <motion.div key={index} className={styles.timelineItem} variants={itemVariants}>
+                <span className={styles.timelineYear}>{entry.year}</span>
+                <h3 className={styles.timelineTitle}>{entry.title}</h3>
+                <p className={styles.timelineOrg}>{entry.org}</p>
+                {entry.description && (
+                  <p className={styles.timelineDescription}>{entry.description}</p>
+                )}
               </motion.div>
             ))}
           </motion.div>
