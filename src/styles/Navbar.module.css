@@ -4,15 +4,44 @@
   left: 0;
   right: 0;
   height: var(--nav-height);
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: rgba(20, 20, 20, 0.92);
   backdrop-filter: blur(10px);
   z-index: 1000;
-  transition: all var(--transition-normal);
+  transition: background-color var(--transition-normal), box-shadow var(--transition-normal);
   box-shadow: var(--shadow-sm);
 }
 
 .navbar.scrolled {
   box-shadow: var(--shadow-md);
+}
+
+/* Transparent state over the home hero image */
+.navbar.overlay {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.navbar.overlay .navbarLogo {
+  color: var(--color-white);
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.4);
+}
+
+.navbar.overlay .navbarLink {
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.4);
+}
+
+.navbar.overlay .navbarLink:hover,
+.navbar.overlay .navbarLink.active {
+  color: var(--color-white);
+}
+
+.navbar.overlay .navbarLink::after {
+  background-color: var(--color-white);
+}
+
+.navbar.overlay .navbarToggle span {
+  background-color: var(--color-white);
 }
 
 .navbarContainer {
@@ -29,12 +58,12 @@
   font-family: var(--font-heading);
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--color-primary);
+  color: var(--on-dark);
   transition: color var(--transition-fast);
 }
 
 .navbarLogo:hover {
-  color: var(--color-primary-dark);
+  color: var(--on-dark-muted);
 }
 
 .navbarLinks {
@@ -45,7 +74,7 @@
 
 .navbarLink {
   font-weight: 500;
-  color: var(--text-secondary);
+  color: var(--on-dark-muted);
   position: relative;
   padding: var(--spacing-sm) 0;
   transition: color var(--transition-fast);
@@ -58,13 +87,13 @@
   left: 0;
   width: 0;
   height: 2px;
-  background-color: var(--color-primary);
+  background-color: var(--on-dark);
   transition: width var(--transition-normal);
 }
 
 .navbarLink:hover,
 .navbarLink.active {
-  color: var(--color-primary);
+  color: var(--on-dark);
 }
 
 .navbarLink:hover::after,
@@ -84,7 +113,7 @@
   display: block;
   width: 25px;
   height: 2px;
-  background-color: var(--text-primary);
+  background-color: var(--on-dark);
   transition: all var(--transition-fast);
 }
 
@@ -110,7 +139,8 @@
     top: var(--nav-height);
     left: 0;
     right: 0;
-    background-color: var(--bg-secondary);
+    background-color: rgba(20, 20, 20, 0.96);
+    backdrop-filter: var(--glass-blur);
     flex-direction: column;
     padding: var(--spacing-xl);
     gap: var(--spacing-lg);

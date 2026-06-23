@@ -25,9 +25,13 @@ const Navbar = () => {
     setIsOpen(false);
   }, [pathname]);
 
+  // Every page now sits on the dark photographic surface, so the navbar
+  // stays transparent throughout — except when the mobile menu needs a backdrop.
+  const overlay = !isOpen;
+
   return (
     <motion.nav
-      className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`}
+      className={`${styles.navbar} ${scrolled ? styles.scrolled : ''} ${overlay ? styles.overlay : ''}`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
