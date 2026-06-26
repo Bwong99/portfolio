@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import ProjectsGrid from '@/components/ProjectsGrid';
 import PageTransition from '@/components/PageTransition';
 import PageHeader from '@/components/PageHeader';
+import PageSurface from '@/components/PageSurface';
 
 export const metadata: Metadata = {
   title: 'Projects',
@@ -12,13 +13,13 @@ export const metadata: Metadata = {
 export default function ProjectsPage() {
   return (
     <PageTransition>
-      <div style={{ paddingTop: 'var(--nav-height)' }}>
-        <PageHeader 
-          title="My Projects" 
+      <PageSurface>
+        <PageHeader
+          title="My Projects"
           subtitle="A collection of work spanning embedded systems, robotics, and photography"
         />
         <ProjectsGrid showFilter={true} />
-      </div>
+      </PageSurface>
     </PageTransition>
   );
 }

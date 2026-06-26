@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { projects } from '@/data';
+import PageSurface from '@/components/PageSurface';
 import styles from '@/styles/Projects.module.css';
 
 interface ProjectPageProps {
@@ -49,8 +50,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   }
 
   return (
-    <div className={styles.projectDetail}>
-      <div className={styles.projectDetailContainer}>
+    <PageSurface>
+      <div className={styles.projectDetail}>
+        <div className={styles.projectDetailContainer}>
         <Link href="/projects" className={styles.backButton}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -169,9 +171,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 View Source
               </a>
             )}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </PageSurface>
   );
 }

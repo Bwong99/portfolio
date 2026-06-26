@@ -1,0 +1,10 @@
+/*
+ * Inner-page wrapper. The photo and overlay come from SiteBackground, which is
+ * fixed behind the whole app; this only clears the navbar and sets a floor height.
+ */
+.surface {
+  position: relative;
+  min-height: 100vh;
+  padding-top: var(--nav-height);
+  color: var(--on-dark);
+}

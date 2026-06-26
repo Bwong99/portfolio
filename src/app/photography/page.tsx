@@ -3,6 +3,7 @@
 import PhotographyGallery from '@/components/PhotographyGallery';
 import PageTransition from '@/components/PageTransition';
 import PageHeader from '@/components/PageHeader';
+import PageSurface from '@/components/PageSurface';
 
 const photographyPhotos = [
   {
@@ -46,13 +47,13 @@ const photographyPhotos = [
 export default function PhotographyPage() {
   return (
     <PageTransition>
-      <div style={{ paddingTop: 'var(--nav-height)' }}>
-        <PageHeader 
-          title="Photography" 
+      <PageSurface>
+        <PageHeader
+          title="Photography"
           subtitle="A curated collection capturing moments through light and composition"
         />
         <PhotographyGallery photos={photographyPhotos} />
-      </div>
+      </PageSurface>
     </PageTransition>
   );
 }

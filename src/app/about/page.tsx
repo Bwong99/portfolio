@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import AboutSection from '@/components/AboutSection';
 import PageTransition from '@/components/PageTransition';
 import PageHeader from '@/components/PageHeader';
+import PageSurface from '@/components/PageSurface';
 
 export const metadata: Metadata = {
   title: 'About',
@@ -13,13 +14,13 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <PageTransition>
-      <div style={{ paddingTop: 'var(--nav-height)' }}>
-        <PageHeader 
-          title="About Me" 
+      <PageSurface>
+        <PageHeader
+          title="About Me"
           subtitle="Computer Engineering Student & Embedded Systems Developer"
         />
         <AboutSection />
-      </div>
+      </PageSurface>
     </PageTransition>
   );
 }
