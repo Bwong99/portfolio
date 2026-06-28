@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import styles from '@/styles/Photography.module.css';
@@ -21,49 +21,106 @@ const PhotographyGallery = ({ photos }: PhotographyGalleryProps) => {
   const [selectedImage, setSelectedImage] = useState<Photo | null>(null);
   const [viewMode, setViewMode] = useState<'spotlight' | 'gallery'>('spotlight');
   const containerRef = useRef<HTMLDivElement>(null);
-  const observerRef = useRef<IntersectionObserver | null>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
 
+  // Whichever item's midpoint sits nearest the track's midpoint is the focused
+  // one. Measured directly rather than via IntersectionObserver, whose ratios
+  // depend on how item width compares to the root box.
   useEffect(() => {
-    if (!containerRef.current) return;
+    const track = trackRef.current;
+    if (!track) return;
 
-    const items = containerRef.current.querySelectorAll(`.${styles.photoItem}`);
-    
-    observerRef.current = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && entry.intersectionRatio > 0.6) {
-            const index = Array.from(items).indexOf(entry.target as Element);
-            if (index !== -1) {
-              setCenterIndex(index);
-            }
-          }
-        });
-      },
-      {
-        root: null,
-        threshold: [0, 0.25, 0.5, 0.6, 0.75, 1],
-        rootMargin: '-20% 0px -20% 0px',
-      }
-    );
+    let frame = 0;
 
-    items.forEach((item) => {
-      observerRef.current?.observe(item);
-    });
+    const measure = () => {
+      frame = 0;
+      const items = Array.from(track.querySelectorAll(`.${styles.photoItem}`));
+      if (!items.length) return;
+
+      const trackMid = track.getBoundingClientRect().left + track.clientWidth / 2;
+      let nearest = 0;
+      let nearestDistance = Infinity;
+
+      items.forEach((item, index) => {
+        const rect = item.getBoundingClientRect();
+        const distance = Math.abs(rect.left + rect.width / 2 - trackMid);
+        if (distance < nearestDistance) {
+          nearestDistance = distance;
+          nearest = index;
+        }
+      });
+
+      setCenterIndex(nearest);
+    };
+
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(measure);
+    };
+
+    // Entering the spotlight always starts from the first photo, so the badge
+    // and the visible photo cannot disagree.
+    track.scrollLeft = 0;
+    setCenterIndex(0);
+    track.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
 
     return () => {
-      observerRef.current?.disconnect();
+      if (frame) cancelAnimationFrame(frame);
+      track.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
     };
-  }, [photos]);
+  }, [photos, viewMode]);
+
+  // A trackpad's dominant gesture on this page is still vertical, so translate
+  // it into horizontal movement while the spotlight is showing.
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    const onWheel = (e: WheelEvent) => {
+      if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
+
+      // Hand vertical scrolling back to the page once the track has nothing
+      // left to give, otherwise the page can never be scrolled past the track.
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      const atStart = track.scrollLeft <= 0;
+      const atEnd = track.scrollLeft >= maxScroll - 1;
+      if ((e.deltaY < 0 && atStart) || (e.deltaY > 0 && atEnd)) return;
+
+      e.preventDefault();
+      track.scrollLeft += e.deltaY;
+    };
+
+    track.addEventListener('wheel', onWheel, { passive: false });
+    return () => track.removeEventListener('wheel', onWheel);
+  }, [viewMode]);
+
+  // The grid is a tall, page-scrolling view and the spotlight is a single
+  // viewport-height row. Switching without resetting the page scroll leaves the
+  // spotlight scrolled past its own content, which reads as a blank page.
+  const switchTo = (mode: 'spotlight' | 'gallery') => {
+    setViewMode(mode);
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  };
+
+  const scrollToIndex = (index: number) => {
+    const track = trackRef.current;
+    if (!track) return;
+    const items = track.querySelectorAll(`.${styles.photoItem}`);
+    items[index]?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  };
 
   return (
     <div className={styles.gallery} ref={containerRef}>
+      {/* Keyed so React tears each view down instead of reusing the other's
+          nodes — reused nodes carry framer-motion's inline filter across, which
+          is what greyed out the grid. */}
       {viewMode === 'spotlight' ? (
-        <>
-          <div className={styles.galleryTrack}>
+        <Fragment key="spotlight">
+          <div className={styles.galleryTrack} ref={trackRef}>
             {photos.map((photo, index) => {
               const isCentered = index === centerIndex;
-              const distance = Math.abs(index - centerIndex);
-              
+
               return (
                 <motion.div
                   key={photo.id}
@@ -81,8 +138,8 @@ const PhotographyGallery = ({ photos }: PhotographyGalleryProps) => {
                 >
                   <div 
                     className={styles.photoWrapper}
-                    onClick={() => isCentered && setSelectedImage(photo)}
-                    style={{ cursor: isCentered ? 'pointer' : 'default' }}
+                    onClick={() => (isCentered ? setSelectedImage(photo) : scrollToIndex(index))}
+                    style={{ cursor: 'pointer' }}
                   >
                     <Image
                       src={photo.src}
@@ -117,16 +174,25 @@ const PhotographyGallery = ({ photos }: PhotographyGalleryProps) => {
             })}
           </div>
           <div className={styles.controlsBar}>
+            <span className={styles.counter}>
+              <span className={styles.counterCurrent}>
+                {String(centerIndex + 1).padStart(2, '0')}
+              </span>
+              <span className={styles.counterTotal}>
+                / {String(photos.length).padStart(2, '0')}
+              </span>
+            </span>
+            <span className={styles.divider} aria-hidden="true" />
             <button
               className={styles.viewToggleBtn}
-              onClick={() => setViewMode('gallery')}
+              onClick={() => switchTo('gallery')}
             >
-              {centerIndex + 1} / {photos.length}, View All
+              View all
             </button>
           </div>
-        </>
+        </Fragment>
       ) : (
-        <>
+        <Fragment key="gallery">
           <div className={styles.gridView}>
             {photos.map((photo) => (
               <motion.div
@@ -147,21 +213,26 @@ const PhotographyGallery = ({ photos }: PhotographyGalleryProps) => {
                     width={600}
                     height={400}
                     className={styles.gridImage}
-                    style={{ filter: 'none' }}
                   />
                 </div>
               </motion.div>
             ))}
           </div>
           <div className={styles.controlsBar}>
+            <span className={styles.counter}>
+              <span className={styles.counterTotal}>
+                {photos.length} photos
+              </span>
+            </span>
+            <span className={styles.divider} aria-hidden="true" />
             <button
               className={styles.viewToggleBtn}
-              onClick={() => setViewMode('spotlight')}
+              onClick={() => switchTo('spotlight')}
             >
-              {photos.length} photos, View Spotlight
+              Spotlight
             </button>
           </div>
-        </>
+        </Fragment>
       )}
 
       {selectedImage && (

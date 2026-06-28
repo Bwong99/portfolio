@@ -8,17 +8,24 @@
 
 .galleryTrack {
   display: flex;
-  flex-direction: column;
-  gap: 8rem;
-  padding: 4rem 0;
+  flex-direction: row;
   align-items: center;
+  gap: 4rem;
+  padding: 4rem calc((100% - min(70vw, 1000px)) / 2);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.galleryTrack::-webkit-scrollbar {
+  display: none;
 }
 
 .photoItem {
-  width: 90%;
-  max-width: 1000px;
+  flex: 0 0 min(70vw, 1000px);
   position: relative;
-  scroll-margin: 20vh;
+  scroll-snap-align: center;
   transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
@@ -134,37 +141,61 @@
   border: 1px solid var(--glass-border);
   backdrop-filter: var(--glass-blur);
   color: var(--on-dark);
-  padding: var(--spacing-md) var(--spacing-xl);
+  padding: 0.625rem 1.125rem;
   border-radius: var(--radius-full);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
   z-index: 100;
-  gap: var(--spacing-lg);
+  gap: 0.875rem;
   flex-wrap: nowrap;
   min-width: auto;
 }
 
-.progressIndicator {
-  font-weight: 600;
+.counter {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.25rem;
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+}
+
+.counterCurrent {
   color: var(--on-dark);
+  font-weight: 500;
+}
+
+.counterTotal {
+  color: var(--on-dark-muted);
+}
+
+.divider {
+  width: 1px;
+  height: 0.875rem;
+  background: var(--glass-border);
 }
 
 .viewToggleBtn {
-  background: rgba(255, 255, 255, 0.9);
-  color: var(--color-dark);
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  padding: var(--spacing-sm) var(--spacing-lg);
-  border-radius: var(--radius-full);
-  font-weight: 500;
+  background: none;
+  border: none;
+  color: var(--on-dark);
+  padding: 0;
+  font-size: 0.8125rem;
+  font-family: inherit;
+  letter-spacing: 0.04em;
   cursor: pointer;
-  transition: all var(--transition-fast);
-  font-size: 0.9375rem;
   white-space: nowrap;
+  opacity: 0.75;
+  transition: opacity var(--transition-fast);
 }
 
 .viewToggleBtn:hover {
-  background: var(--color-white);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  opacity: 1;
+}
+
+.viewToggleBtn:focus-visible {
+  outline: 1px solid var(--on-dark-muted);
+  outline-offset: 4px;
+  border-radius: 2px;
 }
 
 /* Grid View */
@@ -179,6 +210,8 @@
 
 .gridItem {
   position: relative;
+  /* Never inherit the spotlight's grayscale treatment. */
+  filter: none;
 }
 
 
@@ -189,24 +222,21 @@
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-md);
-  background: none !important;
-  filter: none !important;
-  opacity: 1 !important;
+  /* Opaque so the dark site overlay behind the page cannot wash the photo out. */
+  background: #000;
 }
 
 .gridImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* The grid shows photos as shot — no grading of any kind. */
+  filter: none;
   transition: transform var(--transition-normal);
-  filter: none !important;
-  opacity: 1 !important;
 }
 
 .gridItem:hover .gridImage {
   transform: scale(1.05);
-  filter: none !important;
-  opacity: 1 !important;
 }
 
 .gridOverlay {
@@ -255,11 +285,12 @@
 
 @media (max-width: 968px) {
   .galleryTrack {
-    gap: 6rem;
+    gap: 2rem;
+    padding: 3rem calc((100% - 88vw) / 2);
   }
 
   .photoItem {
-    width: 95%;
+    flex-basis: 88vw;
   }
 
   .photoTitle {
@@ -281,7 +312,7 @@
 
 @media (max-width: 480px) {
   .galleryTrack {
-    gap: 4rem;
+    gap: 1.5rem;
   }
 
   .photoOverlay {
