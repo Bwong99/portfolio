@@ -13,11 +13,11 @@ export default function NotFound() {
         textAlign: 'center',
       }}
     >
-      <h1 style={{ fontSize: '6rem', color: '#4a90a4', marginBottom: '1rem' }}>
+      <h1 style={{ fontSize: '6rem', color: 'var(--on-dark)', marginBottom: '1rem' }}>
         404
       </h1>
       <h2 style={{ fontSize: '2rem', marginBottom: '1rem' }}>Page Not Found</h2>
-      <p style={{ color: '#6c7a89', marginBottom: '2rem', maxWidth: '500px' }}>
+      <p style={{ color: 'var(--on-dark-muted)', marginBottom: '2rem', maxWidth: '500px' }}>
         Oops! The page you're looking for doesn't exist. It might have been moved or deleted.
       </p>
       <Link href="/" className="btn btn-primary">

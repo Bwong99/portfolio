@@ -14,7 +14,10 @@
 .pageTitle {
   font-size: 3.5rem;
   font-weight: 700;
-  color: var(--text-primary);
+  color: var(--on-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
   margin-bottom: var(--spacing-md);
   line-height: 1.1;
   font-family: var(--font-heading);
@@ -25,14 +28,15 @@
   display: block;
   width: 80px;
   height: 4px;
-  background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light));
+  background: rgba(255, 255, 255, 0.7);
   margin: var(--spacing-lg) auto 0;
   border-radius: var(--radius-full);
 }
 
 .pageSubtitle {
   font-size: 1.25rem;
-  color: var(--text-secondary);
+  color: var(--on-dark-muted);
+  text-shadow: var(--on-dark-shadow);
   max-width: 600px;
   margin: var(--spacing-lg) auto 0;
   line-height: 1.6;

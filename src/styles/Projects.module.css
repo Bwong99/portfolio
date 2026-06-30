@@ -1,21 +1,8 @@
+/* Background photo + overlay come from the parent PageSurface */
 .projects {
   padding: var(--spacing-3xl) 0;
-  background-color: var(--bg-primary);
+  color: var(--on-dark);
   position: relative;
-  overflow: hidden;
-}
-
-.projects::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: url('/photos/backgrounds/japan2.JPG');
-  background-size: cover;
-  background-position: center;
-  opacity: 0.15;
-  filter: blur(2px);
-  pointer-events: none;
-  z-index: 0;
 }
 
 .projectsContainer {
@@ -33,12 +20,14 @@
 
 .projectsTitle {
   font-size: 2.5rem;
-  color: var(--text-primary);
+  color: var(--on-dark);
+  text-shadow: var(--on-dark-shadow);
   margin-bottom: var(--spacing-sm);
 }
 
 .projectsSubtitle {
-  color: var(--text-muted);
+  color: var(--on-dark-muted);
+  text-shadow: var(--on-dark-shadow);
   font-size: 1.125rem;
 }
 
@@ -55,20 +44,24 @@
   padding: var(--spacing-sm) var(--spacing-lg);
   border-radius: var(--radius-full);
   font-weight: 500;
-  color: var(--text-secondary);
-  background-color: var(--bg-secondary);
-  border: 2px solid transparent;
+  color: var(--on-dark-muted);
+  background-color: var(--glass-bg-strong);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: var(--glass-blur);
   transition: all var(--transition-fast);
 }
 
 .filterBtn:hover {
-  color: var(--color-primary);
-  border-color: var(--color-primary);
+  color: var(--on-dark);
+  background-color: var(--glass-bg-hover);
+  border-color: var(--glass-border-hover);
+  transform: translateY(-2px);
 }
 
 .filterBtn.active {
-  background-color: var(--color-primary);
-  color: var(--text-light);
+  background-color: rgba(255, 255, 255, 0.9);
+  border-color: rgba(255, 255, 255, 0.9);
+  color: var(--color-dark);
 }
 
 /* Projects Grid */
@@ -80,17 +73,19 @@
 
 /* Project Card */
 .projectCard {
-  background-color: var(--bg-secondary);
+  background-color: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: var(--glass-blur);
   border-radius: var(--radius-lg);
   overflow: hidden;
-  box-shadow: var(--shadow-md);
   transition: all var(--transition-normal);
   cursor: pointer;
 }
 
 .projectCard:hover {
   transform: translateY(-8px);
-  box-shadow: var(--shadow-xl);
+  border-color: var(--glass-border-hover);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
 }
 
 .projectThumbnail {
@@ -126,9 +121,11 @@
 
 .projectOverlayBtn {
   padding: var(--spacing-sm) var(--spacing-lg);
-  background-color: var(--color-primary);
-  color: var(--text-light);
-  border-radius: var(--radius-md);
+  background-color: var(--glass-bg-hover);
+  border: 1px solid var(--glass-border-hover);
+  backdrop-filter: var(--glass-blur);
+  color: var(--on-dark);
+  border-radius: var(--radius-full);
   font-weight: 500;
   transform: translateY(20px);
   transition: transform var(--transition-normal);
@@ -145,8 +142,8 @@
 .projectCategory {
   display: inline-block;
   padding: var(--spacing-xs) var(--spacing-sm);
-  background-color: rgba(74, 144, 164, 0.1);
-  color: var(--color-primary);
+  background-color: rgba(255, 255, 255, 0.14);
+  color: var(--on-dark-muted);
   border-radius: var(--radius-sm);
   font-size: 0.75rem;
   font-weight: 600;
@@ -157,42 +154,45 @@
 
 .projectTitle {
   font-size: 1.25rem;
-  color: var(--text-primary);
+  color: var(--on-dark);
   margin-bottom: var(--spacing-sm);
 }
 
 .projectDescription {
-  color: var(--text-secondary);
+  color: var(--on-dark-muted);
   font-size: 0.9375rem;
   line-height: 1.6;
 }
 
 /* Project Detail Page */
+/* Background photo + overlay come from the parent PageSurface */
 .projectDetail {
-  padding-top: calc(var(--nav-height) + var(--spacing-2xl));
+  padding-top: var(--spacing-2xl);
   padding-bottom: var(--spacing-3xl);
-  min-height: 100vh;
-  background-color: var(--bg-primary);
+  color: var(--on-dark);
+  position: relative;
 }
 
 .projectDetailContainer {
   max-width: 900px;
   margin: 0 auto;
   padding: 0 var(--spacing-lg);
+  position: relative;
 }
 
 .backButton {
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-sm);
-  color: var(--color-primary);
+  color: var(--on-dark-muted);
+  text-shadow: var(--on-dark-shadow);
   font-weight: 500;
   margin-bottom: var(--spacing-xl);
   transition: color var(--transition-fast);
 }
 
 .backButton:hover {
-  color: var(--color-primary-dark);
+  color: var(--on-dark);
 }
 
 .projectDetailHeader {
@@ -202,8 +202,10 @@
 .projectDetailCategory {
   display: inline-block;
   padding: var(--spacing-xs) var(--spacing-md);
-  background-color: var(--color-primary);
-  color: var(--text-light);
+  background-color: var(--glass-bg-strong);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: var(--glass-blur);
+  color: var(--on-dark);
   border-radius: var(--radius-full);
   font-size: 0.875rem;
   font-weight: 500;
@@ -213,7 +215,8 @@
 
 .projectDetailTitle {
   font-size: 2.5rem;
-  color: var(--text-primary);
+  color: var(--on-dark);
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
   margin-bottom: var(--spacing-md);
 }
 
@@ -229,14 +232,15 @@
 }
 
 .projectDetailContent {
-  background-color: var(--bg-secondary);
+  background-color: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: var(--glass-blur);
   padding: var(--spacing-2xl);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
 }
 
 .projectDetailDescription {
-  color: var(--text-secondary);
+  color: var(--on-dark-muted);
   line-height: 1.8;
   margin-bottom: var(--spacing-xl);
   font-size: 1.0625rem;
@@ -248,7 +252,7 @@
 
 .projectDetailTechTitle {
   font-size: 1.125rem;
-  color: var(--text-primary);
+  color: var(--on-dark);
   margin-bottom: var(--spacing-md);
 }
 
@@ -260,8 +264,9 @@
 
 .techTag {
   padding: var(--spacing-xs) var(--spacing-md);
-  background-color: var(--color-light-gray);
-  color: var(--text-secondary);
+  background-color: rgba(255, 255, 255, 0.12);
+  border: 1px solid var(--glass-border);
+  color: var(--on-dark-muted);
   border-radius: var(--radius-full);
   font-size: 0.875rem;
   font-weight: 500;
@@ -278,28 +283,32 @@
   align-items: center;
   gap: var(--spacing-sm);
   padding: var(--spacing-md) var(--spacing-xl);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-full);
   font-weight: 500;
+  backdrop-filter: var(--glass-blur);
   transition: all var(--transition-fast);
 }
 
 .projectDetailLink.primary {
-  background-color: var(--color-primary);
-  color: var(--text-light);
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  color: var(--color-dark);
 }
 
 .projectDetailLink.primary:hover {
-  background-color: var(--color-primary-dark);
+  background-color: var(--color-white);
   transform: translateY(-2px);
 }
 
 .projectDetailLink.secondary {
-  background-color: var(--color-charcoal);
-  color: var(--text-light);
+  background-color: var(--glass-bg-strong);
+  border: 1px solid var(--glass-border);
+  color: var(--on-dark);
 }
 
 .projectDetailLink.secondary:hover {
-  background-color: var(--color-dark);
+  background-color: var(--glass-bg-hover);
+  border-color: var(--glass-border-hover);
   transform: translateY(-2px);
 }
 
@@ -310,7 +319,7 @@
 
 .projectGalleryTitle {
   font-size: 1.25rem;
-  color: var(--text-primary);
+  color: var(--on-dark);
   margin-bottom: var(--spacing-lg);
 }
 
@@ -344,7 +353,7 @@
 
 .sectionTitle {
   font-size: 1.5rem;
-  color: var(--text-primary);
+  color: var(--on-dark);
   margin-bottom: var(--spacing-lg);
   font-weight: 600;
   position: relative;
@@ -358,7 +367,7 @@
   left: 0;
   width: 60px;
   height: 3px;
-  background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light));
+  background: rgba(255, 255, 255, 0.7);
   border-radius: var(--radius-full);
 }
 
@@ -372,14 +381,15 @@
 .screenshotItem {
   border-radius: var(--radius-lg);
   overflow: hidden;
-  box-shadow: var(--shadow-md);
+  border: 1px solid var(--glass-border);
   transition: all var(--transition-normal);
   cursor: pointer;
 }
 
 .screenshotItem:hover {
   transform: translateY(-4px);
-  box-shadow: var(--shadow-xl);
+  border-color: var(--glass-border-hover);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
 }
 
 .screenshotImage {

@@ -1,22 +1,8 @@
+/* Background photo + overlay come from the parent PageSurface */
 .contact {
   padding: var(--spacing-3xl) 0;
-  background-color: var(--bg-primary);
-  min-height: calc(100vh - var(--nav-height));
+  color: var(--on-dark);
   position: relative;
-  overflow: hidden;
-}
-
-.contact::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: url('/photos/backgrounds/japan3.JPG');
-  background-size: cover;
-  background-position: center;
-  opacity: 0.15;
-  filter: blur(2px);
-  pointer-events: none;
-  z-index: 0;
 }
 
 .contactContainer {
@@ -34,12 +20,14 @@
 
 .contactTitle {
   font-size: 2.5rem;
-  color: var(--text-primary);
+  color: var(--on-dark);
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
   margin-bottom: var(--spacing-sm);
 }
 
 .contactSubtitle {
-  color: var(--text-muted);
+  color: var(--on-dark-muted);
+  text-shadow: var(--on-dark-shadow);
   font-size: 1.125rem;
   max-width: 600px;
   margin: 0 auto;
@@ -54,20 +42,21 @@
 
 /* Contact Info */
 .contactInfo {
-  background-color: var(--bg-secondary);
+  background-color: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: var(--glass-blur);
   padding: var(--spacing-2xl);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
 }
 
 .contactInfoTitle {
   font-size: 1.5rem;
-  color: var(--text-primary);
+  color: var(--on-dark);
   margin-bottom: var(--spacing-lg);
 }
 
 .contactInfoText {
-  color: var(--text-secondary);
+  color: var(--on-dark-muted);
   line-height: 1.7;
   margin-bottom: var(--spacing-xl);
 }
@@ -77,7 +66,7 @@
   align-items: center;
   gap: var(--spacing-md);
   margin-bottom: var(--spacing-md);
-  color: var(--text-secondary);
+  color: var(--on-dark-muted);
 }
 
 .contactInfoIcon {
@@ -86,9 +75,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(74, 144, 164, 0.1);
+  background-color: rgba(255, 255, 255, 0.12);
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius-md);
-  color: var(--color-primary);
+  color: var(--on-dark);
   flex-shrink: 0;
 }
 
@@ -103,7 +93,7 @@
   gap: var(--spacing-md);
   margin-top: var(--spacing-xl);
   padding-top: var(--spacing-xl);
-  border-top: 1px solid var(--color-light-gray);
+  border-top: 1px solid var(--glass-border);
 }
 
 .socialLink {
@@ -112,15 +102,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--color-light-gray);
+  background-color: var(--glass-bg-strong);
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius-md);
-  color: var(--text-secondary);
+  color: var(--on-dark-muted);
   transition: all var(--transition-fast);
 }
 
 .socialLink:hover {
-  background-color: var(--color-primary);
-  color: var(--text-light);
+  background-color: var(--glass-bg-hover);
+  border-color: var(--glass-border-hover);
+  color: var(--on-dark);
   transform: translateY(-3px);
 }
 
@@ -131,15 +123,16 @@
 
 /* Contact Form */
 .contactForm {
-  background-color: var(--bg-secondary);
+  background-color: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: var(--glass-blur);
   padding: var(--spacing-2xl);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
 }
 
 .formTitle {
   font-size: 1.5rem;
-  color: var(--text-primary);
+  color: var(--on-dark);
   margin-bottom: var(--spacing-xl);
 }
 
@@ -158,30 +151,31 @@
   display: block;
   margin-bottom: var(--spacing-sm);
   font-weight: 500;
-  color: var(--text-secondary);
+  color: var(--on-dark-muted);
   font-size: 0.9375rem;
 }
 
 .inputField {
   width: 100%;
   padding: var(--spacing-md) var(--spacing-lg);
-  border: 2px solid var(--color-light-gray);
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius-md);
   font-size: 1rem;
   font-family: inherit;
   transition: all var(--transition-fast);
-  background-color: var(--bg-primary);
+  background-color: rgba(0, 0, 0, 0.25);
+  color: var(--on-dark);
 }
 
 .inputField:focus {
   outline: none;
-  border-color: var(--color-primary);
-  background-color: var(--bg-secondary);
-  box-shadow: 0 0 0 4px rgba(74, 144, 164, 0.1);
+  border-color: var(--glass-border-hover);
+  background-color: rgba(0, 0, 0, 0.35);
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1);
 }
 
 .inputField::placeholder {
-  color: var(--color-gray);
+  color: var(--on-dark-subtle);
 }
 
 textarea.inputField {
@@ -192,10 +186,10 @@ textarea.inputField {
 .submitBtn {
   width: 100%;
   padding: var(--spacing-md) var(--spacing-xl);
-  background-color: var(--color-primary);
-  color: var(--text-light);
-  border: none;
-  border-radius: var(--radius-md);
+  background-color: rgba(255, 255, 255, 0.9);
+  color: var(--color-dark);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: var(--radius-full);
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
@@ -207,9 +201,9 @@ textarea.inputField {
 }
 
 .submitBtn:hover {
-  background-color: var(--color-primary-dark);
+  background-color: var(--color-white);
   transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
 .submitBtn:disabled {
@@ -232,15 +226,15 @@ textarea.inputField {
 }
 
 .formMessage.success {
-  background-color: rgba(34, 197, 94, 0.1);
-  color: #16a34a;
-  border: 1px solid rgba(34, 197, 94, 0.2);
+  background-color: rgba(34, 197, 94, 0.18);
+  color: #86efac;
+  border: 1px solid rgba(34, 197, 94, 0.4);
 }
 
 .formMessage.error {
-  background-color: rgba(239, 68, 68, 0.1);
-  color: #dc2626;
-  border: 1px solid rgba(239, 68, 68, 0.2);
+  background-color: rgba(239, 68, 68, 0.18);
+  color: #fca5a5;
+  border: 1px solid rgba(239, 68, 68, 0.4);
 }
 
 @media (max-width: 768px) {

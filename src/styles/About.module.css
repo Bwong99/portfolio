@@ -1,21 +1,8 @@
+/* Background photo + overlay come from the parent PageSurface */
 .about {
   padding: var(--spacing-3xl) 0;
-  background-color: var(--bg-secondary);
+  color: var(--on-dark);
   position: relative;
-  overflow: hidden;
-}
-
-.about::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: url('/photos/backgrounds/japan1.jpg');
-  background-size: cover;
-  background-position: center;
-  opacity: 0.15;
-  filter: blur(2px);
-  pointer-events: none;
-  z-index: 0;
 }
 
 .aboutContainer {
@@ -39,22 +26,25 @@
 .aboutContent h2 {
   font-size: 2.5rem;
   margin-bottom: var(--spacing-md);
-  color: var(--text-primary);
+  color: var(--on-dark);
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
 }
 
 .aboutContent h2 span {
-  color: var(--color-primary);
+  color: var(--on-dark-muted);
 }
 
 .aboutTitle {
-  color: var(--color-primary);
+  color: var(--on-dark-muted);
+  text-shadow: var(--on-dark-shadow);
   font-size: 1.125rem;
   font-weight: 500;
   margin-bottom: var(--spacing-lg);
 }
 
 .aboutBio {
-  color: var(--text-secondary);
+  color: var(--on-dark-muted);
+  text-shadow: var(--on-dark-shadow);
   line-height: 1.8;
   margin-bottom: var(--spacing-xl);
 }
@@ -77,23 +67,26 @@
 
 .aboutInfoLabel {
   font-weight: 600;
-  color: var(--text-primary);
+  color: var(--on-dark);
 }
 
 .aboutInfoValue {
-  color: var(--text-secondary);
+  color: var(--on-dark-muted);
 }
 
 /* Skills Section */
 .skills {
   padding: var(--spacing-3xl) 0;
-  background-color: var(--bg-primary);
+  color: var(--on-dark);
+  position: relative;
 }
 
 .skillsContainer {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 0 var(--spacing-lg);
+  position: relative;
+  z-index: 1;
 }
 
 .skillsGrid {
@@ -103,18 +96,19 @@
 }
 
 .skillCategory {
-  background-color: var(--bg-secondary);
+  background-color: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: var(--glass-blur);
   padding: var(--spacing-xl);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
 }
 
 .skillCategoryTitle {
   font-size: 1.25rem;
-  color: var(--color-primary);
+  color: var(--on-dark);
   margin-bottom: var(--spacing-lg);
   padding-bottom: var(--spacing-sm);
-  border-bottom: 2px solid var(--color-light-gray);
+  border-bottom: 1px solid var(--glass-border);
 }
 
 .skillItem {
@@ -129,24 +123,24 @@
 
 .skillName {
   font-weight: 500;
-  color: var(--text-primary);
+  color: var(--on-dark);
 }
 
 .skillLevel {
-  color: var(--text-muted);
+  color: var(--on-dark-subtle);
   font-size: 0.875rem;
 }
 
 .skillBar {
   height: 8px;
-  background-color: var(--color-light-gray);
+  background-color: rgba(255, 255, 255, 0.15);
   border-radius: var(--radius-full);
   overflow: hidden;
 }
 
 .skillProgress {
   height: 100%;
-  background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light));
+  background: rgba(255, 255, 255, 0.85);
   border-radius: var(--radius-full);
   transition: width 1s ease-out;
 }
@@ -154,13 +148,16 @@
 /* Education Section */
 .education {
   padding: var(--spacing-3xl) 0;
-  background-color: var(--bg-secondary);
+  color: var(--on-dark);
+  position: relative;
 }
 
 .educationContainer {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 0 var(--spacing-lg);
+  position: relative;
+  z-index: 1;
 }
 
 .educationTimeline {
@@ -176,15 +173,16 @@
   transform: translateX(-50%);
   width: 2px;
   height: 100%;
-  background-color: var(--color-light-gray);
+  background-color: var(--glass-border);
 }
 
 .educationItem {
   position: relative;
   padding: var(--spacing-lg);
-  background-color: var(--bg-primary);
+  background-color: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: var(--glass-blur);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
   margin-bottom: var(--spacing-xl);
   width: calc(50% - 30px);
 }
@@ -198,7 +196,7 @@
   position: absolute;
   width: 16px;
   height: 16px;
-  background-color: var(--color-primary);
+  background-color: rgba(255, 255, 255, 0.85);
   border-radius: 50%;
   top: var(--spacing-xl);
 }
@@ -213,24 +211,24 @@
 
 .educationYear {
   font-size: 0.875rem;
-  color: var(--color-primary);
+  color: var(--on-dark-subtle);
   font-weight: 600;
   margin-bottom: var(--spacing-sm);
 }
 
 .educationDegree {
   font-size: 1.25rem;
-  color: var(--text-primary);
+  color: var(--on-dark);
   margin-bottom: var(--spacing-xs);
 }
 
 .educationSchool {
-  color: var(--text-muted);
+  color: var(--on-dark-subtle);
   margin-bottom: var(--spacing-sm);
 }
 
 .educationDescription {
-  color: var(--text-secondary);
+  color: var(--on-dark-muted);
   font-size: 0.9375rem;
   line-height: 1.6;
 }
