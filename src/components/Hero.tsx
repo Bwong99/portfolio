@@ -1,7 +1,7 @@
 'use client';
 
-import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { socialLinks } from '@/data';
 import styles from '@/styles/Hero.module.css';
 
@@ -9,22 +9,6 @@ const PinIcon = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
     <circle cx="12" cy="10" r="3" />
-  </svg>
-);
-
-const GridIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="3" y="3" width="7" height="7" />
-    <rect x="14" y="3" width="7" height="7" />
-    <rect x="14" y="14" width="7" height="7" />
-    <rect x="3" y="14" width="7" height="7" />
-  </svg>
-);
-
-const CameraIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
-    <circle cx="12" cy="13" r="4" />
   </svg>
 );
 
@@ -48,11 +32,9 @@ const MailIcon = () => (
 );
 
 const links = [
-  { label: 'Projects', href: '/projects', external: false, icon: <GridIcon /> },
-  { label: 'Photography', href: '/photography', external: false, icon: <CameraIcon /> },
-  { label: 'GitHub', href: socialLinks.github, external: true, icon: <GithubIcon /> },
-  { label: 'LinkedIn', href: socialLinks.linkedin, external: true, icon: <LinkedinIcon /> },
-  { label: 'Email', href: `mailto:${socialLinks.email}`, external: true, icon: <MailIcon /> },
+  { label: 'GitHub', href: socialLinks.github, icon: <GithubIcon /> },
+  { label: 'LinkedIn', href: socialLinks.linkedin, icon: <LinkedinIcon /> },
+  { label: 'Email', href: `mailto:${socialLinks.email}`, icon: <MailIcon /> },
 ];
 
 const container = {
@@ -66,30 +48,54 @@ const item = {
 };
 
 const Hero = () => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  // The hero sticks while this taller wrapper scrolls past it, which is the
+  // travel the crossfade below is measured against.
+  const { scrollYProgress } = useScroll({
+    target: scrollRef,
+    offset: ['start start', 'end end'],
+  });
+
+  const introOpacity = useTransform(scrollYProgress, [0.05, 0.6], [1, 0]);
+  const introY = useTransform(scrollYProgress, [0.05, 0.6], [0, -12]);
+  const linksOpacity = useTransform(scrollYProgress, [0.5, 0.95], [0, 1]);
+  const linksY = useTransform(scrollYProgress, [0.5, 0.95], [10, 0]);
+  // Nothing to click until the pills have actually faded in.
+  const linksPointer = useTransform(scrollYProgress, (v) => (v > 0.6 ? 'auto' : 'none'));
+
   return (
-    <section className={styles.hero}>
-      <motion.div
-        className={styles.content}
-        variants={container}
-        initial="hidden"
-        animate="visible"
-      >
-        <motion.h1 className={styles.name} variants={item}>
-          Bradley Wong
-        </motion.h1>
+    <div className={styles.heroScroll} ref={scrollRef}>
+      <section className={styles.hero}>
+        <motion.div
+          className={styles.content}
+          variants={container}
+          initial="hidden"
+          animate="visible"
+        >
+          <motion.div
+            className={styles.intro}
+            style={{ opacity: introOpacity, y: introY }}
+          >
+            <motion.h1 className={styles.name} variants={item}>
+              Bradley Wong
+            </motion.h1>
 
-        <motion.p className={styles.tagline} variants={item}>
-          Building embedded systems. Capturing moments.
-        </motion.p>
+            <motion.p className={styles.tagline} variants={item}>
+              Building embedded systems. Capturing moments.
+            </motion.p>
 
-        <motion.div className={styles.location} variants={item}>
-          <PinIcon />
-          <span>Vancouver, BC</span>
-        </motion.div>
+            <motion.div className={styles.location} variants={item}>
+              <PinIcon />
+              <span>Vancouver, BC</span>
+            </motion.div>
+          </motion.div>
 
-        <motion.div className={styles.links} variants={item}>
-          {links.map((link) =>
-            link.external ? (
+          <motion.div
+            className={styles.links}
+            style={{ opacity: linksOpacity, y: linksY, pointerEvents: linksPointer }}
+          >
+            {links.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
@@ -100,19 +106,13 @@ const Hero = () => {
                 {link.icon}
                 <span>{link.label}</span>
               </a>
-            ) : (
-              <Link key={link.label} href={link.href} className={styles.pill}>
-                {link.icon}
-                <span>{link.label}</span>
-              </Link>
-            )
-          )}
+            ))}
+          </motion.div>
         </motion.div>
 
-      </motion.div>
-
-      <div className={styles.copyright}>© {new Date().getFullYear()} Bradley Wong</div>
-    </section>
+        <div className={styles.copyright}>© {new Date().getFullYear()} Bradley Wong</div>
+      </section>
+    </div>
   );
 };
 

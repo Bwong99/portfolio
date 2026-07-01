@@ -1,7 +1,16 @@
-.hero {
+/* Scroll track for the pinned hero. The extra height above one viewport is the
+   distance over which the intro trades places with the links. */
+.heroScroll {
   position: relative;
-  min-height: 100vh;
-  min-height: 100svh;
+  height: 260vh;
+  height: 260svh;
+}
+
+.hero {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -21,6 +30,15 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
+  gap: var(--spacing-lg);
+}
+
+/* Holds the three intro lines so they fade as one block. */
+.intro {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: var(--spacing-lg);
 }
 
@@ -62,7 +80,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.75rem;
-  margin-top: var(--spacing-xs);
+  margin-top: 3.5rem;
 }
 
 .pill {
