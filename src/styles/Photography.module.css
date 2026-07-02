@@ -66,11 +66,20 @@
   pointer-events: none;
 }
 
-.photoTitle {
-  font-size: 1.75rem;
-  font-weight: 600;
-  margin-bottom: var(--spacing-sm);
-  color: var(--color-white);
+.photoLocation {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+}
+
+.photoLocation svg {
+  flex-shrink: 0;
+  opacity: 0.8;
 }
 
 /* Lightbox Modal */
@@ -293,10 +302,6 @@
     flex-basis: 88vw;
   }
 
-  .photoTitle {
-    font-size: 1.5rem;
-  }
-
   .controlsBar {
     bottom: var(--spacing-md);
     padding: var(--spacing-sm) var(--spacing-md);
@@ -317,9 +322,5 @@
 
   .photoOverlay {
     padding: var(--spacing-md);
-  }
-
-  .photoTitle {
-    font-size: 1.25rem;
   }
 }

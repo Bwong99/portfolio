@@ -5,42 +5,43 @@ import PageTransition from '@/components/PageTransition';
 import PageHeader from '@/components/PageHeader';
 import PageSurface from '@/components/PageSurface';
 
+// `title` stays as the image alt text; `location` is what the caption shows.
 const photographyPhotos = [
   {
     id: 'nyc-1',
     src: '/photos/backgrounds/nyc1.jpg',
     title: 'New York City',
-    description: 'Urban landscape capturing the energy of New York City.',
+    location: 'New York City',
   },
   {
     id: 'japan-1',
     src: '/photos/backgrounds/japan1.jpg',
     title: 'Japan Vista',
-    description: 'Serene moments from Japan.',
+    location: 'Japan',
   },
   {
     id: 'japan-2',
     src: '/photos/backgrounds/japan2.JPG',
     title: 'Japan Landscape',
-    description: 'Beautiful scenery from Japan.',
+    location: 'Japan',
   },
   {
     id: 'japan-3',
     src: '/photos/backgrounds/japan3.JPG',
     title: 'Japan Views',
-    description: 'Captivating views from Japan.',
+    location: 'Japan',
   },
   {
     id: 'japan-4',
     src: '/photos/backgrounds/japan4.JPG',
     title: 'Japan Scenery',
-    description: 'Stunning Japanese scenery.',
+    location: 'Japan',
   },
   {
     id: 'japan-5',
     src: '/photos/backgrounds/japan5.JPG',
     title: 'Japan Panorama',
-    description: 'Wide views of Japanese landscapes.',
+    location: 'Japan',
   },
 ];
 
