@@ -111,7 +111,7 @@ const ProjectCard = ({ project, variants }: ProjectCardProps) => {
             style={{ objectFit: 'cover' }}
           />
           <div className={styles.projectOverlay}>
-            <span className={styles.projectOverlayBtn}>View Details</span>
+            <span className={styles.projectOverlayBtn}>View details</span>
           </div>
         </div>
         <div className={styles.projectContent}>
