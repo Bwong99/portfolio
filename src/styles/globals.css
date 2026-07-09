@@ -63,8 +63,8 @@
 
   /* Dark photographic surface (shared with the home hero) */
   --overlay-dark:
-    linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.4) 35%, rgba(0, 0, 0, 0.72) 100%),
-    radial-gradient(ellipse at center, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.45) 100%);
+    linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.3) 35%, rgba(0, 0, 0, 0.62) 100%),
+    radial-gradient(ellipse at center, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.35) 100%);
 
   /* Glass surfaces layered on top of the photo */
   --glass-bg: rgba(255, 255, 255, 0.08);
