@@ -6,7 +6,14 @@
 .bg,
 .overlay {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  /* Mobile browsers grow and shrink the viewport as the URL bar hides on
+     scroll. Pinning to the largest viewport height keeps the photo a constant
+     size instead of letting it re-crop mid-scroll. */
+  height: 100vh;
+  height: 100lvh;
   pointer-events: none;
   z-index: 0;
 }
@@ -15,10 +22,18 @@
   background: var(--overlay-dark);
 }
 
+/* About leads with the photo behind a short bio, so it takes a lighter wash
+   than the other inner pages. */
+.overlay.overlayAbout {
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.22) 0%, rgba(0, 0, 0, 0.08) 35%, rgba(0, 0, 0, 0.38) 100%),
+    radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.12) 100%);
+}
+
 /* Home leans on the photo more than the inner pages, so it gets a lighter wash.
    Text there is short and carries its own shadow, so it stays legible. */
-.overlayHome {
+.overlay.overlayHome {
   background:
-    linear-gradient(180deg, rgba(0, 0, 0, 0.42) 0%, rgba(0, 0, 0, 0.26) 35%, rgba(0, 0, 0, 0.46) 100%),
-    radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 100%);
+    linear-gradient(180deg, rgba(0, 0, 0, 0.22) 0%, rgba(0, 0, 0, 0.06) 35%, rgba(0, 0, 0, 0.26) 100%),
+    radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.1) 100%);
 }

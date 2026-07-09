@@ -27,10 +27,16 @@ const imageForPath = (pathname: string) =>
 const positionForPath = (pathname: string) =>
   routePositions.find(([prefix]) => pathname.startsWith(prefix))?.[1] ?? 'center';
 
+// Pages that want a wash other than the default inner-page one.
+const overlayVariant = (pathname: string) => {
+  if (pathname === '/') return styles.overlayHome;
+  if (pathname.startsWith('/about')) return styles.overlayAbout;
+  return '';
+};
+
 const SiteBackground = () => {
   const pathname = usePathname();
   const image = imageForPath(pathname);
-  const isHome = pathname === '/';
 
   return (
     <>
@@ -45,7 +51,7 @@ const SiteBackground = () => {
           style={{ objectFit: 'cover', objectPosition: positionForPath(pathname) }}
         />
       </div>
-      <div className={isHome ? styles.overlayHome : styles.overlay} />
+      <div className={`${styles.overlay} ${overlayVariant(pathname)}`.trim()} />
     </>
   );
 };
