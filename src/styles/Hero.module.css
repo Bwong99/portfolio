@@ -1,9 +1,9 @@
 /* Scroll track for the pinned hero. The extra height above one viewport is the
-   distance over which the intro trades places with the links. */
+   distance over which the intro fades out. */
 .heroScroll {
   position: relative;
-  height: 260vh;
-  height: 260svh;
+  height: 200vh;
+  height: 200svh;
 }
 
 .hero {

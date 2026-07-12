@@ -1,7 +1,8 @@
 'use client';
 
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef, useEffect } from 'react';
+import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
+import { useChromeVisibility } from '@/components/ChromeVisibility';
 import { socialLinks } from '@/data';
 import styles from '@/styles/Hero.module.css';
 
@@ -37,9 +38,11 @@ const links = [
   { label: 'Email', href: `mailto:${socialLinks.email}`, icon: <MailIcon /> },
 ];
 
+// Orchestration only — the scroll fade owns this element's opacity, so the
+// entrance is left to the individual children below.
 const container = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.08, delayChildren: 0.15 } },
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.08, delayChildren: 0.15 } },
 };
 
 const item = {
@@ -47,22 +50,42 @@ const item = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] } },
 };
 
+// Points along the hero scroll track where the site chrome steps aside and
+// where it comes back, just before the footer arrives.
+const CHROME_HIDE_AT = 0.45;
+const CHROME_SHOW_AT = 0.85;
+
 const Hero = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   // The hero sticks while this taller wrapper scrolls past it, which is the
-  // travel the crossfade below is measured against.
+  // travel the intro fade below is measured against.
   const { scrollYProgress } = useScroll({
     target: scrollRef,
     offset: ['start start', 'end end'],
   });
 
-  const introOpacity = useTransform(scrollYProgress, [0.05, 0.6], [1, 0]);
-  const introY = useTransform(scrollYProgress, [0.05, 0.6], [0, -12]);
-  const linksOpacity = useTransform(scrollYProgress, [0.5, 0.95], [0, 1]);
-  const linksY = useTransform(scrollYProgress, [0.5, 0.95], [10, 0]);
-  // Nothing to click until the pills have actually faded in.
-  const linksPointer = useTransform(scrollYProgress, (v) => (v > 0.6 ? 'auto' : 'none'));
+  const introOpacity = useTransform(scrollYProgress, [0.05, 0.5], [1, 0]);
+  const introY = useTransform(scrollYProgress, [0.05, 0.5], [0, -12]);
+  // Once faded the pills are invisible, so stop them swallowing clicks.
+  const introPointer = useTransform(introOpacity, (v) => (v < 0.05 ? 'none' : 'auto'));
+
+  // Between the intro fading out and the footer coming into reach, the hero is
+  // just the photo — the navbar and copyright step aside for that stretch.
+  const { setChromeHidden } = useChromeVisibility();
+
+  useMotionValueEvent(scrollYProgress, 'change', (p) => {
+    setChromeHidden(p > CHROME_HIDE_AT && p < CHROME_SHOW_AT);
+  });
+
+  // The chrome belongs to the whole site, so hand it back on the way out.
+  useEffect(() => () => setChromeHidden(false), [setChromeHidden]);
+
+  const copyrightOpacity = useTransform(
+    scrollYProgress,
+    [CHROME_HIDE_AT - 0.1, CHROME_HIDE_AT, CHROME_SHOW_AT, CHROME_SHOW_AT + 0.1],
+    [1, 0, 0, 1]
+  );
 
   return (
     <div className={styles.heroScroll} ref={scrollRef}>
@@ -72,11 +95,9 @@ const Hero = () => {
           variants={container}
           initial="hidden"
           animate="visible"
+          style={{ opacity: introOpacity, y: introY, pointerEvents: introPointer }}
         >
-          <motion.div
-            className={styles.intro}
-            style={{ opacity: introOpacity, y: introY }}
-          >
+          <motion.div className={styles.intro}>
             <motion.h1 className={styles.name} variants={item}>
               Bradley Wong
             </motion.h1>
@@ -91,10 +112,7 @@ const Hero = () => {
             </motion.div>
           </motion.div>
 
-          <motion.div
-            className={styles.links}
-            style={{ opacity: linksOpacity, y: linksY, pointerEvents: linksPointer }}
-          >
+          <motion.div className={styles.links} variants={item}>
             {links.map((link) => (
               <a
                 key={link.label}
@@ -110,7 +128,9 @@ const Hero = () => {
           </motion.div>
         </motion.div>
 
-        <div className={styles.copyright}>© {new Date().getFullYear()} Bradley Wong</div>
+        <motion.div className={styles.copyright} style={{ opacity: copyrightOpacity }}>
+          © {new Date().getFullYear()} Bradley Wong
+        </motion.div>
       </section>
     </div>
   );

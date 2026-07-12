@@ -3,6 +3,7 @@ import { Inter, Poppins } from 'next/font/google';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import SiteBackground from '@/components/SiteBackground';
+import { ChromeVisibilityProvider } from '@/components/ChromeVisibility';
 import '@/styles/globals.css';
 
 const inter = Inter({
@@ -22,7 +23,7 @@ export const metadata: Metadata = {
     template: '%s | Bradley Wong',
   },
   description:
-    'Personal portfolio of Bradley Wong - a full-stack developer and photographer based in San Francisco. Explore my projects in software development, photography, and hardware.',
+    'Personal portfolio of Bradley Wong - a full-stack developer and photographer based in Vancouver, BC. Explore my projects in software development, photography, and hardware.',
   keywords: [
     'Bradley Wong',
     'Full-Stack Developer',
@@ -31,7 +32,7 @@ export const metadata: Metadata = {
     'Next.js',
     'TypeScript',
     'Web Developer',
-    'San Francisco',
+    'Vancouver',
   ],
   authors: [{ name: 'Bradley Wong' }],
   creator: 'Bradley Wong',
@@ -42,7 +43,7 @@ export const metadata: Metadata = {
     siteName: 'Bradley Wong Portfolio',
     title: 'Bradley Wong | Computer Engineering Student & Photographer',
     description:
-      'Personal portfolio of Bradley Wong - Computer Engineering Student & Photographer based in San Francisco.',
+      'Personal portfolio of Bradley Wong - Computer Engineering Student & Photographer based in Vancouver, BC.',
     images: [
       {
         url: '/og-image.jpg',
@@ -80,12 +81,14 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
       <body>
-        <SiteBackground />
-        <Navbar />
-        <div className="site-content">
-          <main>{children}</main>
-          <Footer />
-        </div>
+        <ChromeVisibilityProvider>
+          <SiteBackground />
+          <Navbar />
+          <div className="site-content">
+            <main>{children}</main>
+            <Footer />
+          </div>
+        </ChromeVisibilityProvider>
       </body>
     </html>
   );
