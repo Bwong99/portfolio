@@ -29,8 +29,7 @@ export interface NavItem {
 // Skills types
 export interface Skill {
   name: string;
-  level: number;
-  category: 'frontend' | 'backend' | 'tools' | 'other';
+  category: 'frontend' | 'backend' | 'hardware' | 'ml';
 }
 
 // Timeline types — schooling and work history share one track

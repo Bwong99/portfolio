@@ -9,21 +9,35 @@ export const navItems: NavItem[] = [
 ];
 
 export const skills: Skill[] = [
-  { name: 'C', level: 85, category: 'frontend' },
-  { name: 'C++', level: 85, category: 'frontend' },
-  { name: 'Java', level: 80, category: 'frontend' },
-  { name: 'System Verilog', level: 75, category: 'frontend' },
-  { name: 'Assembly (RISC-V, ARM)', level: 70, category: 'backend' },
-  { name: 'Python', level: 80, category: 'backend' },
-  { name: 'Node.js', level: 75, category: 'backend' },
-  { name: 'Git', level: 90, category: 'tools' },
-  { name: 'Linux/CLI', level: 85, category: 'tools' },
-  { name: 'GDB', level: 75, category: 'tools' },
-  { name: 'Quartus', level: 80, category: 'tools' },
-  { name: 'ModelSim', level: 75, category: 'tools' },
-  { name: 'Figma', level: 70, category: 'other' },
-  { name: 'RTL Design', level: 80, category: 'other' },
-  { name: 'FPGA Development', level: 75, category: 'other' },
+  { name: 'TypeScript', category: 'frontend' },
+  { name: 'React', category: 'frontend' },
+  { name: 'Next.js', category: 'frontend' },
+  { name: 'Figma', category: 'frontend' },
+
+  { name: 'Python', category: 'backend' },
+  { name: 'Java', category: 'backend' },
+  { name: 'Node.js', category: 'backend' },
+  { name: 'SQL', category: 'backend' },
+  { name: 'AWS', category: 'backend' },
+  { name: 'DynamoDB', category: 'backend' },
+  { name: 'MongoDB', category: 'backend' },
+  { name: 'Docker', category: 'backend' },
+  { name: 'JUnit', category: 'backend' },
+
+  { name: 'C', category: 'hardware' },
+  { name: 'C++', category: 'hardware' },
+  { name: 'SystemVerilog', category: 'hardware' },
+  { name: 'Assembly (RISC-V, ARM)', category: 'hardware' },
+  { name: 'RTL Design', category: 'hardware' },
+  { name: 'FPGA Development', category: 'hardware' },
+  { name: 'Quartus', category: 'hardware' },
+  { name: 'ModelSim', category: 'hardware' },
+  { name: 'GDB', category: 'hardware' },
+  { name: 'Linux/Unix', category: 'hardware' },
+
+  { name: 'PyTorch', category: 'ml' },
+  { name: 'TensorFlow', category: 'ml' },
+  { name: 'OpenCV', category: 'ml' },
 ];
 
 // Newest first.
@@ -102,5 +116,4 @@ Currently, I'm part of the UBC Open Robotics software team, where I design real-
 
 Beyond engineering, I'm an avid photographer who finds inspiration in urban landscapes and natural beauty. This creative perspective helps me approach technical challenges with a unique mindset, always considering both functionality and elegance in my designs.`,
   location: 'Vancouver, BC',
-  availability: 'Open to co-op opportunities',
 };
