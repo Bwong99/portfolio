@@ -5,12 +5,14 @@ import { aboutMe, skills, timeline } from '@/data';
 import styles from '@/styles/About.module.css';
 
 const AboutSection = () => {
-  const skillCategories = {
-    frontend: skills.filter((s) => s.category === 'frontend'),
-    backend: skills.filter((s) => s.category === 'backend'),
-    tools: skills.filter((s) => s.category === 'tools'),
-    other: skills.filter((s) => s.category === 'other'),
-  };
+  // Ordered as they should read on the page; the labels are spelled out because
+  // 'ml' doesn't capitalise into anything sensible.
+  const skillCategories: [string, typeof skills][] = [
+    ['Frontend', skills.filter((s) => s.category === 'frontend')],
+    ['Backend', skills.filter((s) => s.category === 'backend')],
+    ['Hardware', skills.filter((s) => s.category === 'hardware')],
+    ['Machine Learning', skills.filter((s) => s.category === 'ml')],
+  ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -54,10 +56,6 @@ const AboutSection = () => {
                   <span className={styles.aboutInfoLabel}>Location:</span>
                   <span className={styles.aboutInfoValue}>{aboutMe.location}</span>
                 </div>
-                <div className={styles.aboutInfoItem}>
-                  <span className={styles.aboutInfoLabel}>Status:</span>
-                  <span className={styles.aboutInfoValue}>{aboutMe.availability}</span>
-                </div>
               </div>
             </motion.div>
           </motion.div>
@@ -84,11 +82,9 @@ const AboutSection = () => {
             viewport={{ once: true, margin: '-100px' }}
             variants={containerVariants}
           >
-            {Object.entries(skillCategories).map(([category, categorySkills]) => (
-              <motion.div key={category} className={styles.skillCategory} variants={itemVariants}>
-                <h3 className={styles.skillCategoryTitle}>
-                  {category.charAt(0).toUpperCase() + category.slice(1)}
-                </h3>
+            {skillCategories.map(([label, categorySkills]) => (
+              <motion.div key={label} className={styles.skillCategory} variants={itemVariants}>
+                <h3 className={styles.skillCategoryTitle}>{label}</h3>
                 <ul className={styles.skillList}>
                   {categorySkills.map((skill) => (
                     <li key={skill.name} className={styles.skillItem}>
