@@ -14,6 +14,11 @@
   box-shadow: var(--shadow-md);
 }
 
+/* Inner pages soften the photo behind the bar; the home hero stays clear. */
+.navbar.blurred {
+  backdrop-filter: var(--glass-blur);
+}
+
 /* Transparent state over the home hero image */
 .navbar.overlay {
   background-color: transparent;

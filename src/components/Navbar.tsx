@@ -34,9 +34,12 @@ const Navbar = () => {
   // stays transparent throughout — except when the mobile menu needs a backdrop.
   const overlay = !isOpen;
 
+  // The home hero wants an unbroken photo; every other page blurs behind the bar.
+  const blurred = pathname !== '/';
+
   return (
     <motion.nav
-      className={`${styles.navbar} ${scrolled ? styles.scrolled : ''} ${overlay ? styles.overlay : ''}`}
+      className={`${styles.navbar} ${scrolled ? styles.scrolled : ''} ${overlay ? styles.overlay : ''} ${blurred ? styles.blurred : ''}`}
       initial={{ y: -100 }}
       animate={{ y: hidden ? -100 : 0, opacity: hidden ? 0 : 1 }}
       transition={{ duration: 0.5 }}

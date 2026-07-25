@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import styles from '@/styles/SiteBackground.module.css';
 
-const DEFAULT_IMAGE = '/photos/backgrounds/bradleywong.jpg';
+const DEFAULT_IMAGE = '/photos/backgrounds/bwong99-bg.jpg';
 
 // Each route keeps its own photo; longest matching prefix wins so that
 // /projects/<id> inherits the projects photo.
