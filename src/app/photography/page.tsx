@@ -9,7 +9,7 @@ import PageSurface from '@/components/PageSurface';
 const photographyPhotos = [
   {
     id: 'nyc-1',
-    src: '/photos/backgrounds/nyc1.jpg',
+    src: '/photos/gallery/nyc1.jpg',
     title: 'New York City',
     location: 'New York City',
   },
@@ -21,7 +21,7 @@ const photographyPhotos = [
   },
   {
     id: 'japan-2',
-    src: '/photos/backgrounds/japan2.JPG',
+    src: '/photos/gallery/japan2.JPG',
     title: 'Japan Landscape',
     location: 'Japan',
   },
@@ -39,9 +39,33 @@ const photographyPhotos = [
   },
   {
     id: 'japan-5',
-    src: '/photos/backgrounds/japan5.JPG',
+    src: '/photos/gallery/japan5.JPG',
     title: 'Japan Panorama',
     location: 'Japan',
+  },
+  {
+    id: 'above-the-clouds',
+    src: '/photos/gallery/bradleywong.jpg',
+    title: 'Above the Clouds',
+    location: 'Vancouver, BC',
+  },
+  {
+    id: 'radio-city',
+    src: '/photos/gallery/nycFountain.jpg',
+    title: 'Radio City',
+    location: 'New York City',
+  },
+  {
+    id: 'pump-peak',
+    src: '/photos/gallery/pumppeak1.jpg',
+    title: 'Pump Peak',
+    location: 'Vancouver, BC',
+  },
+  {
+    id: 'golden-hour',
+    src: '/photos/gallery/sun.JPG',
+    title: 'Golden Hour',
+    location: 'Vancouver, BC',
   },
 ];
 
