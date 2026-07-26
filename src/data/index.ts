@@ -105,12 +105,12 @@ export const projects: Project[] = [
     description: 'Tron-style light cycle game in C on a DE10-Lite FPGA with VGA output.',
     longDescription: 'Built a Tron-style light cycle game in C targeting the DE10-Lite FPGA board (portable to the DE1-SoC and CPUlator). Renders the arena and trailing light cycles directly to a VGA pixel buffer through memory-mapped I/O, and reads player input from the on-board push buttons. Drives the LEDs and seven-segment HEX displays for game state, and uses the hardware timer to pace the game loop — a from-scratch embedded implementation with no game engine or libraries.',
     technologies: ['C', 'VGA', 'DE10-Lite FPGA', 'Memory-Mapped I/O', 'Embedded Systems'],
-    thumbnail: '/photos/projects/tron/vgaTron.png',
+    thumbnail: '/photos/projects/tron/vgaTron3.png',
     images: [
-      '/photos/projects/tron/vgaTron.png',
+      '/photos/projects/tron/vgaTron3.png',
     ],
     screenshots: [
-      '/photos/projects/tron/vgaTron.png',
+      '/photos/projects/tron/vgaTron3.png',
     ],
     github: 'https://github.com/Bwong99/Tron-VGA-Light-Cycle',
   },
