@@ -52,20 +52,6 @@ const ContactForm = () => {
     <section className={styles.contact}>
       <div className={styles.contactContainer}>
         <motion.div
-          className={styles.contactHeader}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <h1 className={styles.contactTitle}>Get In Touch</h1>
-          <p className={styles.contactSubtitle}>
-            Have a project in mind or just want to say hello? I'd love to hear from you.
-            Let's create something amazing together.
-          </p>
-        </motion.div>
-
-        <motion.div
           className={styles.contactGrid}
           variants={containerVariants}
           initial="hidden"
