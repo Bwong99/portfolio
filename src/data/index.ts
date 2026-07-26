@@ -57,6 +57,64 @@ export const timeline: TimelineEntry[] = [
 
 export const projects: Project[] = [
   {
+    id: '6dof-arm',
+    title: '6DoF Arm',
+    category: 'hardware',
+    description: 'ROS2-based control and vision stack for a 6-degree-of-freedom robotic arm.',
+    longDescription: 'Contributed to the 6DoF Arm project with UBC Open Robotics — a six-degree-of-freedom robotic arm built to operate autonomously as a barista. The system spans both hardware and software: motor control and kinematics on the arm, paired with a ROS2-based software stack for motion planning, simulation, and computer vision. Built in Python and containerized with Docker for reproducible development and deployment, the project integrates perception and planning subsystems to translate camera input into coordinated arm motion.',
+    technologies: ['ROS2', 'Python', 'Docker', 'Computer Vision', 'Motion Planning', 'Robotics'],
+    thumbnail: '/photos/projects/6dof-arm/6dofarm1.png',
+    images: [
+      '/photos/projects/6dof-arm/6dofarm1.png',
+      '/photos/projects/6dof-arm/6dofarm2.png',
+    ],
+    screenshots: [
+      '/photos/projects/6dof-arm/6dofarm1.png',
+      '/photos/projects/6dof-arm/6dofarm2.png',
+    ],
+    github: 'https://github.com/UBC-OpenRobotics/6DoF-Arm',
+  },
+  {
+    id: 'mobile-arm',
+    title: 'Dynamixel-Based Mobile Arm',
+    category: 'hardware',
+    description: 'ROS2 + Gazebo simulation of a mobile base with a 2-DOF Dynamixel arm and camera.',
+    longDescription: 'Built a full ROS2 simulation stack for a mobile robot combining a driveable base with an articulated 2-DOF Dynamixel arm and an onboard camera. Modeled the robot in URDF/Xacro and simulated its physics in Gazebo, bridging simulation and ROS2 through ros_gz_bridge for bidirectional message passing. Joint commands, base velocity (/cmd_vel), joint feedback, and camera streams flow over ROS2 topics, with robot_state_publisher maintaining the TF transform tree and RViz2 for visualization. The controllers are simulation-agnostic, so the same ROS2 stack can drive real Dynamixel hardware or the simulated model.',
+    technologies: ['ROS2', 'Gazebo', 'URDF/Xacro', 'RViz2', 'Dynamixel', 'Robotics'],
+    thumbnail: '/photos/projects/mobile-arm/mobile-arm3.png',
+    images: [
+      '/photos/projects/mobile-arm/mobile-arm1.png',
+      '/photos/projects/mobile-arm/mobile-arm2.png',
+      '/photos/projects/mobile-arm/mobile-arm3.png',
+      '/photos/projects/mobile-arm/mobile-arm4.png',
+      '/photos/projects/mobile-arm/mobile-arm5.png',
+    ],
+    screenshots: [
+      '/photos/projects/mobile-arm/mobile-arm1.png',
+      '/photos/projects/mobile-arm/mobile-arm2.png',
+      '/photos/projects/mobile-arm/mobile-arm3.png',
+      '/photos/projects/mobile-arm/mobile-arm4.png',
+      '/photos/projects/mobile-arm/mobile-arm5.png',
+    ],
+    github: 'https://github.com/Bwong99/Dynamixel-Based-Mobile-Arm',
+  },
+  {
+    id: 'tron-light-cycle',
+    title: 'Tron VGA Light Cycle',
+    category: 'hardware',
+    description: 'Tron-style light cycle game in C on a DE10-Lite FPGA with VGA output.',
+    longDescription: 'Built a Tron-style light cycle game in C targeting the DE10-Lite FPGA board (portable to the DE1-SoC and CPUlator). Renders the arena and trailing light cycles directly to a VGA pixel buffer through memory-mapped I/O, and reads player input from the on-board push buttons. Drives the LEDs and seven-segment HEX displays for game state, and uses the hardware timer to pace the game loop — a from-scratch embedded implementation with no game engine or libraries.',
+    technologies: ['C', 'VGA', 'DE10-Lite FPGA', 'Memory-Mapped I/O', 'Embedded Systems'],
+    thumbnail: '/photos/projects/tron/vgaTron.png',
+    images: [
+      '/photos/projects/tron/vgaTron.png',
+    ],
+    screenshots: [
+      '/photos/projects/tron/vgaTron.png',
+    ],
+    github: 'https://github.com/Bwong99/Tron-VGA-Light-Cycle',
+  },
+  {
     id: 'risc-v-cpu',
     title: 'RISC-V CPU',
     category: 'hardware',
@@ -85,19 +143,6 @@ export const projects: Project[] = [
       '/photos/projects/panorama/panorama2.png',
       '/photos/projects/panorama/panorama3.png',
     ],
-  },
-  {
-    id: 'esp32-telemetry',
-    title: 'ESP32 Sensor Telemetry System',
-    category: 'hardware',
-    description: 'ESP32 firmware in embedded C for sensor interfacing to local web dashboard.',
-    longDescription: 'Implemented ESP32 firmware in embedded C for sensor interfacing to a local web dashboard. Built a Node.js backend to support a lightweight telemetry data pipeline. Deployed using Linux CLI and designed for real-time monitoring of sensor data with minimal latency.',
-    technologies: ['ESP32', 'Embedded C', 'Node.js', 'Linux', 'Sensor Integration'],
-    thumbnail: '/photos/projects/esp32/esp32.jpg',
-    images: [
-      '/photos/projects/esp32/esp32.jpg',
-    ],
-    screenshots: [],
   },
 ];
 
