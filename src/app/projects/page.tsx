@@ -7,7 +7,7 @@ import PageSurface from '@/components/PageSurface';
 export const metadata: Metadata = {
   title: 'Projects',
   description:
-    'Explore Bradley Wong\'s portfolio of projects including embedded systems, robotics, and photography.',
+    'Explore Bradley Wong\'s portfolio of projects including embedded systems and robotics.',
 };
 
 export default function ProjectsPage() {
@@ -16,7 +16,7 @@ export default function ProjectsPage() {
       <PageSurface>
         <PageHeader
           title="My Projects"
-          subtitle="A collection of work spanning embedded systems, robotics, and photography"
+          subtitle="A collection of work spanning embedded systems and robotics"
         />
         <ProjectsGrid showFilter={true} />
       </PageSurface>

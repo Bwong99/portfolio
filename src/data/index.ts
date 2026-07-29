@@ -50,7 +50,7 @@ export const timeline: TimelineEntry[] = [
   {
     title: 'Bachelor of Applied Science, Computer Engineering',
     org: 'University of British Columbia',
-    year: '2024 - 2028 (Expected)',
+    year: '2024 - 2028',
     description: 'Focused on digital design, embedded systems, and computer architecture. Active member of UBC Open Robotics.',
   },
 ];
@@ -180,10 +180,6 @@ export const socialLinks = {
 export const aboutMe = {
   name: 'Bradley Wong',
   title: 'Computer Engineering Student & Embedded Systems Developer',
-  bio: `I'm a passionate Computer Engineering student at the University of British Columbia, specializing in embedded systems and digital design. With hands-on experience in RTL design, FPGA development, and low-level programming, I build efficient hardware-software systems.
-
-Currently, I'm part of the UBC Open Robotics software team, where I design real-time dashboards and telemetry systems. My projects span from implementing RISC-V CPUs in SystemVerilog to building multi-threaded C++ applications with live sensor data streaming.
-
-Beyond engineering, I'm an avid photographer who finds inspiration in urban landscapes and natural beauty. This creative perspective helps me approach technical challenges with a unique mindset, always considering both functionality and elegance in my designs.`,
+  bio: `I'm going into my third year as a Computer Engineering student at the University of British Columbia, specializing in building software systems. I have experience in building software for my internship at METI and my work on the UBC Open Robotics Design Team. Outside of technical experience, I was also a VolunTEEN Team Lead at Fraser Health for two years. In my free time I enjoy capturing the world through the lens of my camera.`,
   location: 'Vancouver, BC',
 };

@@ -16,7 +16,7 @@ export default function ContactPage() {
       <PageSurface>
         <PageHeader
           title="Get In Touch"
-          subtitle="Have a project in mind or just want to connect? Let's talk!"
+          subtitle="Let's talk!"
         />
         <ContactForm />
       </PageSurface>

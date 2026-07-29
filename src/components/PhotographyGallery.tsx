@@ -37,7 +37,7 @@ interface PhotographyGalleryProps {
 const PhotographyGallery = ({ photos }: PhotographyGalleryProps) => {
   const [centerIndex, setCenterIndex] = useState(0);
   const [selectedImage, setSelectedImage] = useState<Photo | null>(null);
-  const [viewMode, setViewMode] = useState<'spotlight' | 'gallery'>('spotlight');
+  const [viewMode, setViewMode] = useState<'spotlight' | 'gallery'>('gallery');
   const containerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
 

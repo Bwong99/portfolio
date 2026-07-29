@@ -62,8 +62,7 @@ const ContactForm = () => {
           <motion.div className={styles.contactInfo} variants={itemVariants}>
             <h2 className={styles.contactInfoTitle}>Contact Information</h2>
             <p className={styles.contactInfoText}>
-              Feel free to reach out through any of these channels. I typically respond
-              within 24-48 hours.
+              Feel free to reach out!
             </p>
 
             <div className={styles.contactInfoItem}>

@@ -44,12 +44,6 @@ const photographyPhotos = [
     location: 'Japan',
   },
   {
-    id: 'above-the-clouds',
-    src: '/photos/gallery/bradleywong.jpg',
-    title: 'Above the Clouds',
-    location: 'Vancouver, BC',
-  },
-  {
     id: 'radio-city',
     src: '/photos/gallery/nycFountain.jpg',
     title: 'Radio City',
@@ -59,6 +53,24 @@ const photographyPhotos = [
     id: 'pump-peak',
     src: '/photos/gallery/pumppeak1.jpg',
     title: 'Pump Peak',
+    location: 'Vancouver, BC',
+  },
+  {
+    id: 'pump-peak-3',
+    src: '/photos/gallery/pumpeak3.jpg',
+    title: 'Pump Peak Ridge',
+    location: 'Vancouver, BC',
+  },
+  {
+    id: 'pump-peak-4',
+    src: '/photos/gallery/pumpeak4.jpg',
+    title: 'Pump Peak Summit',
+    location: 'Vancouver, BC',
+  },
+  {
+    id: 'pump-peak-2',
+    src: '/photos/backgrounds/pumppeak2.jpg',
+    title: 'Pump Peak Traverse',
     location: 'Vancouver, BC',
   },
   {
@@ -75,7 +87,7 @@ export default function PhotographyPage() {
       <PageSurface>
         <PageHeader
           title="Photography"
-          subtitle="A curated collection capturing moments through light and composition"
+          subtitle="I like to take photos."
         />
         <PhotographyGallery photos={photographyPhotos} />
       </PageSurface>
