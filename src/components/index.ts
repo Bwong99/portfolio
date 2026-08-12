@@ -2,7 +2,6 @@ export { default as Navbar } from './Navbar';
 export { default as Footer } from './Footer';
 export { default as Hero } from './Hero';
 export { default as ProjectsGrid } from './ProjectsGrid';
-export { default as ContactForm } from './ContactForm';
 export { default as PageTransition } from './PageTransition';
 export { default as PhotographyGallery } from './PhotographyGallery';
 export { default as PageHeader } from './PageHeader';

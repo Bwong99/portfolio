@@ -10,7 +10,6 @@ const DEFAULT_IMAGE = '/photos/backgrounds/bwong99-bg.jpg';
 // /projects/<id> inherits the projects photo.
 const routeImages: [string, string][] = [
   ['/projects', '/photos/backgrounds/pumppeak2.jpg'],
-  ['/contact', '/photos/backgrounds/japan3.JPG'],
   ['/photography', '/photos/backgrounds/japan4.JPG'],
 ];
 

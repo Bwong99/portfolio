@@ -17,13 +17,6 @@ export interface Project {
   github?: string;
 }
 
-// Contact form types
-export interface ContactFormData {
-  name: string;
-  email: string;
-  message: string;
-}
-
 // Navigation types
 export interface NavItem {
   label: string;
