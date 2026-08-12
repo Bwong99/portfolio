@@ -40,10 +40,10 @@
   --spacing-3xl: 4rem;
   
   /* Border Radius */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
+  --radius-sm: 2px;
+  --radius-md: 3px;
+  --radius-lg: 4px;
+  --radius-xl: 6px;
   --radius-full: 9999px;
   
   /* Shadows */
@@ -62,17 +62,28 @@
   --nav-height: 70px;
 
   /* Dark photographic surface (shared with the home hero) */
+  /* Lighter than it once was: the panels above carry their own ink, so the
+     photo can stay readable between them. */
   --overlay-dark:
-    linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.3) 35%, rgba(0, 0, 0, 0.62) 100%),
-    radial-gradient(ellipse at center, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.35) 100%);
+    linear-gradient(180deg, rgba(0, 0, 0, 0.32) 0%, rgba(0, 0, 0, 0.18) 35%, rgba(0, 0, 0, 0.5) 100%),
+    radial-gradient(ellipse at center, rgba(0, 0, 0, 0.02) 0%, rgba(0, 0, 0, 0.28) 100%);
 
-  /* Glass surfaces layered on top of the photo */
-  --glass-bg: rgba(255, 255, 255, 0.08);
-  --glass-bg-strong: rgba(255, 255, 255, 0.12);
-  --glass-bg-hover: rgba(255, 255, 255, 0.18);
-  --glass-border: rgba(255, 255, 255, 0.22);
-  --glass-border-hover: rgba(255, 255, 255, 0.45);
-  --glass-blur: blur(10px);
+  /* Ink panels layered on top of the photo. Solid rather than translucent:
+     the photo reads around the panels, not through them. */
+  --panel-ink: 20, 22, 26;
+  --panel-bg: rgba(var(--panel-ink), 0.72);
+  --panel-bg-strong: rgba(var(--panel-ink), 0.82);
+  --panel-bg-hover: rgba(var(--panel-ink), 0.9);
+  --panel-rule: rgba(232, 184, 109, 0.22);
+  --panel-rule-hover: rgba(232, 184, 109, 0.65);
+
+  /* Kept under the old names so every surface picks the new treatment up. */
+  --glass-bg: var(--panel-bg);
+  --glass-bg-strong: var(--panel-bg-strong);
+  --glass-bg-hover: var(--panel-bg-hover);
+  --glass-border: var(--panel-rule);
+  --glass-border-hover: var(--panel-rule-hover);
+  --glass-blur: none;
 
   /* Text on the dark surface */
   --on-dark: #ffffff;
@@ -199,75 +210,47 @@ h4 { font-size: 1.25rem; }
 }
 
 .btn-primary {
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: var(--color-accent);
   color: var(--color-dark);
-  border-radius: var(--radius-full);
-}
-
-.btn-primary::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(4px);
-  opacity: 0;
-  transition: opacity var(--transition-normal);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  letter-spacing: 0.02em;
 }
 
 .btn-primary:hover {
-  background-color: var(--color-white);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-}
-
-.btn-primary:hover::before {
-  opacity: 1;
+  background-color: #f2c882;
+  border-color: #f2c882;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
 }
 
 .btn-secondary {
-  background-color: var(--glass-bg-strong);
+  background-color: var(--panel-bg-strong);
   color: var(--on-dark);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-full);
-  backdrop-filter: var(--glass-blur);
-}
-
-.btn-secondary::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(4px);
-  opacity: 0;
-  transition: opacity var(--transition-normal);
+  border: 1px solid var(--panel-rule);
+  border-radius: var(--radius-sm);
+  letter-spacing: 0.02em;
 }
 
 .btn-secondary:hover {
-  background-color: var(--glass-bg-hover);
-  border-color: var(--glass-border-hover);
-  color: var(--on-dark);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-}
-
-.btn-secondary:hover::before {
-  opacity: 1;
+  background-color: var(--panel-bg-hover);
+  border-color: var(--panel-rule-hover);
+  color: var(--color-accent);
 }
 
 /* Card */
 .card {
-  background-color: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  backdrop-filter: var(--glass-blur);
+  background-color: var(--panel-bg);
+  border: 1px solid var(--panel-rule);
   border-radius: var(--radius-lg);
   overflow: hidden;
   transition: all var(--transition-normal);
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  border-color: var(--glass-border-hover);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+  transform: translateY(-3px);
+  border-color: var(--panel-rule-hover);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.45);
 }
 
 /* Input Styles */
@@ -290,14 +273,14 @@ h4 { font-size: 1.25rem; }
   font-size: 1rem;
   font-family: inherit;
   transition: all var(--transition-fast);
-  background-color: rgba(0, 0, 0, 0.25);
+  background-color: rgba(0, 0, 0, 0.35);
   color: var(--on-dark);
 }
 
 .input-field:focus {
   outline: none;
-  border-color: var(--glass-border-hover);
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+  border-color: var(--panel-rule-hover);
+  box-shadow: 0 0 0 3px rgba(232, 184, 109, 0.16);
 }
 
 .input-field::placeholder {

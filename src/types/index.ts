@@ -1,8 +1,12 @@
 // Project data types
+export type ProjectCategory = 'photography' | 'software' | 'coding' | 'hardware';
+
 export interface Project {
   id: string;
   title: string;
-  category: 'photography' | 'software' | 'coding' | 'hardware';
+  // Projects that span disciplines carry more than one category: they show up
+  // under every matching filter and label themselves with all of them.
+  categories: ProjectCategory[];
   description: string;
   longDescription: string;
   technologies: string[];

@@ -4,7 +4,8 @@
   left: 0;
   right: 0;
   height: var(--nav-height);
-  background-color: rgba(20, 20, 20, 0.92);
+  background-color: rgba(20, 22, 26, 0.94);
+  border-bottom: 1px solid var(--panel-rule);
   z-index: 1000;
   transition: background-color var(--transition-normal), box-shadow var(--transition-normal);
   box-shadow: var(--shadow-sm);
@@ -22,6 +23,7 @@
 /* Transparent state over the home hero image */
 .navbar.overlay {
   background-color: transparent;
+  border-bottom-color: transparent;
   box-shadow: none;
 }
 
@@ -41,7 +43,7 @@
 }
 
 .navbar.overlay .navbarLink::after {
-  background-color: var(--color-white);
+  background-color: var(--color-accent);
 }
 
 .navbar.overlay .navbarToggle span {
@@ -91,7 +93,7 @@
   left: 0;
   width: 0;
   height: 2px;
-  background-color: var(--on-dark);
+  background-color: var(--color-accent);
   transition: width var(--transition-normal);
 }
 

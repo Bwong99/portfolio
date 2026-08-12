@@ -96,9 +96,8 @@
 
 .lightboxContent {
   position: relative;
-  background: rgba(20, 20, 20, 0.75);
-  border: 1px solid var(--glass-border);
-  backdrop-filter: var(--glass-blur);
+  background: rgba(20, 22, 26, 0.94);
+  border: 1px solid var(--panel-rule);
   border-radius: var(--radius-xl);
   box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
   padding: 2rem;
@@ -146,12 +145,11 @@
   bottom: var(--spacing-xl);
   left: 50%;
   transform: translateX(-50%);
-  background: var(--glass-bg-strong);
-  border: 1px solid var(--glass-border);
-  backdrop-filter: var(--glass-blur);
+  background: var(--panel-bg-strong);
+  border: 1px solid var(--panel-rule);
   color: var(--on-dark);
   padding: 0.625rem 1.125rem;
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-sm);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
   z-index: 100;
   gap: 0.875rem;
@@ -248,20 +246,44 @@
   transform: scale(1.05);
 }
 
+/* Caption stays out of the way until the photo is hovered. */
 .gridOverlay {
   position: absolute;
   inset: 0;
-  background: none !important;
   display: flex;
   align-items: flex-end;
   padding: var(--spacing-lg);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.65), transparent 55%);
+  opacity: 0;
+  transition: opacity var(--transition-normal);
   pointer-events: none;
 }
 
-.gridPhotoTitle {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--color-white);
+.gridItem:hover .gridOverlay {
+  opacity: 1;
+}
+
+.gridPhotoLocation {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+}
+
+.gridPhotoLocation svg {
+  flex-shrink: 0;
+  opacity: 0.8;
+}
+
+/* Touch devices have no hover state, so keep the caption visible there. */
+@media (hover: none) {
+  .gridOverlay {
+    opacity: 1;
+  }
 }
 
 .spotlight {
@@ -270,7 +292,7 @@
   border-radius: var(--radius-xl);
   background: radial-gradient(
     ellipse at center,
-    rgba(255, 255, 255, 0.12) 0%,
+    rgba(232, 184, 109, 0.1) 0%,
     transparent 60%
   );
   pointer-events: none;
@@ -281,11 +303,10 @@
   position: fixed;
   bottom: var(--spacing-xl);
   right: var(--spacing-xl);
-  background: var(--glass-bg-strong);
-  border: 1px solid var(--glass-border);
-  backdrop-filter: var(--glass-blur);
+  background: var(--panel-bg-strong);
+  border: 1px solid var(--panel-rule);
   padding: var(--spacing-md) var(--spacing-lg);
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-sm);
   font-weight: 600;
   color: var(--on-dark);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);

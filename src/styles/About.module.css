@@ -133,15 +133,15 @@
 
 .skillBar {
   height: 8px;
-  background-color: rgba(255, 255, 255, 0.15);
-  border-radius: var(--radius-full);
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: var(--radius-sm);
   overflow: hidden;
 }
 
 .skillProgress {
   height: 100%;
-  background: rgba(255, 255, 255, 0.85);
-  border-radius: var(--radius-full);
+  background: var(--color-accent);
+  border-radius: var(--radius-sm);
   transition: width 1s ease-out;
 }
 
@@ -196,7 +196,7 @@
   position: absolute;
   width: 16px;
   height: 16px;
-  background-color: rgba(255, 255, 255, 0.85);
+  background-color: var(--color-accent);
   border-radius: 50%;
   top: var(--spacing-xl);
 }

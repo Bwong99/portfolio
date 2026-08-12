@@ -75,10 +75,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(255, 255, 255, 0.12);
-  border: 1px solid var(--glass-border);
+  background-color: rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--panel-rule);
   border-radius: var(--radius-md);
-  color: var(--on-dark);
+  color: var(--color-accent);
   flex-shrink: 0;
 }
 
@@ -110,9 +110,9 @@
 }
 
 .socialLink:hover {
-  background-color: var(--glass-bg-hover);
-  border-color: var(--glass-border-hover);
-  color: var(--on-dark);
+  background-color: var(--panel-bg-hover);
+  border-color: var(--panel-rule-hover);
+  color: var(--color-accent);
   transform: translateY(-3px);
 }
 
@@ -170,8 +170,8 @@
 .inputField:focus {
   outline: none;
   border-color: var(--glass-border-hover);
-  background-color: rgba(0, 0, 0, 0.35);
-  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1);
+  background-color: rgba(0, 0, 0, 0.45);
+  box-shadow: 0 0 0 4px rgba(232, 184, 109, 0.16);
 }
 
 .inputField::placeholder {
@@ -186,10 +186,10 @@ textarea.inputField {
 .submitBtn {
   width: 100%;
   padding: var(--spacing-md) var(--spacing-xl);
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: var(--color-accent);
   color: var(--color-dark);
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  border-radius: var(--radius-full);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-sm);
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
@@ -201,7 +201,8 @@ textarea.inputField {
 }
 
 .submitBtn:hover {
-  background-color: var(--color-white);
+  background-color: #f2c882;
+  border-color: #f2c882;
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }

@@ -1,8 +1,7 @@
-/* Sits on the shared photo surface — tinted glass rather than a solid band */
+/* Sits on the shared photo surface — a solid ink band closing the page out */
 .footer {
-  background-color: rgba(0, 0, 0, 0.35);
-  backdrop-filter: var(--glass-blur);
-  border-top: 1px solid var(--glass-border);
+  background-color: var(--panel-bg-strong);
+  border-top: 1px solid var(--panel-rule);
   color: var(--on-dark);
   padding: var(--spacing-3xl) 0 var(--spacing-xl);
 }

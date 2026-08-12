@@ -9,8 +9,7 @@ const DEFAULT_IMAGE = '/photos/backgrounds/bwong99-bg.jpg';
 // Each route keeps its own photo; longest matching prefix wins so that
 // /projects/<id> inherits the projects photo.
 const routeImages: [string, string][] = [
-  ['/projects', '/photos/backgrounds/japan1.jpg'],
-  ['/about', '/photos/backgrounds/pumppeak2.jpg'],
+  ['/projects', '/photos/backgrounds/pumppeak2.jpg'],
   ['/contact', '/photos/backgrounds/japan3.JPG'],
   ['/photography', '/photos/backgrounds/japan4.JPG'],
 ];
@@ -18,7 +17,7 @@ const routeImages: [string, string][] = [
 // Focal point per route, for photos whose subject isn't centred. A higher
 // percentage pulls the image up, showing more of its lower half.
 const routePositions: [string, string][] = [
-  ['/about', 'center 72%'],
+  ['/projects', 'center 72%'],
 ];
 
 const imageForPath = (pathname: string) =>

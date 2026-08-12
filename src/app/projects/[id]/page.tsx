@@ -72,7 +72,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         </Link>
 
         <div className={styles.projectDetailHeader}>
-          <span className={styles.projectDetailCategory}>{project.category}</span>
+          <span className={styles.projectDetailCategory}>{project.categories.join(' + ')}</span>
           <h1 className={styles.projectDetailTitle}>{project.title}</h1>
         </div>
 

@@ -88,19 +88,20 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.6rem 1.1rem;
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-sm);
   font-size: 0.9rem;
   font-weight: 500;
+  letter-spacing: 0.02em;
   color: var(--color-white);
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(10px);
-  transition: background var(--transition-fast), transform var(--transition-fast), border-color var(--transition-fast);
+  background: var(--panel-bg-strong);
+  border: 1px solid var(--panel-rule);
+  transition: background var(--transition-fast), transform var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
 }
 
 .pill:hover {
-  background: rgba(255, 255, 255, 0.24);
-  border-color: rgba(255, 255, 255, 0.45);
+  background: var(--panel-bg-hover);
+  border-color: var(--panel-rule-hover);
+  color: var(--color-accent);
   transform: translateY(-2px);
 }
 

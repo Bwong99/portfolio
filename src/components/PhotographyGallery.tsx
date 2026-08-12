@@ -235,6 +235,12 @@ const PhotographyGallery = ({ photos }: PhotographyGalleryProps) => {
                     height={400}
                     className={styles.gridImage}
                   />
+                  <div className={styles.gridOverlay}>
+                    <p className={styles.gridPhotoLocation}>
+                      <PinIcon />
+                      <span>{photo.location}</span>
+                    </p>
+                  </div>
                 </div>
               </motion.div>
             ))}

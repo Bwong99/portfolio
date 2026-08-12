@@ -19,7 +19,7 @@ const ProjectsGrid = ({ showFilter = true, limit }: ProjectsGridProps) => {
 
   const filteredProjects = filter === 'all'
     ? projects
-    : projects.filter((p) => p.category === filter);
+    : projects.filter((p) => p.categories.includes(filter as Project['categories'][number]));
 
   const displayedProjects = limit ? filteredProjects.slice(0, limit) : filteredProjects;
 
@@ -115,7 +115,7 @@ const ProjectCard = ({ project, variants }: ProjectCardProps) => {
           </div>
         </div>
         <div className={styles.projectContent}>
-          <span className={styles.projectCategory}>{project.category}</span>
+          <span className={styles.projectCategory}>{project.categories.join(' + ')}</span>
           <h3 className={styles.projectTitle}>{project.title}</h3>
           <p className={styles.projectDescription}>{project.description}</p>
         </div>

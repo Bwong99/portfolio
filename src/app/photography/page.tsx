@@ -44,33 +44,33 @@ const photographyPhotos = [
     location: 'Japan',
   },
   {
+    id: 'tsutenkaku',
+    src: '/photos/gallery/osaka_tower.JPEG',
+    title: 'Tsutenkaku',
+    location: 'Osaka, Japan',
+  },
+  {
+    id: 'tokyo-night',
+    src: '/photos/gallery/tokyo_crossing.JPEG',
+    title: 'Night Crossing',
+    location: 'Tokyo, Japan',
+  },
+  {
     id: 'radio-city',
-    src: '/photos/gallery/nycFountain.jpg',
+    src: '/photos/gallery/nyc_fountain.JPG',
     title: 'Radio City',
+    location: 'New York City',
+  },
+  {
+    id: 'times-square',
+    src: '/photos/gallery/nyc_oppenheimer.JPG',
+    title: 'Times Square',
     location: 'New York City',
   },
   {
     id: 'pump-peak',
     src: '/photos/gallery/pumppeak1.jpg',
     title: 'Pump Peak',
-    location: 'Vancouver, BC',
-  },
-  {
-    id: 'pump-peak-3',
-    src: '/photos/gallery/pumpeak3.jpg',
-    title: 'Pump Peak Ridge',
-    location: 'Vancouver, BC',
-  },
-  {
-    id: 'pump-peak-4',
-    src: '/photos/gallery/pumpeak4.jpg',
-    title: 'Pump Peak Summit',
-    location: 'Vancouver, BC',
-  },
-  {
-    id: 'pump-peak-2',
-    src: '/photos/backgrounds/pumppeak2.jpg',
-    title: 'Pump Peak Traverse',
     location: 'Vancouver, BC',
   },
   {
