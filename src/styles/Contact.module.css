@@ -33,11 +33,12 @@
   margin: 0 auto;
 }
 
+/* The info panel is the whole page now, so it sits centred rather than in a
+   column beside anything. */
 .contactGrid {
   display: grid;
-  grid-template-columns: 1fr 1.5fr;
-  gap: var(--spacing-3xl);
-  align-items: start;
+  grid-template-columns: minmax(0, 560px);
+  justify-content: center;
 }
 
 /* Contact Info */
@@ -121,135 +122,12 @@
   height: 20px;
 }
 
-/* Contact Form */
-.contactForm {
-  background-color: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  backdrop-filter: var(--glass-blur);
-  padding: var(--spacing-2xl);
-  border-radius: var(--radius-lg);
-}
-
-.formTitle {
-  font-size: 1.5rem;
-  color: var(--on-dark);
-  margin-bottom: var(--spacing-xl);
-}
-
-.formRow {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--spacing-lg);
-}
-
-.inputGroup {
-  margin-bottom: var(--spacing-lg);
-  position: relative;
-}
-
-.inputLabel {
-  display: block;
-  margin-bottom: var(--spacing-sm);
-  font-weight: 500;
-  color: var(--on-dark-muted);
-  font-size: 0.9375rem;
-}
-
-.inputField {
-  width: 100%;
-  padding: var(--spacing-md) var(--spacing-lg);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-md);
-  font-size: 1rem;
-  font-family: inherit;
-  transition: all var(--transition-fast);
-  background-color: rgba(0, 0, 0, 0.25);
-  color: var(--on-dark);
-}
-
-.inputField:focus {
-  outline: none;
-  border-color: var(--glass-border-hover);
-  background-color: rgba(0, 0, 0, 0.45);
-  box-shadow: 0 0 0 4px rgba(232, 184, 109, 0.16);
-}
-
-.inputField::placeholder {
-  color: var(--on-dark-subtle);
-}
-
-textarea.inputField {
-  resize: vertical;
-  min-height: 150px;
-}
-
-.submitBtn {
-  width: 100%;
-  padding: var(--spacing-md) var(--spacing-xl);
-  background-color: var(--color-accent);
-  color: var(--color-dark);
-  border: 1px solid var(--color-accent);
-  border-radius: var(--radius-sm);
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all var(--transition-fast);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--spacing-sm);
-}
-
-.submitBtn:hover {
-  background-color: #f2c882;
-  border-color: #f2c882;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-}
-
-.submitBtn:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
-  transform: none;
-}
-
-.submitBtn svg {
-  width: 20px;
-  height: 20px;
-}
-
-/* Success/Error Messages */
-.formMessage {
-  padding: var(--spacing-md);
-  border-radius: var(--radius-md);
-  margin-bottom: var(--spacing-lg);
-  font-weight: 500;
-}
-
-.formMessage.success {
-  background-color: rgba(34, 197, 94, 0.18);
-  color: #86efac;
-  border: 1px solid rgba(34, 197, 94, 0.4);
-}
-
-.formMessage.error {
-  background-color: rgba(239, 68, 68, 0.18);
-  color: #fca5a5;
-  border: 1px solid rgba(239, 68, 68, 0.4);
-}
-
 @media (max-width: 768px) {
   .contactGrid {
     grid-template-columns: 1fr;
-    gap: var(--spacing-xl);
   }
 
-  .formRow {
-    grid-template-columns: 1fr;
-  }
-
-  .contactInfo,
-  .contactForm {
+  .contactInfo {
     padding: var(--spacing-lg);
   }
 }

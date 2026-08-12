@@ -1,34 +1,10 @@
 'use client';
 
-import { useState, FormEvent } from 'react';
 import { motion } from 'framer-motion';
 import { socialLinks } from '@/data';
 import styles from '@/styles/Contact.module.css';
 
 const ContactForm = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
-  });
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
-
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    setStatus('loading');
-
-    // Simulate form submission
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      setStatus('success');
-      setFormData({ name: '', email: '', message: '' });
-      setTimeout(() => setStatus('idle'), 5000);
-    } catch (error) {
-      setStatus('error');
-      setTimeout(() => setStatus('idle'), 5000);
-    }
-  };
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -119,90 +95,6 @@ const ContactForm = () => {
                 </svg>
               </motion.a>
             </div>
-          </motion.div>
-
-          {/* Contact Form */}
-          <motion.div className={styles.contactForm} variants={itemVariants}>
-            <h2 className={styles.formTitle}>Send a Message</h2>
-
-            {status === 'success' && (
-              <div className={`${styles.formMessage} ${styles.success}`}>
-                Thank you for your message! I'll get back to you soon.
-              </div>
-            )}
-
-            {status === 'error' && (
-              <div className={`${styles.formMessage} ${styles.error}`}>
-                Something went wrong. Please try again later.
-              </div>
-            )}
-
-            <form onSubmit={handleSubmit}>
-              <div className={styles.formRow}>
-                <div className={styles.inputGroup}>
-                  <label htmlFor="name" className={styles.inputLabel}>
-                    Your Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    className={styles.inputField}
-                    placeholder="Name"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    required
-                  />
-                </div>
-                <div className={styles.inputGroup}>
-                  <label htmlFor="email" className={styles.inputLabel}>
-                    Your Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    className={styles.inputField}
-                    placeholder="Email"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    required
-                  />
-                </div>
-              </div>
-
-              <div className={styles.inputGroup}>
-                <label htmlFor="message" className={styles.inputLabel}>
-                  Your Message
-                </label>
-                <textarea
-                  id="message"
-                  className={styles.inputField}
-                  placeholder="Tell me about your project or just say hello..."
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  required
-                />
-              </div>
-
-              <motion.button
-                type="submit"
-                className={styles.submitBtn}
-                disabled={status === 'loading'}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                {status === 'loading' ? (
-                  'Sending...'
-                ) : (
-                  <>
-                    Send Message
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <line x1="22" y1="2" x2="11" y2="13"></line>
-                      <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                    </svg>
-                  </>
-                )}
-              </motion.button>
-            </form>
           </motion.div>
         </motion.div>
       </div>
