@@ -29,7 +29,6 @@ const positionForPath = (pathname: string) =>
 // Pages that want a wash other than the default inner-page one.
 const overlayVariant = (pathname: string) => {
   if (pathname === '/') return styles.overlayHome;
-  if (pathname.startsWith('/about')) return styles.overlayAbout;
   return '';
 };
 

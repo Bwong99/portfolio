@@ -22,14 +22,6 @@
   background: var(--overlay-dark);
 }
 
-/* About leads with the photo behind a short bio, so it takes a lighter wash
-   than the other inner pages. */
-.overlay.overlayAbout {
-  background:
-    linear-gradient(180deg, rgba(0, 0, 0, 0.22) 0%, rgba(0, 0, 0, 0.08) 35%, rgba(0, 0, 0, 0.38) 100%),
-    radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.12) 100%);
-}
-
 /* Home leans on the photo more than the inner pages, so it gets a lighter wash.
    Text there is short and carries its own shadow, so it stays legible. */
 .overlay.overlayHome {

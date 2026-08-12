@@ -2,7 +2,6 @@ import { Project, Skill, TimelineEntry, NavItem } from '@/types';
 
 export const navItems: NavItem[] = [
   { label: 'Home', href: '/' },
-  { label: 'About', href: '/about' },
   { label: 'Projects', href: '/projects' },
   { label: 'Photography', href: '/photography' },
   { label: 'Contact', href: '/contact' },
