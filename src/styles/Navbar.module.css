@@ -4,41 +4,53 @@
   left: 0;
   right: 0;
   height: var(--nav-height);
-  background-color: rgba(20, 22, 26, 0.94);
-  border-bottom: 1px solid var(--panel-rule);
+  background-color: rgba(var(--surface-rgb), 0.85);
+  backdrop-filter: saturate(140%) blur(12px);
+  -webkit-backdrop-filter: saturate(140%) blur(12px);
+  border-bottom: 1px solid var(--line);
   z-index: 1000;
-  transition: background-color var(--transition-normal), box-shadow var(--transition-normal);
-  box-shadow: var(--shadow-sm);
+  transition: background-color var(--transition-normal), border-color var(--transition-normal);
 }
 
-.navbar.scrolled {
-  box-shadow: var(--shadow-md);
-}
-
-/* Inner pages soften the photo behind the bar; the home hero stays clear. */
-.navbar.blurred {
-  backdrop-filter: var(--glass-blur);
-}
-
-/* Transparent state over the home hero image */
+/* Transparent with white text while it sits over the home photo */
 .navbar.overlay {
   background-color: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
   border-bottom-color: transparent;
   box-shadow: none;
 }
 
-.navbar.overlay .navbarLogo {
+/* Projects pages: solid soft charcoal over the light page. */
+.navbar.slate {
+  background-color: var(--nav-charcoal);
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Home page, past the hero: liquid glass over the photo instead of white. */
+.navbar.glass {
+  background-color: var(--glass-tint);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-bottom-color: var(--glass-edge);
+}
+
+.navbar.overlay .navbarLogo,
+.navbar.glass .navbarLogo {
   color: var(--color-white);
   text-shadow: 0 1px 10px rgba(0, 0, 0, 0.4);
 }
 
-.navbar.overlay .navbarLink {
+.navbar.overlay .navbarLink,
+.navbar.glass .navbarLink {
   color: rgba(255, 255, 255, 0.9);
   text-shadow: 0 1px 10px rgba(0, 0, 0, 0.4);
 }
 
 .navbar.overlay .navbarLink:hover,
-.navbar.overlay .navbarLink.active {
+.navbar.overlay .navbarLink.active,
+.navbar.glass .navbarLink:hover,
+.navbar.glass .navbarLink.active {
   color: var(--color-white);
 }
 
@@ -46,7 +58,8 @@
   background-color: var(--color-accent);
 }
 
-.navbar.overlay .navbarToggle span {
+.navbar.overlay .navbarToggle span,
+.navbar.glass .navbarToggle span {
   background-color: var(--color-white);
 }
 
@@ -64,12 +77,12 @@
   font-family: var(--font-heading);
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--on-dark);
+  color: var(--fg);
   transition: color var(--transition-fast);
 }
 
 .navbarLogo:hover {
-  color: var(--on-dark-muted);
+  color: var(--fg-muted);
 }
 
 .navbarLinks {
@@ -80,7 +93,7 @@
 
 .navbarLink {
   font-weight: 500;
-  color: var(--on-dark-muted);
+  color: var(--fg-muted);
   position: relative;
   padding: var(--spacing-sm) 0;
   transition: color var(--transition-fast);
@@ -99,7 +112,7 @@
 
 .navbarLink:hover,
 .navbarLink.active {
-  color: var(--on-dark);
+  color: var(--fg);
 }
 
 .navbarLink:hover::after,
@@ -119,7 +132,7 @@
   display: block;
   width: 25px;
   height: 2px;
-  background-color: var(--on-dark);
+  background-color: var(--fg);
   transition: all var(--transition-fast);
 }
 
@@ -145,8 +158,7 @@
     top: var(--nav-height);
     left: 0;
     right: 0;
-    background-color: rgba(20, 20, 20, 0.96);
-    backdrop-filter: var(--glass-blur);
+    background-color: rgba(var(--surface-rgb), 0.98);
     flex-direction: column;
     padding: var(--spacing-xl);
     gap: var(--spacing-lg);

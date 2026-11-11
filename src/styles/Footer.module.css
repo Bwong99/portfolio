@@ -1,8 +1,10 @@
-/* Sits on the shared photo surface — a solid ink band closing the page out */
+/* Frosted dark glass over the home photo; .solid on other pages. */
 .footer {
-  background-color: var(--panel-bg-strong);
-  border-top: 1px solid var(--panel-rule);
-  color: var(--on-dark);
+  background-color: rgba(20, 22, 26, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--color-white);
   padding: var(--spacing-3xl) 0 var(--spacing-xl);
 }
 
@@ -36,7 +38,7 @@
 .footerSection h4 {
   font-size: 1rem;
   margin-bottom: var(--spacing-lg);
-  color: var(--text-light);
+  color: var(--color-white);
 }
 
 .footerLinks {
@@ -51,7 +53,7 @@
 }
 
 .footerLink:hover {
-  color: var(--on-dark);
+  color: var(--color-white);
 }
 
 .footerSocial {
@@ -67,7 +69,7 @@
   justify-content: center;
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-md);
-  color: var(--text-light);
+  color: var(--color-white);
   transition: all var(--transition-fast);
 }
 
@@ -90,12 +92,20 @@
 }
 
 .footerBottom a {
-  color: var(--on-dark);
+  color: var(--color-white);
   transition: color var(--transition-fast);
 }
 
 .footerBottom a:hover {
-  color: var(--text-light);
+  color: var(--color-white);
+}
+
+/* Off the photo pages there's nothing to frost, so it's the solid dark gray. */
+.footer.solid {
+  background-color: var(--slate);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-top: 1px solid var(--line);
 }
 
 @media (max-width: 768px) {

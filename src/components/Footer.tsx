@@ -1,21 +1,28 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { PHOTO_PAGES } from '@/components/SiteBackground';
 import { motion } from 'framer-motion';
 import { navItems, socialLinks } from '@/data';
 import styles from '@/styles/Footer.module.css';
 
 const Footer = () => {
+  const pathname = usePathname();
   const currentYear = new Date().getFullYear();
 
+  // Over a page photo the footer is see-through glass; other pages have no
+  // photo behind them, so it's solid and dark.
+  const onPhoto = PHOTO_PAGES.includes(pathname);
+
   return (
-    <footer className={styles.footer}>
+    <footer className={`${styles.footer} ${onPhoto ? '' : styles.solid}`.trim()}>
       <div className={styles.footerContainer}>
         <div className={styles.footerContent}>
           <div className={styles.footerBrand}>
             <h3>Bradley Wong</h3>
             <p>
-              Computer Engineering Student at the University of British Columbia & Embedded Systems Developer based in Vancouver, BC. Building embedded systems and capturing moments through photography.
+              Computer Engineering Student at the University of British Columbia & Software Systems Developer based in Vancouver, BC. Building software systems and capturing moments through photography.
             </p>
           </div>
 
