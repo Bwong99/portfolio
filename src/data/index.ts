@@ -72,6 +72,83 @@ export const experience: ExperienceEntry[] = [
 
 export const projects: Project[] = [
   {
+    id: 'matchmarket',
+    tagline: 'Two sided marketplace',
+    title: 'MatchMarket',
+    categories: ['software'],
+    description: 'Android two sided marketplace that matches buyer requests with seller listings by location.',
+    sections: [
+      {
+        heading: 'The app',
+        points: [
+          'Two sided Android marketplace: buyers post requests, sellers post listings, and the app matches them',
+          'Designed up front with use case and sequence diagrams for the request and listing flows',
+          'Built in Kotlin with Jetpack Compose',
+        ],
+      },
+      {
+        heading: 'Backend',
+        points: [
+          'Express and TypeScript REST API with 39 endpoints',
+          'Matching feed that pairs buyer requests with seller listings',
+          'Location based matching through OpenRouteService',
+          'MongoDB for storage',
+        ],
+      },
+      {
+        heading: 'Security & deployment',
+        points: [
+          'Google Sign-In through Android Credential Manager, verified on the backend',
+          'JWTs rotated every 15 minutes',
+          'Runs in Docker on a Google Cloud VM behind HTTPS',
+          'CI fails any deploy whose TLS certificate does not match',
+        ],
+      },
+    ],
+    technologies: ['Kotlin', 'Jetpack Compose', 'TypeScript', 'Express', 'MongoDB', 'Docker', 'GCP', 'OpenRouteService'],
+    thumbnail: '/photos/projects/matchmarket/matchmarket_card_v2.svg',
+    images: ['/photos/projects/matchmarket/matchmarket_card_v2.svg'],
+    screenshots: [],
+    github: 'https://github.com/m1lun/m1skeletonProject',
+  },
+  {
+    id: 'headcount',
+    tagline: 'Club event platform',
+    title: 'Headcount',
+    categories: ['software'],
+    description: 'Event platform for university clubs handling RSVPs, check-ins, and dues.',
+    sections: [
+      {
+        heading: 'The platform',
+        points: [
+          'Event platform for university clubs: RSVPs, check-ins, and membership dues',
+          'React and TypeScript front end on an Express API and PostgreSQL',
+        ],
+      },
+      {
+        heading: 'Data & storage',
+        points: [
+          'Logos, event banners, and CSV exports stored in and served from AWS S3',
+          'Check-ins and RSVPs run in PostgreSQL transactions with row level locking',
+          'No double check-ins and no overbooking, even when requests arrive at once',
+        ],
+      },
+      {
+        heading: 'Testing',
+        points: [
+          'GitHub Actions runs the suite in Docker on every push',
+          '96 Vitest tests against real PostgreSQL and S3 services',
+          '95% code coverage',
+        ],
+      },
+    ],
+    technologies: ['React', 'TypeScript', 'Express', 'PostgreSQL', 'AWS S3', 'Docker', 'Vitest', 'GitHub Actions'],
+    thumbnail: '/photos/projects/headcount/headcount_card_v2.svg',
+    images: ['/photos/projects/headcount/headcount_card_v2.svg'],
+    screenshots: [],
+    github: 'https://github.com/Bwong99/Headcount',
+  },
+  {
     id: 'go2-navigation',
     tagline: 'Quadruped autonomy',
     title: 'go2_navigation Package',

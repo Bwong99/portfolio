@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" font-family="Inter, -apple-system, Helvetica, Arial, sans-serif">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#22364a"/><stop offset="1" stop-color="#0f1419"/></linearGradient></defs>
+<rect width="1600" height="1000" fill="url(#g)"/>
+<g transform="translate(300 0)"><rect x="320" y="110" width="360" height="780" rx="48" fill="#0b0d10" stroke="#3a4552" stroke-width="6"/>
+<rect x="450" y="132" width="100" height="16" rx="8" fill="#20262d"/>
+<text x="352" y="210" font-size="30" font-weight="700" fill="#fff">Matches</text>
+<text x="352" y="242" font-size="18" fill="#8a96a3">Near you · 5 km</text>
+<rect x="346" y="268" width="308" height="200" rx="16" fill="#1c2733"/>
+<path d="M400 420 C 450 360, 520 400, 590 320" fill="none" stroke="#e8b86d" stroke-width="5" stroke-dasharray="10 8"/>
+<circle cx="400" cy="420" r="13" fill="#6bb3c9"/><circle cx="590" cy="320" r="13" fill="#e8b86d"/>
+<rect x="346" y="490" width="308" height="112" rx="16" fill="#151b22"/>
+<text x="368" y="528" font-size="15" letter-spacing="2" fill="#6bb3c9">BUYER REQUEST</text>
+<text x="368" y="562" font-size="22" font-weight="600" fill="#fff">Road bike</text>
+<text x="368" y="590" font-size="17" fill="#8a96a3">Under $400</text>
+<rect x="470" y="610" width="60" height="30" rx="15" fill="#e8b86d"/><text x="500" y="631" text-anchor="middle" font-size="15" font-weight="700" fill="#14161a">MATCH</text>
+<rect x="346" y="648" width="308" height="112" rx="16" fill="#151b22"/>
+<text x="368" y="686" font-size="15" letter-spacing="2" fill="#e8b86d">SELLER LISTING</text>
+<text x="368" y="720" font-size="22" font-weight="600" fill="#fff">Commuter bike</text>
+<text x="368" y="748" font-size="17" fill="#8a96a3">$350 · 2.1 km away</text>
+<rect x="346" y="784" width="308" height="60" rx="30" fill="#ffffff" fill-opacity="0.1"/>
+<text x="500" y="822" text-anchor="middle" font-size="20" font-weight="600" fill="#fff">Message seller</text></g>
+</svg>
