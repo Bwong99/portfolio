@@ -1,8 +1,10 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { experience } from '@/data';
+import { experience, techStack } from '@/data';
 import styles from '@/styles/Home.module.css';
 
 const ease = [0.25, 0.1, 0.25, 1] as const;
@@ -15,7 +17,73 @@ const reveal = {
   transition: { duration: 0.6, ease },
 };
 
+/* ---------- Terminal that types itself out ---------- */
+
+const TERMINAL_SCRIPT: { prompt?: boolean; text: string }[] = [
+  { prompt: true, text: 'whoami' },
+  { text: 'bradley wong · computer engineering @ ubc' },
+  { prompt: true, text: 'cat focus.txt' },
+  { text: 'backend systems · cloud · android · robotics' },
+  { prompt: true, text: 'git push origin main' },
+  { text: '✓ ci passed · deployed' },
+];
+
+const TypingTerminal = () => {
+  const [line, setLine] = useState(0);
+  const [chars, setChars] = useState(0);
+
+  useEffect(() => {
+    const current = TERMINAL_SCRIPT[line];
+    // Commands type out; output lines appear whole, as a shell would print them.
+    if (current && current.prompt && chars < current.text.length) {
+      const t = setTimeout(() => setChars((c) => c + 1), 55);
+      return () => clearTimeout(t);
+    }
+    const pause = line >= TERMINAL_SCRIPT.length - 1 ? 2800 : current?.prompt ? 350 : 650;
+    const t = setTimeout(() => {
+      if (line >= TERMINAL_SCRIPT.length - 1) {
+        setLine(0);
+      } else {
+        setLine((l) => l + 1);
+      }
+      setChars(0);
+    }, pause);
+    return () => clearTimeout(t);
+  }, [line, chars]);
+
+  return (
+    <div className={styles.terminal} aria-hidden="true">
+      <div className={styles.terminalBar}>
+        <span />
+        <span />
+        <span />
+      </div>
+      <div className={styles.terminalBody}>
+        {TERMINAL_SCRIPT.slice(0, line + 1).map((entry, i) => {
+          const isCurrent = i === line;
+          const text = isCurrent && entry.prompt ? entry.text.slice(0, chars) : entry.text;
+          return (
+            <div key={i} className={entry.prompt ? styles.terminalCommand : styles.terminalOutput}>
+              {entry.prompt && <span className={styles.terminalPrompt}>$</span>}
+              {text}
+              {isCurrent && <span className={styles.terminalCursor} />}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
 /* ---------- About: bento grid ---------- */
+
+const marqueeIcons = techStack.flatMap((group) => group.items);
+
+const PHOTO_STRIP = [
+  '/photos/gallery/tokyo_crossing.JPEG',
+  '/photos/gallery/japan2.JPG',
+  '/photos/gallery/osaka_tower.JPEG',
+];
 
 const AboutBento = () => (
   <section className={styles.section}>
@@ -29,6 +97,7 @@ const AboutBento = () => (
           Computer Engineering at UBC. I build backend services, Android apps, and the
           software that runs robots.
         </p>
+        <TypingTerminal />
       </motion.div>
 
       <motion.div
@@ -62,6 +131,16 @@ const AboutBento = () => (
       </motion.div>
 
       <motion.div className={`${styles.panel} ${styles.panelStack}`} {...reveal}>
+        <div className={styles.marquee} aria-hidden="true">
+          <div className={styles.marqueeTrack}>
+            {[...marqueeIcons, ...marqueeIcons].map((item, i) => (
+              <span key={i} className={styles.marqueeIcon}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={item.icon} alt="" loading="lazy" />
+              </span>
+            ))}
+          </div>
+        </div>
         <h3 className={styles.panelHeading}>
           Clean APIs,
           <span> tested and shipped.</span>
@@ -75,6 +154,13 @@ const AboutBento = () => (
       >
         <span className={styles.label}>When I&apos;m not coding</span>
         <h3 className={styles.panelHeading}>Taking photos 📷</h3>
+        <div className={styles.photoStrip}>
+          {PHOTO_STRIP.map((src) => (
+            <div key={src} className={styles.photoThumb}>
+              <Image src={src} alt="" fill sizes="160px" style={{ objectFit: 'cover' }} />
+            </div>
+          ))}
+        </div>
         <Link href="/photography" className={styles.panelLink}>
           View photography
         </Link>
