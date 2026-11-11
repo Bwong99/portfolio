@@ -1,0 +1,212 @@
+/* Project page: centred title, a large image panel, then facts on the left
+   and short bulleted sections on the right. */
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: var(--spacing-xl) var(--spacing-lg) var(--spacing-3xl);
+  color: var(--fg);
+}
+
+.back {
+  display: inline-block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--fg-muted);
+  transition: color var(--transition-fast);
+}
+
+.back:hover {
+  color: var(--fg);
+}
+
+/* ---------- Header ---------- */
+
+.header {
+  text-align: center;
+  padding: var(--spacing-2xl) 0 var(--spacing-xl);
+}
+
+.kicker {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--fg-subtle);
+  margin-bottom: var(--spacing-sm);
+}
+
+.title {
+  font-size: 3rem;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--fg);
+}
+
+.lede {
+  max-width: 560px;
+  margin: var(--spacing-md) auto 0;
+  font-size: 1.125rem;
+  line-height: 1.55;
+  color: var(--fg-muted);
+}
+
+/* ---------- Hero image ---------- */
+
+.hero {
+  padding: 12px;
+  border-radius: 24px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+}
+
+.heroMedia {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--panel-hover);
+}
+
+/* ---------- Facts + sections ---------- */
+
+.details {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: var(--spacing-3xl);
+  padding: var(--spacing-3xl) var(--spacing-sm) 0;
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+}
+
+.facts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.fact dt {
+  font-size: 0.8125rem;
+  color: var(--fg-subtle);
+  margin-bottom: 0.2rem;
+}
+
+.fact dd {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--fg);
+}
+
+.stack {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.3rem;
+}
+
+.stack li {
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--fg-muted);
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}
+
+.primaryLink,
+.secondaryLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.6rem 1.15rem;
+  border-radius: var(--radius-full);
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
+}
+
+/* The project's own accent, same as its card's Read more. */
+.primaryLink {
+  background: var(--project-accent, var(--color-accent));
+  color: #1b1c1f;
+}
+
+.primaryLink:hover {
+  filter: brightness(1.08);
+  transform: translateY(-2px);
+}
+
+.secondaryLink {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  color: var(--fg);
+}
+
+.secondaryLink:hover {
+  background: var(--panel-hover);
+  transform: translateY(-2px);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2xl);
+}
+
+.sectionHeading {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--fg);
+  margin-bottom: var(--spacing-md);
+}
+
+.points {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.points li {
+  position: relative;
+  padding-left: 1.25rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--fg-muted);
+}
+
+/* Small accent dot in place of a browser bullet. */
+.points li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--project-accent, var(--color-accent));
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 2.25rem;
+  }
+
+  .details {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-2xl);
+    padding: var(--spacing-2xl) 0 0;
+  }
+}

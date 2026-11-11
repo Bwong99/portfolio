@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { projects } from '@/data';
 import PageSurface from '@/components/PageSurface';
-import styles from '@/styles/Projects.module.css';
+import styles from '@/styles/ProjectDetail.module.css';
 
 interface ProjectPageProps {
   params: {
@@ -41,6 +41,14 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
   };
 }
 
+const GithubIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+  </svg>
+);
+
+const capitalize = (word: string) => word.charAt(0).toUpperCase() + word.slice(1);
+
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { id } = await params;
   const project = projects.find((p) => p.id === id);
@@ -49,141 +57,101 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     notFound();
   }
 
+  const hero = project.images[0] || project.thumbnail;
+
   return (
-    <PageSurface>
-      <div className={styles.projectDetail}>
-        <div className={styles.projectDetailContainer}>
-        <Link href="/projects" className={styles.backButton}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <line x1="19" y1="12" x2="5" y2="12"></line>
-            <polyline points="12 19 5 12 12 5"></polyline>
-          </svg>
-          Back to Projects
+    <PageSurface variant="light">
+      <article className={styles.page}>
+        <Link href="/projects" className={styles.back}>
+          ← All projects
         </Link>
 
-        <div className={styles.projectDetailHeader}>
-          <span className={styles.projectDetailCategory}>{project.categories.join(' + ')}</span>
-          <h1 className={styles.projectDetailTitle}>{project.title}</h1>
+        <header className={styles.header}>
+          {project.tagline && <span className={styles.kicker}>{project.tagline}</span>}
+          <h1 className={styles.title}>{project.title}</h1>
+          <p className={styles.lede}>{project.description}</p>
+        </header>
+
+        <div className={styles.hero}>
+          <div className={styles.heroMedia}>
+            <Image
+              src={hero}
+              alt={project.title}
+              fill
+              sizes="(max-width: 960px) 100vw, 920px"
+              style={{ objectFit: 'cover' }}
+              priority
+            />
+          </div>
         </div>
 
-        <div className={styles.projectDetailImage}>
-          <Image
-            src={project.images[0] || project.thumbnail}
-            alt={project.title}
-            fill
-            style={{ objectFit: 'cover' }}
-            priority
-          />
-        </div>
+        <div className={styles.details}>
+          <aside className={styles.meta}>
+            <dl className={styles.facts}>
+              <div className={styles.fact}>
+                <dt>Type</dt>
+                <dd>{project.categories.map(capitalize).join(' + ')}</dd>
+              </div>
+              {project.context && (
+                <div className={styles.fact}>
+                  <dt>Built with</dt>
+                  <dd>{project.context}</dd>
+                </div>
+              )}
+              <div className={styles.fact}>
+                <dt>Stack</dt>
+                <dd>
+                  <ul className={styles.stack}>
+                    {project.technologies.map((tech) => (
+                      <li key={tech}>{tech}</li>
+                    ))}
+                  </ul>
+                </dd>
+              </div>
+            </dl>
 
-        <div className={styles.projectDetailContent}>
-          {/* Project Description Section */}
-          <div className={styles.projectSection}>
-            <h2 className={styles.sectionTitle}>About This Project</h2>
+            {(project.github || project.link) && (
+              <div className={styles.links}>
+                {project.github && (
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.primaryLink}
+                  >
+                    <GithubIcon />
+                    View source
+                  </a>
+                )}
+                {project.link && (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.secondaryLink}
+                  >
+                    Live demo ↗
+                  </a>
+                )}
+              </div>
+            )}
+          </aside>
+
+          <div className={styles.body}>
             {project.sections.map((section) => (
-              <div key={section.heading} className={styles.projectDetailDescription}>
-                <h3>{section.heading}</h3>
-                <ul>
+              <section key={section.heading} className={styles.section}>
+                <h2 className={styles.sectionHeading}>{section.heading}</h2>
+                <ul className={styles.points}>
                   {section.points.map((point) => (
                     <li key={point}>{point}</li>
                   ))}
                 </ul>
-              </div>
+              </section>
             ))}
           </div>
-
-          {/* Technologies & Tools Section */}
-          <div className={styles.projectSection}>
-            <h2 className={styles.sectionTitle}>Tech Stack</h2>
-            <div className={styles.projectDetailTechList}>
-              {project.technologies.map((tech) => (
-                <span key={tech} className={styles.techTag}>
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* Screenshots Section */}
-          {project.screenshots && project.screenshots.length > 0 && (
-            <div className={styles.projectSection}>
-              <h2 className={styles.sectionTitle}>Screenshots</h2>
-              <div className={styles.screenshotsGrid}>
-                {project.screenshots.map((screenshot, index) => (
-                  <div key={index} className={styles.screenshotItem}>
-                    <Image
-                      src={screenshot}
-                      alt={`${project.title} - Screenshot ${index + 1}`}
-                      width={1200}
-                      height={800}
-                      style={{ objectFit: 'cover' }}
-                      className={styles.screenshotImage}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          <div className={styles.projectDetailLinks}>
-            {project.link && (
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`${styles.projectDetailLink} ${styles.primary}`}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                  <polyline points="15 3 21 3 21 9"></polyline>
-                  <line x1="10" y1="14" x2="21" y2="3"></line>
-                </svg>
-                View Live
-              </a>
-            )}
-            {project.github && (
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`${styles.projectDetailLink} ${styles.secondary}`}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-                </svg>
-                View Source
-              </a>
-            )}
-            </div>
-          </div>
         </div>
-      </div>
+
+      </article>
     </PageSurface>
   );
 }
