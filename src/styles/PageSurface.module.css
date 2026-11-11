@@ -1,10 +1,23 @@
-/*
- * Inner-page wrapper. The photo and overlay come from SiteBackground, which is
- * fixed behind the whole app; this only clears the navbar and sets a floor height.
- */
+/* Inner-page wrapper: clears the fixed navbar and sets a floor height. */
 .surface {
   position: relative;
   min-height: 100vh;
   padding-top: var(--nav-height);
-  color: var(--on-dark);
+  color: var(--fg);
+}
+
+/* A faint warm glow and lighter sky at the top, echoing the home sunset. */
+.dusk {
+  background:
+    radial-gradient(ellipse 70% 320px at 50% 0%, rgba(232, 184, 109, 0.09), transparent),
+    linear-gradient(180deg, var(--surface-top) 0, var(--surface-bg) 560px);
+}
+
+.light {
+  background: var(--surface-bg);
+}
+
+/* Transparent: the page's photo comes from SiteBackground. */
+.photo {
+  background: none;
 }

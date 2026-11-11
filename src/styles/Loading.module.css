@@ -10,8 +10,8 @@
 .spinner {
   width: 48px;
   height: 48px;
-  border: 4px solid rgba(255, 255, 255, 0.2);
-  border-top-color: var(--on-dark);
+  border: 4px solid var(--line);
+  border-top-color: var(--fg);
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
@@ -23,6 +23,6 @@
 }
 
 .loading p {
-  color: var(--on-dark-subtle);
+  color: var(--fg-subtle);
   font-size: 0.875rem;
 }

@@ -61,35 +61,37 @@
   --max-width: 1200px;
   --nav-height: 70px;
 
-  /* Dark photographic surface (shared with the home hero) */
-  /* Lighter than it once was: the panels above carry their own ink, so the
-     photo can stay readable between them. */
-  --overlay-dark:
-    linear-gradient(180deg, rgba(0, 0, 0, 0.32) 0%, rgba(0, 0, 0, 0.18) 35%, rgba(0, 0, 0, 0.5) 100%),
-    radial-gradient(ellipse at center, rgba(0, 0, 0, 0.02) 0%, rgba(0, 0, 0, 0.28) 100%);
+  /* Bright surface for every page; only the home hero sits on a photo. */
+  /* Dusk: the blue-slate of the mountains in the home photo. */
+  --surface-rgb: 18, 21, 27;
+  --surface-bg: rgb(var(--surface-rgb));
+  /* Top of the page, a little lighter, like the sky above the ridgeline. */
+  --surface-top: #1d232d;
+  /* Near-black with a hint of the photo's blue-gray, for the solid navbar and
+     footer where there's no photo behind them (projects pages). */
+  --slate: #121418;
+  /* Projects navbar: a soft neutral charcoal rather than straight black. */
+  --nav-charcoal: #1d1d1f;
 
-  /* Ink panels layered on top of the photo. Solid rather than translucent:
-     the photo reads around the panels, not through them. */
-  --panel-ink: 20, 22, 26;
-  --panel-bg: rgba(var(--panel-ink), 0.72);
-  --panel-bg-strong: rgba(var(--panel-ink), 0.82);
-  --panel-bg-hover: rgba(var(--panel-ink), 0.9);
-  --panel-rule: rgba(232, 184, 109, 0.22);
-  --panel-rule-hover: rgba(232, 184, 109, 0.65);
+  /* Raised panels: faintly lit, see-through, with a hairline edge. */
+  --panel: rgba(255, 255, 255, 0.05);
+  --panel-hover: rgba(255, 255, 255, 0.08);
+  --panel-radius: 20px;
+  --line: rgba(255, 255, 255, 0.1);
 
-  /* Kept under the old names so every surface picks the new treatment up. */
-  --glass-bg: var(--panel-bg);
-  --glass-bg-strong: var(--panel-bg-strong);
-  --glass-bg-hover: var(--panel-bg-hover);
-  --glass-border: var(--panel-rule);
-  --glass-border-hover: var(--panel-rule-hover);
-  --glass-blur: none;
+  /* Text on the dusk surface */
+  --fg: #f5f5f7;
+  --fg-muted: rgba(255, 255, 255, 0.72);
+  --fg-subtle: rgba(255, 255, 255, 0.5);
+  /* Text on a surface filled with --fg (e.g. a hovered icon button). */
+  --fg-inverse: #111113;
 
-  /* Text on the dark surface */
-  --on-dark: #ffffff;
-  --on-dark-muted: rgba(255, 255, 255, 0.82);
-  --on-dark-subtle: rgba(255, 255, 255, 0.62);
-  --on-dark-shadow: 0 1px 12px rgba(0, 0, 0, 0.45);
+  /* Liquid glass: semi-clear smoke over a photo, blurred, with a lit edge. */
+  --glass-tint: rgba(28, 31, 36, 0.38);
+  --glass-tint-hover: rgba(28, 31, 36, 0.48);
+  --glass-edge: rgba(255, 255, 255, 0.2);
+  --glass-blur: blur(40px) saturate(170%);
+  --glass-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28), 0 12px 32px rgba(0, 0, 0, 0.18);
 }
 
 /* Reset */
@@ -107,8 +109,8 @@ html {
 
 body {
   font-family: var(--font-primary);
-  background-color: var(--color-dark);
-  color: var(--on-dark);
+  background-color: var(--surface-bg);
+  color: var(--fg);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -153,10 +155,24 @@ h4 { font-size: 1.25rem; }
   h3 { font-size: 1.25rem; }
 }
 
-/* Lifts page content and the footer above the fixed SiteBackground layers */
+/* Lifts page content and the footer above the fixed home photo */
 .site-content {
   position: relative;
   z-index: 1;
+}
+
+/* Light theme for the projects pages: light gray page, white cards, dark
+   text. It only swaps the colour tokens, so everything built on them follows. */
+.theme-light {
+  --surface-rgb: 242, 242, 245;
+  --surface-bg: rgb(var(--surface-rgb));
+  --panel: #ffffff;
+  --panel-hover: #f7f7f9;
+  --line: rgba(0, 0, 0, 0.08);
+  --fg: #111113;
+  --fg-muted: #5f6269;
+  --fg-subtle: #8e9198;
+  --fg-inverse: #ffffff;
 }
 
 /* Container */
@@ -174,14 +190,12 @@ h4 { font-size: 1.25rem; }
 .section-title {
   text-align: center;
   margin-bottom: var(--spacing-2xl);
-  color: var(--on-dark);
-  text-shadow: var(--on-dark-shadow);
+  color: var(--fg);
 }
 
 .section-subtitle {
   text-align: center;
-  color: var(--on-dark-muted);
-  text-shadow: var(--on-dark-shadow);
+  color: var(--fg-muted);
   margin-top: var(--spacing-sm);
   font-weight: 400;
 }
@@ -209,39 +223,26 @@ h4 { font-size: 1.25rem; }
   transform: translateX(4px);
 }
 
-.btn-primary {
-  background-color: var(--color-accent);
-  color: var(--color-dark);
-  border: 1px solid var(--color-accent);
-  border-radius: var(--radius-sm);
-  font-weight: 600;
-  letter-spacing: 0.02em;
-}
-
-.btn-primary:hover {
-  background-color: #f2c882;
-  border-color: #f2c882;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
-}
-
+.btn-primary,
 .btn-secondary {
-  background-color: var(--panel-bg-strong);
-  color: var(--on-dark);
-  border: 1px solid var(--panel-rule);
-  border-radius: var(--radius-sm);
+  background-color: var(--panel);
+  color: var(--fg);
+  border: none;
+  border-radius: var(--radius-md);
   letter-spacing: 0.02em;
+  transition: all var(--transition-fast);
 }
 
+.btn-primary:hover,
 .btn-secondary:hover {
-  background-color: var(--panel-bg-hover);
-  border-color: var(--panel-rule-hover);
-  color: var(--color-accent);
+  background-color: var(--panel-hover);
+  transform: translateY(-3px);
 }
 
 /* Card */
 .card {
-  background-color: var(--panel-bg);
-  border: 1px solid var(--panel-rule);
+  background-color: var(--panel);
+  border: 1px solid transparent;
   border-radius: var(--radius-lg);
   overflow: hidden;
   transition: all var(--transition-normal);
@@ -249,8 +250,8 @@ h4 { font-size: 1.25rem; }
 
 .card:hover {
   transform: translateY(-3px);
-  border-color: var(--panel-rule-hover);
-  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.45);
+  border-color: var(--line);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.08);
 }
 
 /* Input Styles */
@@ -262,29 +263,29 @@ h4 { font-size: 1.25rem; }
   display: block;
   margin-bottom: var(--spacing-sm);
   font-weight: 500;
-  color: var(--on-dark-muted);
+  color: var(--fg-muted);
 }
 
 .input-field {
   width: 100%;
   padding: var(--spacing-md);
-  border: 1px solid var(--glass-border);
+  border: 1px solid transparent;
   border-radius: var(--radius-md);
   font-size: 1rem;
   font-family: inherit;
   transition: all var(--transition-fast);
-  background-color: rgba(0, 0, 0, 0.35);
-  color: var(--on-dark);
+  background-color: var(--panel);
+  color: var(--fg);
 }
 
 .input-field:focus {
   outline: none;
-  border-color: var(--panel-rule-hover);
+  border-color: var(--line);
   box-shadow: 0 0 0 3px rgba(232, 184, 109, 0.16);
 }
 
 .input-field::placeholder {
-  color: var(--on-dark-subtle);
+  color: var(--fg-subtle);
 }
 
 textarea.input-field {

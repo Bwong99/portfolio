@@ -1,7 +1,6 @@
 /*
- * The site-wide photographic surface. Fixed to the viewport and rendered
- * behind everything — navbar, page content and footer alike — so no section
- * falls back to a flat background band.
+ * Full-screen page photo (home, photography). Fixed to the viewport and
+ * rendered behind the content, navbar and footer alike.
  */
 .bg,
 .overlay {
@@ -18,14 +17,16 @@
   z-index: 0;
 }
 
-.overlay {
-  background: var(--overlay-dark);
-}
-
-/* Home leans on the photo more than the inner pages, so it gets a lighter wash.
-   Text there is short and carries its own shadow, so it stays legible. */
-.overlay.overlayHome {
+/* Home: a light wash; the hero text is short and carries its own shadow. */
+.overlayLight {
   background:
     linear-gradient(180deg, rgba(0, 0, 0, 0.22) 0%, rgba(0, 0, 0, 0.06) 35%, rgba(0, 0, 0, 0.26) 100%),
     radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.1) 100%);
+}
+
+/* Photography: darker, so the photo grid and its header stand out from it. */
+.overlayDark {
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.3) 35%, rgba(0, 0, 0, 0.6) 100%),
+    radial-gradient(ellipse at center, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.35) 100%);
 }

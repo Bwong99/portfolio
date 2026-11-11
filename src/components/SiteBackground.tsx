@@ -4,51 +4,38 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import styles from '@/styles/SiteBackground.module.css';
 
-const DEFAULT_IMAGE = '/photos/backgrounds/bwong99-bg.jpg';
-
-// Each route keeps its own photo; longest matching prefix wins so that
-// /projects/<id> inherits the projects photo.
-const routeImages: [string, string][] = [
-  ['/projects', '/photos/backgrounds/pumppeak2.jpg'],
-  ['/photography', '/photos/backgrounds/japan4.JPG'],
-];
-
-// Focal point per route, for photos whose subject isn't centred. A higher
-// percentage pulls the image up, showing more of its lower half.
-const routePositions: [string, string][] = [
-  ['/projects', 'center 72%'],
-];
-
-const imageForPath = (pathname: string) =>
-  routeImages.find(([prefix]) => pathname.startsWith(prefix))?.[1] ?? DEFAULT_IMAGE;
-
-const positionForPath = (pathname: string) =>
-  routePositions.find(([prefix]) => pathname.startsWith(prefix))?.[1] ?? 'center';
-
-// Pages that want a wash other than the default inner-page one.
-const overlayVariant = (pathname: string) => {
-  if (pathname === '/') return styles.overlayHome;
-  return '';
+// Pages that sit on a full-screen photo, and the wash laid over each.
+const PHOTOS: Record<string, { src: string; overlay: string }> = {
+  '/': { src: '/photos/backgrounds/bwong99-bg.jpg', overlay: styles.overlayLight },
+  '/photography': { src: '/photos/backgrounds/japan4.JPG', overlay: styles.overlayDark },
 };
 
+/** Pages whose background is a photo (the navbar and footer go glass there). */
+export const PHOTO_PAGES = Object.keys(PHOTOS);
+
+/**
+ * The fixed full-screen photo behind the home and photography pages. Every
+ * other page brings its own solid background.
+ */
 const SiteBackground = () => {
   const pathname = usePathname();
-  const image = imageForPath(pathname);
+  const photo = PHOTOS[pathname];
+  if (!photo) return null;
 
   return (
     <>
       <div className={styles.bg}>
         <Image
-          src={image}
+          src={photo.src}
           alt=""
           aria-hidden="true"
           fill
           priority
           sizes="100vw"
-          style={{ objectFit: 'cover', objectPosition: positionForPath(pathname) }}
+          style={{ objectFit: 'cover' }}
         />
       </div>
-      <div className={`${styles.overlay} ${overlayVariant(pathname)}`.trim()} />
+      <div className={`${styles.overlay} ${photo.overlay}`} />
     </>
   );
 };
