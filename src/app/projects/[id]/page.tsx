@@ -90,7 +90,16 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           {/* Project Description Section */}
           <div className={styles.projectSection}>
             <h2 className={styles.sectionTitle}>About This Project</h2>
-            <p className={styles.projectDetailDescription}>{project.longDescription}</p>
+            {project.sections.map((section) => (
+              <div key={section.heading} className={styles.projectDetailDescription}>
+                <h3>{section.heading}</h3>
+                <ul>
+                  {section.points.map((point) => (
+                    <li key={point}>{point}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
 
           {/* Technologies & Tools Section */}
