@@ -1,4 +1,4 @@
-import { Project, Skill, TimelineEntry, NavItem } from '@/types';
+import { Project, TechGroup, ExperienceEntry, NavItem } from '@/types';
 
 export const navItems: NavItem[] = [
   { label: 'Home', href: '/' },
@@ -6,50 +6,67 @@ export const navItems: NavItem[] = [
   { label: 'Photography', href: '/photography' },
 ];
 
-export const skills: Skill[] = [
-  { name: 'TypeScript', category: 'frontend' },
-  { name: 'React', category: 'frontend' },
-  { name: 'Next.js', category: 'frontend' },
-  { name: 'Figma', category: 'frontend' },
+const ICONS = 'https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/icons';
 
-  { name: 'Python', category: 'backend' },
-  { name: 'Java', category: 'backend' },
-  { name: 'Node.js', category: 'backend' },
-  { name: 'SQL', category: 'backend' },
-  { name: 'AWS', category: 'backend' },
-  { name: 'DynamoDB', category: 'backend' },
-  { name: 'MongoDB', category: 'backend' },
-  { name: 'Docker', category: 'backend' },
-  { name: 'JUnit', category: 'backend' },
-
-  { name: 'C', category: 'hardware' },
-  { name: 'C++', category: 'hardware' },
-  { name: 'SystemVerilog', category: 'hardware' },
-  { name: 'Assembly (RISC-V, ARM)', category: 'hardware' },
-  { name: 'RTL Design', category: 'hardware' },
-  { name: 'FPGA Development', category: 'hardware' },
-  { name: 'Quartus', category: 'hardware' },
-  { name: 'ModelSim', category: 'hardware' },
-  { name: 'GDB', category: 'hardware' },
-  { name: 'Linux/Unix', category: 'hardware' },
-
-  { name: 'PyTorch', category: 'ml' },
-  { name: 'TensorFlow', category: 'ml' },
-  { name: 'OpenCV', category: 'ml' },
-];
-
-// Newest first.
-export const timeline: TimelineEntry[] = [
+// Grouped the way the home page "What I use" section lists them.
+export const techStack: TechGroup[] = [
   {
-    title: 'Software Developer',
-    org: 'Micro Engineering Tech Inc · Internship',
-    year: 'Jun 2026 - Present',
+    label: 'Languages',
+    items: [
+      { name: 'Python', note: 'Tooling, CLIs, and test automation', icon: `${ICONS}/python/python-original.svg` },
+      { name: 'TypeScript', note: 'Typed backends and web UIs', icon: `${ICONS}/typescript/typescript-original.svg` },
+      { name: 'Kotlin', note: 'Native Android with Jetpack Compose', icon: `${ICONS}/kotlin/kotlin-original.svg` },
+      { name: 'C / C++', note: 'Embedded systems and desktop clients', icon: `${ICONS}/cplusplus/cplusplus-original.svg` },
+    ],
   },
   {
-    title: 'Bachelor of Applied Science, Computer Engineering',
-    org: 'University of British Columbia',
-    year: '2024 - 2028',
-    description: 'Focused on digital design, embedded systems, and computer architecture. Active member of UBC Open Robotics.',
+    label: 'Backend & Cloud',
+    items: [
+      { name: 'Node.js & Express', note: 'REST APIs and backend services', icon: `${ICONS}/nodejs/nodejs-original.svg` },
+      { name: 'PostgreSQL', note: 'Schemas, migrations, and transactions', icon: `${ICONS}/postgresql/postgresql-original.svg` },
+      { name: 'AWS S3', note: 'Object storage for files and datasets', icon: `${ICONS}/amazonwebservices/amazonwebservices-original-wordmark.svg` },
+      { name: 'Google Cloud', note: 'VM hosting behind HTTPS', icon: `${ICONS}/googlecloud/googlecloud-original.svg` },
+    ],
+  },
+  {
+    label: 'Frontend & Mobile',
+    items: [
+      { name: 'React', note: 'Component driven web interfaces', icon: `${ICONS}/react/react-original.svg` },
+      { name: 'Next.js', note: 'The framework behind this site', icon: `${ICONS}/nextjs/nextjs-original.svg` },
+      { name: 'Jetpack Compose', note: 'Declarative Android UI', icon: `${ICONS}/jetpackcompose/jetpackcompose-original.svg` },
+      { name: 'Figma', note: 'Designing screens before building them', icon: `${ICONS}/figma/figma-original.svg` },
+    ],
+  },
+  {
+    label: 'Tools & DevOps',
+    items: [
+      { name: 'Git & GitHub', note: 'Version control and code review', icon: `${ICONS}/github/github-original.svg` },
+      { name: 'GitHub Actions', note: 'CI pipelines and automated tests', icon: `${ICONS}/githubactions/githubactions-original.svg` },
+      { name: 'Docker', note: 'Reproducible builds and test services', icon: `${ICONS}/docker/docker-original.svg` },
+      { name: 'Linux', note: 'Daily driver for development', icon: `${ICONS}/linux/linux-original.svg` },
+    ],
+  },
+];
+
+// Current role first, then by start date.
+export const experience: ExperienceEntry[] = [
+  {
+    role: 'Software Developer',
+    org: 'UBC Open Robotics',
+    period: 'Sep 2025 – Present',
+    summary: 'Kotlin Android app streaming live robot sensor data over TCP at 55 ms median latency.',
+  },
+  {
+    role: 'Software Developer Intern',
+    org: 'Micro Engineering Tech Inc',
+    period: 'Jun 2026 – Aug 2026',
+    summary: 'REST APIs on AWS S3 for geospatial road data serving 1,000+ users.',
+  },
+  {
+    role: 'Software Developer',
+    org: 'Atria Community',
+    period: 'May 2025 – Aug 2025',
+    summary: 'PostgreSQL schemas and Express APIs behind volunteer and event workflows.',
   },
 ];
 
@@ -177,7 +194,7 @@ export const socialLinks = {
 
 export const aboutMe = {
   name: 'Bradley Wong',
-  title: 'Computer Engineering Student & Embedded Systems Developer',
+  title: 'Computer Engineering Student & Software Systems Developer',
   bio: `I'm going into my third year as a Computer Engineering student at the University of British Columbia, specializing in building software systems. I have experience in building software for my internship at METI and my work on the UBC Open Robotics Design Team. Outside of technical experience, I was also a VolunTEEN Team Lead at Fraser Health for two years. In my free time I enjoy capturing the world through the lens of my camera.`,
   location: 'Vancouver, BC',
 };

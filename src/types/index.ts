@@ -23,16 +23,22 @@ export interface NavItem {
   href: string;
 }
 
-// Skills types
-export interface Skill {
+// Home page "What I use" list
+export interface TechItem {
   name: string;
-  category: 'frontend' | 'backend' | 'hardware' | 'ml';
+  note: string;
+  icon: string;
 }
 
-// Timeline types — schooling and work history share one track
-export interface TimelineEntry {
-  title: string;
+export interface TechGroup {
+  label: string;
+  items: TechItem[];
+}
+
+// Work history
+export interface ExperienceEntry {
+  role: string;
   org: string;
-  year: string;
-  description?: string;
+  period: string;
+  summary: string;
 }
