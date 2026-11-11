@@ -1,10 +1,11 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { experience, techStack } from '@/data';
+import { experience, projects, techStack } from '@/data';
+import { ProjectCard } from '@/components/ProjectsGrid';
 import styles from '@/styles/Home.module.css';
 
 const ease = [0.25, 0.1, 0.25, 1] as const;
@@ -15,6 +16,12 @@ const reveal = {
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true, margin: '-60px' },
   transition: { duration: 0.6, ease },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease } },
+  exit: { opacity: 0 },
 };
 
 /* ---------- Terminal that types itself out ---------- */
@@ -145,6 +152,7 @@ const AboutBento = () => (
           Clean APIs,
           <span> tested and shipped.</span>
         </h3>
+        <a href="#stack" className={styles.panelLink}>See my stack</a>
       </motion.div>
 
       <motion.div
@@ -169,6 +177,104 @@ const AboutBento = () => (
   </section>
 );
 
+/* ---------- Featured projects carousel ---------- */
+
+const featured = projects.filter((p) => p.categories.includes('software'));
+
+const FeaturedProjects = () => {
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  const scrollByCard = (direction: 1 | -1) => {
+    const track = trackRef.current;
+    if (!track) return;
+    const card = track.querySelector<HTMLElement>('[data-slide]');
+    const step = card ? card.offsetWidth + 24 : track.clientWidth * 0.8;
+    track.scrollBy({ left: step * direction, behavior: 'smooth' });
+  };
+
+  return (
+    <section className={styles.section}>
+      <motion.div className={styles.sectionHead} {...reveal}>
+        <div>
+          <span className={styles.label}>Projects</span>
+          <h2 className={styles.sectionTitle}>Featured work</h2>
+        </div>
+        <div className={styles.sectionActions}>
+          <button
+            type="button"
+            className={styles.arrowBtn}
+            onClick={() => scrollByCard(-1)}
+            aria-label="Previous project"
+          >
+            ←
+          </button>
+          <button
+            type="button"
+            className={styles.arrowBtn}
+            onClick={() => scrollByCard(1)}
+            aria-label="Next project"
+          >
+            →
+          </button>
+          <Link href="/projects" className={styles.viewAll}>
+            View all
+          </Link>
+        </div>
+      </motion.div>
+
+      <div className={styles.carousel} ref={trackRef}>
+        {featured.map((project) => (
+          <div key={project.id} className={styles.slide} data-slide>
+            <ProjectCard project={project} variants={cardVariants} />
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
+
+/* ---------- Tech stack ---------- */
+
+const TechStack = () => (
+  <section className={styles.section} id="stack">
+    <motion.div className={styles.sectionHead} {...reveal}>
+      <div>
+        <span className={styles.label}>Tech stack</span>
+        <h2 className={styles.sectionTitle}>What I use</h2>
+      </div>
+    </motion.div>
+
+    <div className={styles.stackGrid}>
+      {techStack.map((group) => (
+        <div key={group.label} className={styles.stackGroup}>
+          <h3 className={styles.stackGroupLabel}>{group.label}</h3>
+          <ul className={styles.stackList}>
+            {group.items.map((item, i) => (
+              <motion.li
+                key={item.name}
+                className={styles.stackItem}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.45, delay: i * 0.06, ease }}
+              >
+                <span className={styles.stackIcon}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={item.icon} alt="" loading="lazy" />
+                </span>
+                <span className={styles.stackText}>
+                  <span className={styles.stackName}>{item.name}</span>
+                  <span className={styles.stackNote}>{item.note}</span>
+                </span>
+              </motion.li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+);
+
 /**
  * Everything on the home page below the photo hero. Sits on the bright page
  * surface and scrolls up over the fixed photo.
@@ -177,6 +283,8 @@ const HomeSections = () => (
   <div className={styles.home}>
     <div className={styles.container}>
       <AboutBento />
+      <FeaturedProjects />
+      <TechStack />
     </div>
   </div>
 );

@@ -16,7 +16,11 @@
 }
 
 /* Every surface on the photo gets the same glass treatment. */
-.panel {
+.panel,
+.stackGroup,
+.arrowBtn,
+.viewAll,
+.carousel article {
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--glass-edge);
@@ -43,6 +47,70 @@
   letter-spacing: 0.12em;
   color: var(--fg-subtle);
   margin-bottom: var(--spacing-sm);
+}
+
+.sectionHead {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--color-white);
+}
+
+/* Section headings sit straight on the photo, so they go white with a soft
+   shadow; everything inside a panel keeps the dark text. */
+.sectionHead {
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.45);
+}
+
+.sectionHead .label {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.sectionActions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.arrowBtn {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background: var(--panel);
+  text-shadow: none;
+  color: var(--fg);
+  font-size: 1rem;
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.arrowBtn:hover {
+  background: var(--panel-hover);
+  transform: translateY(-2px);
+}
+
+.viewAll {
+  margin-left: var(--spacing-sm);
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius-full);
+  background: var(--surface-bg);
+  color: var(--fg);
+  text-shadow: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.viewAll:hover {
+  opacity: 0.85;
+  transform: translateY(-2px);
 }
 
 /* ---------- Bento ---------- */
@@ -335,6 +403,96 @@
   transform: translateX(10px) rotate(9deg);
 }
 
+/* ---------- Featured carousel ---------- */
+
+.carousel {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - 24px) / 2);
+  gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  padding-bottom: 4px;
+}
+
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.slide {
+  scroll-snap-align: start;
+  min-width: 0;
+}
+
+.slide > div {
+  height: 100%;
+}
+
+/* ---------- Tech stack list ---------- */
+
+.stackGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.stackGroup {
+  background: var(--panel);
+  border-radius: var(--panel-radius);
+  padding: var(--spacing-lg) var(--spacing-xl) var(--spacing-sm);
+}
+
+.stackGroupLabel {
+  font-family: var(--font-primary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--fg-subtle);
+  margin-bottom: var(--spacing-sm);
+}
+
+.stackList {
+  list-style: none;
+}
+
+.stackItem {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 0;
+  border-top: 1px solid var(--line);
+}
+
+.stackItem:first-child {
+  border-top: none;
+}
+
+.stackIcon {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  padding: 9px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.stackText {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.stackName {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--fg);
+}
+
+.stackNote {
+  font-size: 0.85rem;
+  color: var(--fg-muted);
+}
+
 /* ---------- Responsive ---------- */
 
 @media (max-width: 860px) {
@@ -346,6 +504,14 @@
       'education'
       'stack'
       'photo';
+  }
+
+  .carousel {
+    grid-auto-columns: 85%;
+  }
+
+  .stackGrid {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -364,6 +530,23 @@
 
   .statement {
     font-size: 1.75rem;
+  }
+
+  .sectionTitle {
+    font-size: 2rem;
+  }
+
+  .sectionHead {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .arrowBtn {
+    display: none;
+  }
+
+  .viewAll {
+    margin-left: 0;
   }
 }
 
