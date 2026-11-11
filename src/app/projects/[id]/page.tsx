@@ -58,6 +58,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   }
 
   const hero = project.images[0] || project.thumbnail;
+  const gallery = (project.screenshots ?? []).filter((src) => src !== hero);
 
   return (
     <PageSurface variant="light">
@@ -151,6 +152,25 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           </div>
         </div>
 
+        {gallery.length > 0 && (
+          <section className={styles.gallery}>
+            <h2 className={styles.galleryHeading}>More screenshots</h2>
+            <div className={styles.galleryGrid}>
+              {gallery.map((src, index) => (
+                <div key={src} className={styles.galleryItem}>
+                  <Image
+                    src={src}
+                    alt={`${project.title} screenshot ${index + 1}`}
+                    width={1200}
+                    height={800}
+                    sizes="(max-width: 768px) 100vw, 460px"
+                    className={styles.galleryImage}
+                  />
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
       </article>
     </PageSurface>
   );
