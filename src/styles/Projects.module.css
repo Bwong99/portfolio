@@ -1,12 +1,12 @@
-/* Background photo + overlay come from the parent PageSurface */
 .projects {
   padding: var(--spacing-3xl) 0;
-  color: var(--on-dark);
+  color: var(--fg);
   position: relative;
 }
 
+/* Narrower than the page so the two cards per row sit a little smaller. */
 .projectsContainer {
-  max-width: var(--max-width);
+  max-width: 920px;
   margin: 0 auto;
   padding: 0 var(--spacing-lg);
   position: relative;
@@ -20,14 +20,12 @@
 
 .projectsTitle {
   font-size: 2.5rem;
-  color: var(--on-dark);
-  text-shadow: var(--on-dark-shadow);
+  color: var(--fg);
   margin-bottom: var(--spacing-sm);
 }
 
 .projectsSubtitle {
-  color: var(--on-dark-muted);
-  text-shadow: var(--on-dark-shadow);
+  color: var(--fg-muted);
   font-size: 1.125rem;
 }
 
@@ -49,7 +47,7 @@
   font-size: 0.875rem;
   font-weight: 400;
   letter-spacing: 0.04em;
-  color: var(--on-dark-muted);
+  color: var(--fg-muted);
   cursor: pointer;
   transition: color var(--transition-fast);
 }
@@ -67,11 +65,11 @@
 }
 
 .filterBtn:hover {
-  color: var(--on-dark);
+  color: var(--fg);
 }
 
 .filterBtn.active {
-  color: var(--on-dark);
+  color: var(--fg);
 }
 
 .filterBtn.active::after {
@@ -79,109 +77,180 @@
 }
 
 .filterBtn:focus-visible {
-  outline: 1px solid var(--on-dark-muted);
+  outline: 1px solid var(--fg-muted);
   outline-offset: 4px;
 }
 
 /* Projects Grid */
+/* Two per row: each card is the first impression of a project, so it gets room. */
 .projectsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--spacing-xl);
 }
 
 /* Project Card */
-/* Hairline frame, flat on the page — the photo does the work, not the chrome. */
+/* Media on top, then what it is, what it's built with, and where to see it. */
 .projectCard {
-  display: block;
-  background-color: var(--panel-bg);
-  border: 1px solid var(--panel-rule);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  transition: border-color var(--transition-normal), background-color var(--transition-normal);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 12px;
+  border-radius: var(--panel-radius);
+  background-color: var(--panel);
+  border: 1px solid var(--line);
+  transition: background-color var(--transition-normal), transform var(--transition-normal);
 }
 
 .projectCard:hover {
-  border-color: var(--panel-rule-hover);
-  background-color: var(--panel-bg-hover);
+  background-color: var(--panel-hover);
+  transform: translateY(-3px);
 }
 
-.projectThumbnail {
+.projectCard:focus-within {
+  outline: 2px solid var(--fg);
+  outline-offset: 2px;
+}
+
+.projectMedia {
   position: relative;
-  width: 100%;
-  aspect-ratio: 16/10;
+  aspect-ratio: 16 / 10;
+  border-radius: 12px;
   overflow: hidden;
+  background-color: var(--panel-hover);
 }
 
-.projectThumbnail img {
-  transition: transform var(--transition-slow);
-}
-
-.projectCard:hover .projectThumbnail img {
-  transform: scale(1.03);
-}
-
-.projectOverlay {
+.projectVideo {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.55) 0%, transparent 55%);
-  opacity: 0;
-  transition: opacity var(--transition-normal);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.projectBody {
   display: flex;
-  align-items: flex-end;
-  justify-content: flex-start;
-  padding: var(--spacing-lg);
+  flex-direction: column;
+  flex: 1;
+  padding: var(--spacing-lg) var(--spacing-sm) var(--spacing-xs);
 }
 
-.projectCard:hover .projectOverlay {
-  opacity: 1;
+.projectKicker {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--fg-subtle);
+  margin-bottom: 0.35rem;
 }
 
-/* A label, not a button — the whole card is already the link. */
-.projectOverlayBtn {
+.projectTitle {
+  font-size: 1.375rem;
+  line-height: 1.25;
+  font-weight: 600;
+  color: var(--fg);
+  margin: 0;
+}
+
+/* The title link stretches over the whole card so anywhere opens the project;
+   the live/code links sit above it. */
+.projectLink {
+  color: inherit;
+}
+
+.projectLink::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  z-index: 1;
+}
+
+.projectLink:focus-visible {
+  outline: none;
+}
+
+.projectDescription {
+  color: var(--fg-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: var(--spacing-sm) 0 0;
+}
+
+/* Tags sit under the description; the actions close the card. */
+.projectTags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: var(--spacing-md) 0 0;
+  padding: 0;
+}
+
+.projectTag {
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+  background-color: var(--surface-bg);
+  font-size: 0.75rem;
+  color: var(--fg-muted);
+  white-space: nowrap;
+}
+
+.projectFooter {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-top: auto;
+  padding-top: var(--spacing-lg);
+}
+
+/* The one coloured control on the card, in the project's own accent. */
+.readMore {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  font-size: 0.8125rem;
-  font-weight: 400;
-  letter-spacing: 0.04em;
-  color: var(--color-white);
+  padding: 0.6rem 1.15rem;
+  border-radius: var(--radius-full);
+  background-color: var(--project-accent, var(--color-accent));
+  color: #1b1c1f;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: filter var(--transition-fast), transform var(--transition-fast);
 }
 
-.projectOverlayBtn::after {
+.readMore::after {
   content: '→';
   transition: transform var(--transition-fast);
 }
 
-.projectCard:hover .projectOverlayBtn::after {
-  transform: translateX(3px);
+.readMore:hover {
+  filter: brightness(1.08);
+  transform: translateY(-2px);
 }
 
-.projectContent {
-  padding: var(--spacing-lg);
+.readMore:hover::after {
+  transform: translateX(2px);
 }
 
-/* Plain overline rather than a filled chip. */
-.projectCategory {
-  display: block;
-  color: var(--on-dark-muted);
-  font-size: 0.6875rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  margin-bottom: var(--spacing-sm);
+.projectActionIcon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  background-color: var(--surface-bg);
+  color: var(--fg);
+  transition: all var(--transition-fast);
 }
 
-.projectTitle {
-  font-size: 1.25rem;
-  color: var(--on-dark);
-  margin-bottom: var(--spacing-sm);
-}
-
-.projectDescription {
-  color: var(--on-dark-muted);
-  font-size: 0.9375rem;
-  line-height: 1.6;
+.projectActionIcon:hover {
+  background-color: var(--fg);
+  color: var(--fg-inverse);
+  transform: translateY(-2px);
 }
 
 /* Project Detail Page */

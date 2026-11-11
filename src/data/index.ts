@@ -429,3 +429,21 @@ export const aboutMe = {
   location: 'Vancouver, BC',
 };
 
+// Each project's own accent (Read more button, project page highlights).
+// Light, saturated tones that all read well with dark text; no pinks.
+const PROJECT_ACCENTS = [
+  '#7db8ff', // blue
+  '#6fd3a8', // mint
+  '#f7a65b', // orange
+  '#b39cff', // lavender
+  '#5fd1d6', // teal
+  '#e8c45f', // gold
+  '#a3d65c', // lime
+  '#8ccff0', // sky
+];
+
+/** A project's accent colour, fixed by its place in the list so it never changes between visits. */
+export const projectAccent = (id: string) => {
+  const index = Math.max(0, projects.findIndex((p) => p.id === id));
+  return PROJECT_ACCENTS[index % PROJECT_ACCENTS.length];
+};

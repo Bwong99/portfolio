@@ -1,8 +1,9 @@
+import type { CSSProperties } from 'react';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { projects } from '@/data';
+import { projects, projectAccent } from '@/data';
 import PageSurface from '@/components/PageSurface';
 import styles from '@/styles/ProjectDetail.module.css';
 
@@ -62,7 +63,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   return (
     <PageSurface variant="light">
-      <article className={styles.page}>
+      <article
+        className={styles.page}
+        style={{ '--project-accent': projectAccent(project.id) } as CSSProperties}
+      >
         <Link href="/projects" className={styles.back}>
           ← All projects
         </Link>
