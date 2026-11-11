@@ -13,11 +13,8 @@ export const metadata: Metadata = {
 export default function ProjectsPage() {
   return (
     <PageTransition>
-      <PageSurface>
-        <PageHeader
-          title="My Projects"
-          subtitle="A collection of work spanning embedded systems and robotics"
-        />
+      <PageSurface variant="light">
+        <PageHeader eyebrow="Projects" title="What I've built" />
         <ProjectsGrid showFilter={true} />
       </PageSurface>
     </PageTransition>
