@@ -50,8 +50,8 @@ const item = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] } },
 };
 
-// Points along the hero scroll track where the site chrome steps aside and
-// where it comes back, just before the footer arrives.
+// Points along the hero scroll track where the navbar steps aside and where it
+// comes back, just before the sections below arrive.
 const CHROME_HIDE_AT = 0.45;
 const CHROME_SHOW_AT = 0.85;
 
@@ -70,8 +70,18 @@ const Hero = () => {
   // Once faded the pills are invisible, so stop them swallowing clicks.
   const introPointer = useTransform(introOpacity, (v) => (v < 0.05 ? 'none' : 'auto'));
 
-  // Between the intro fading out and the footer coming into reach, the hero is
-  // just the photo — the navbar and copyright step aside for that stretch.
+  // The "more below" cue has done its job as soon as scrolling starts.
+  const cueOpacity = useTransform(scrollYProgress, [0, 0.12], [1, 0]);
+  const cuePointer = useTransform(cueOpacity, (v) => (v < 0.05 ? 'none' : 'auto'));
+
+  const scrollPastHero = () => {
+    const track = scrollRef.current;
+    if (!track) return;
+    window.scrollTo({ top: track.offsetTop + track.offsetHeight - 70, behavior: 'smooth' });
+  };
+
+  // Between the intro fading out and the sections below coming into reach, the
+  // hero is just the photo — the navbar steps aside for that stretch.
   const { setChromeHidden } = useChromeVisibility();
 
   useMotionValueEvent(scrollYProgress, 'change', (p) => {
@@ -81,14 +91,8 @@ const Hero = () => {
   // The chrome belongs to the whole site, so hand it back on the way out.
   useEffect(() => () => setChromeHidden(false), [setChromeHidden]);
 
-  const copyrightOpacity = useTransform(
-    scrollYProgress,
-    [CHROME_HIDE_AT - 0.1, CHROME_HIDE_AT, CHROME_SHOW_AT, CHROME_SHOW_AT + 0.1],
-    [1, 0, 0, 1]
-  );
-
   return (
-    <div className={styles.heroScroll} ref={scrollRef}>
+    <div className={styles.heroScroll} ref={scrollRef} data-nav-overlay>
       <section className={styles.hero}>
         <motion.div
           className={styles.content}
@@ -103,7 +107,7 @@ const Hero = () => {
             </motion.h1>
 
             <motion.p className={styles.tagline} variants={item}>
-              Building embedded systems. Capturing moments.
+              Building Software Systems. Capturing Moments.
             </motion.p>
 
             <motion.div className={styles.location} variants={item}>
@@ -128,9 +132,28 @@ const Hero = () => {
           </motion.div>
         </motion.div>
 
-        <motion.div className={styles.copyright} style={{ opacity: copyrightOpacity }}>
-          © {new Date().getFullYear()} Bradley Wong
-        </motion.div>
+        <motion.button
+          type="button"
+          className={styles.scrollCue}
+          style={{ opacity: cueOpacity, pointerEvents: cuePointer }}
+          onClick={scrollPastHero}
+          aria-label="Scroll to see more"
+        >
+          <svg
+            className={styles.scrollCueIcon}
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.75"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </motion.button>
       </section>
     </div>
   );

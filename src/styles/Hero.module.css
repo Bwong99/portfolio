@@ -19,7 +19,6 @@
   padding: calc(var(--nav-height) + var(--spacing-xl)) var(--spacing-lg) var(--spacing-3xl);
 }
 
-/* Background photo + overlay come from the site-wide SiteBackground */
 .content {
   position: relative;
   z-index: 2;
@@ -93,32 +92,66 @@
   font-weight: 500;
   letter-spacing: 0.02em;
   color: var(--color-white);
-  background: var(--panel-bg-strong);
-  border: 1px solid var(--panel-rule);
-  transition: background var(--transition-fast), transform var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  transition: all var(--transition-fast);
 }
 
 .pill:hover {
-  background: var(--panel-bg-hover);
-  border-color: var(--panel-rule-hover);
-  color: var(--color-accent);
-  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-3px);
 }
 
 .pill svg {
   flex-shrink: 0;
 }
 
-.copyright {
+/* Small chevron at the foot of the hero hinting there's more below. */
+.scrollCue {
   position: absolute;
-  bottom: var(--spacing-lg);
-  left: 0;
-  right: 0;
+  left: 50%;
+  bottom: var(--spacing-xl);
   z-index: 2;
-  text-align: center;
-  font-size: 0.8rem;
+  transform: translateX(-50%);
+  padding: var(--spacing-sm);
+  background: none;
   color: rgba(255, 255, 255, 0.7);
-  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+  filter: drop-shadow(0 1px 6px rgba(0, 0, 0, 0.35));
+  transition: color var(--transition-fast);
+}
+
+.scrollCue:hover {
+  color: var(--color-white);
+}
+
+.scrollCueIcon {
+  display: block;
+  animation: cueIn 0.8s ease 1.2s both, cueBob 2.4s ease-in-out 2s infinite;
+}
+
+@keyframes cueIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes cueBob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scrollCueIcon {
+    animation: none;
+  }
 }
 
 @media (max-width: 600px) {
@@ -133,9 +166,5 @@
   .pill {
     padding: 0.5rem 0.85rem;
     font-size: 0.82rem;
-  }
-
-  .copyright {
-    display: none;
   }
 }

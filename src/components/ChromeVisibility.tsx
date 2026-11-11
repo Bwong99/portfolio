@@ -13,7 +13,7 @@ const ChromeVisibilityContext = createContext<ChromeVisibility>({
 });
 
 /**
- * Lets a page hide the persistent site chrome (navbar, hero copyright) while
+ * Lets a page hide the persistent site chrome (the navbar) while
  * the visitor is in a section meant to be looked at without distraction.
  * Only the home hero uses this today; everywhere else it stays false.
  */
