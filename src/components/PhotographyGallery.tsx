@@ -1,6 +1,7 @@
 'use client';
 
-import { Fragment, useEffect, useRef, useState } from 'react';
+import { CSSProperties, Fragment, useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import styles from '@/styles/Photography.module.css';
@@ -10,6 +11,11 @@ interface Photo {
   src: string;
   title: string;
   location: string;
+  // The file's real pixel dimensions, so the spotlight can frame each photo at
+  // its own aspect ratio instead of cropping everything to landscape.
+  width: number;
+  height: number;
+  // A line about where the photo was taken, shown under it when opened.
   description?: string;
 }
 
@@ -138,11 +144,15 @@ const PhotographyGallery = ({ photos }: PhotographyGalleryProps) => {
           <div className={styles.galleryTrack} ref={trackRef}>
             {photos.map((photo, index) => {
               const isCentered = index === centerIndex;
+              const isPortrait = photo.height > photo.width;
 
               return (
                 <motion.div
                   key={photo.id}
-                  className={`${styles.photoItem} ${isCentered ? styles.centered : ''}`}
+                  className={`${styles.photoItem} ${isCentered ? styles.centered : ''} ${
+                    isPortrait ? styles.portrait : ''
+                  }`}
+                  style={{ '--photo-ratio': `${photo.width} / ${photo.height}` } as CSSProperties}
                   initial={false}
                   animate={{
                     scale: isCentered ? 1 : 0.85,
@@ -162,8 +172,8 @@ const PhotographyGallery = ({ photos }: PhotographyGalleryProps) => {
                     <Image
                       src={photo.src}
                       alt={photo.title}
-                      width={1200}
-                      height={800}
+                      width={photo.width}
+                      height={photo.height}
                       className={styles.photoImage}
                       priority={index < 3}
                     />
@@ -262,7 +272,8 @@ const PhotographyGallery = ({ photos }: PhotographyGalleryProps) => {
         </Fragment>
       )}
 
-      {selectedImage && (
+      {/* Rendered into <body> so it stacks above the navbar, not under it. */}
+      {selectedImage && createPortal(
         <motion.div
           className={styles.lightboxBackdrop}
           initial={{ opacity: 0 }}
@@ -286,13 +297,24 @@ const PhotographyGallery = ({ photos }: PhotographyGalleryProps) => {
             <Image
               src={selectedImage.src}
               alt={selectedImage.title}
-              width={1600}
-              height={1000}
+              width={selectedImage.width}
+              height={selectedImage.height}
               className={styles.lightboxImage}
               priority
             />
+            <div className={styles.lightboxCaption}>
+              <h3 className={styles.lightboxTitle}>{selectedImage.title}</h3>
+              <p className={styles.lightboxLocation}>
+                <PinIcon />
+                <span>{selectedImage.location}</span>
+              </p>
+              {selectedImage.description && (
+                <p className={styles.lightboxDescription}>{selectedImage.description}</p>
+              )}
+            </div>
           </motion.div>
-        </motion.div>
+        </motion.div>,
+        document.body
       )}
     </div>
   );

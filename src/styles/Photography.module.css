@@ -1,8 +1,7 @@
-/* Background photo + overlay come from the parent PageSurface */
 .gallery {
   width: 100%;
-  padding: var(--spacing-3xl) 0;
-  color: var(--on-dark);
+  padding: var(--spacing-md) 0 var(--spacing-3xl);
+  color: var(--fg);
   position: relative;
 }
 
@@ -33,15 +32,25 @@
   z-index: 10;
 }
 
+/* Each frame takes the photo's own ratio, set per item as --photo-ratio. */
 .photoWrapper {
   position: relative;
   width: 100%;
-  aspect-ratio: 3/2;
+  aspect-ratio: var(--photo-ratio, 3 / 2);
   border-radius: var(--radius-lg);
   overflow: hidden;
-  border: 1px solid var(--glass-border);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
-  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid transparent;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+  background: var(--panel);
+}
+
+/* A tall photo is bounded by the viewport height rather than the slot width —
+   at full slot width a 2:3 frame would run well past the bottom of the screen.
+   Its width then follows from the ratio, leaving it centred in the slot. */
+.photoItem.portrait .photoWrapper {
+  width: auto;
+  height: min(74vh, 800px);
+  margin: 0 auto;
 }
 
 .photoImage {
@@ -90,32 +99,63 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  /* Above the navbar (1000); rendered into <body> so this applies. */
+  z-index: 1100;
   backdrop-filter: blur(2px);
 }
 
 .lightboxContent {
   position: relative;
-  background: rgba(20, 22, 26, 0.94);
-  border: 1px solid var(--panel-rule);
-  border-radius: var(--radius-xl);
-  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
-  padding: 2rem;
+  background: var(--surface-bg);
+  border: none;
+  border-radius: var(--panel-radius);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.25);
+  padding: 1.5rem;
   max-width: 800px;
-  max-height: 80vh;
+  max-height: 86vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  gap: var(--spacing-md);
 }
 
 .lightboxImage {
   width: 100%;
   height: auto;
   max-width: 700px;
-  max-height: 70vh;
+  max-height: 62vh;
   object-fit: contain;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
+}
+
+/* Name, place and a line about it, under the enlarged photo. */
+.lightboxCaption {
+  width: 100%;
+  max-width: 700px;
+  color: var(--fg);
+}
+
+.lightboxTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.lightboxLocation {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.2rem;
+  font-size: 0.875rem;
+  color: var(--fg-muted);
+}
+
+.lightboxDescription {
+  margin-top: var(--spacing-sm);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--fg-muted);
 }
 
 .lightboxClose {
@@ -133,7 +173,7 @@
 }
 
 .lightboxClose:hover {
-  color: var(--on-dark-muted);
+  color: var(--fg-muted);
 }
 
 /* Controls Bar */
@@ -145,12 +185,14 @@
   bottom: var(--spacing-xl);
   left: 50%;
   transform: translateX(-50%);
-  background: var(--panel-bg-strong);
-  border: 1px solid var(--panel-rule);
-  color: var(--on-dark);
+  background: var(--glass-tint);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-edge);
+  color: var(--fg);
   padding: 0.625rem 1.125rem;
-  border-radius: var(--radius-sm);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+  border-radius: var(--radius-full);
+  box-shadow: var(--glass-shadow);
   z-index: 100;
   gap: 0.875rem;
   flex-wrap: nowrap;
@@ -167,24 +209,24 @@
 }
 
 .counterCurrent {
-  color: var(--on-dark);
+  color: var(--fg);
   font-weight: 500;
 }
 
 .counterTotal {
-  color: var(--on-dark-muted);
+  color: var(--fg-muted);
 }
 
 .divider {
   width: 1px;
   height: 0.875rem;
-  background: var(--glass-border);
+  background: var(--line);
 }
 
 .viewToggleBtn {
   background: none;
   border: none;
-  color: var(--on-dark);
+  color: var(--fg);
   padding: 0;
   font-size: 0.8125rem;
   font-family: inherit;
@@ -200,7 +242,7 @@
 }
 
 .viewToggleBtn:focus-visible {
-  outline: 1px solid var(--on-dark-muted);
+  outline: 1px solid var(--fg-muted);
   outline-offset: 4px;
   border-radius: 2px;
 }
@@ -229,8 +271,7 @@
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-md);
-  /* Opaque so the dark site overlay behind the page cannot wash the photo out. */
-  background: #000;
+  background: var(--panel);
 }
 
 .gridImage {
@@ -303,13 +344,15 @@
   position: fixed;
   bottom: var(--spacing-xl);
   right: var(--spacing-xl);
-  background: var(--panel-bg-strong);
-  border: 1px solid var(--panel-rule);
+  background: var(--glass-tint);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-edge);
   padding: var(--spacing-md) var(--spacing-lg);
   border-radius: var(--radius-sm);
   font-weight: 600;
-  color: var(--on-dark);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+  color: var(--fg);
+  box-shadow: var(--glass-shadow);
   z-index: 100;
 }
 
