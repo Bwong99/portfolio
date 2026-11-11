@@ -1,0 +1,216 @@
+/* No backdrop of its own: the panels float over the fixed hero photo as
+   liquid glass. Swapping the colour tokens here turns everything built on them
+   (including the shared project cards) into light-on-glass. */
+.home {
+  --panel: var(--glass-tint);
+  --panel-hover: var(--glass-tint-hover);
+  --surface-bg: rgba(255, 255, 255, 0.12);
+  --line: rgba(255, 255, 255, 0.16);
+  --fg: #ffffff;
+  --fg-muted: rgba(255, 255, 255, 0.82);
+  --fg-subtle: rgba(255, 255, 255, 0.62);
+  --fg-inverse: #111113;
+  position: relative;
+  padding: var(--spacing-2xl) 0 var(--spacing-3xl);
+  color: var(--fg);
+}
+
+/* Every surface on the photo gets the same glass treatment. */
+.panel {
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-edge);
+  box-shadow: var(--glass-shadow);
+}
+
+.container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+}
+
+.section {
+  padding: var(--spacing-2xl) 0;
+}
+
+/* ---------- Shared type ---------- */
+
+.label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--fg-subtle);
+  margin-bottom: var(--spacing-sm);
+}
+
+/* ---------- Bento ---------- */
+
+.bento {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  grid-template-areas:
+    'intro experience'
+    'intro education'
+    'stack photo';
+  gap: 12px;
+}
+
+.panel {
+  background: var(--panel);
+  border-radius: var(--panel-radius);
+  padding: var(--spacing-xl);
+  min-width: 0;
+  overflow: hidden;
+}
+
+.panelIntro {
+  grid-area: intro;
+  display: flex;
+  flex-direction: column;
+}
+
+.panelExperience {
+  grid-area: experience;
+}
+
+.panelEducation {
+  grid-area: education;
+}
+
+.panelStack {
+  grid-area: stack;
+  display: flex;
+  flex-direction: column;
+}
+
+.panelPhoto {
+  grid-area: photo;
+  display: flex;
+  flex-direction: column;
+}
+
+.statement {
+  font-size: 2.25rem;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--fg);
+}
+
+/* Second half of a heading drops to gray, the way a sentence trails off. */
+.statement span,
+.panelHeading span {
+  color: var(--fg-subtle);
+}
+
+.panelHeading {
+  font-size: 1.375rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--fg);
+}
+
+.panelText {
+  margin-top: var(--spacing-sm);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--fg-muted);
+}
+
+.panelLink {
+  align-self: flex-start;
+  margin-top: auto;
+  padding-top: var(--spacing-lg);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--fg);
+}
+
+.panelLink::after {
+  content: '→';
+  display: inline-block;
+  margin-left: 0.35em;
+  transition: transform var(--transition-fast);
+}
+
+.panelLink:hover::after {
+  transform: translateX(3px);
+}
+
+/* ---------- Experience ---------- */
+
+.experienceList {
+  list-style: none;
+}
+
+.experienceItem {
+  padding: 0.85rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.experienceItem:first-child {
+  border-top: none;
+  padding-top: 0.25rem;
+}
+
+.experienceHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--spacing-md);
+}
+
+.experienceOrg {
+  font-weight: 600;
+  color: var(--fg);
+}
+
+.experiencePeriod {
+  flex-shrink: 0;
+  font-size: 0.8125rem;
+  color: var(--fg-subtle);
+}
+
+.experienceRole {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--fg-muted);
+}
+
+.experienceSummary {
+  margin-top: 0.25rem;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--fg-subtle);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 860px) {
+  .bento {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'intro'
+      'experience'
+      'education'
+      'stack'
+      'photo';
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 0 var(--spacing-md);
+  }
+
+  .panel {
+    padding: var(--spacing-lg);
+  }
+
+  .statement {
+    font-size: 1.75rem;
+  }
+}
+
